@@ -78,13 +78,15 @@
   --fs-caption: 15px;
   --fs-eyebrow: 14px;
 
-  /* 실측: 100px→128 / 48px→61 / 18px→31 / 16px→26 */
-  --lh-display: 1.28;
+  /* 행간 실측: 100px→127.6 / 48px→61.2 / 30px→42 / 18px→31 또는 28 / 16px→26 */
+  --lh-display: 1.276;
   --lh-heading: 1.4;
-  --lh-body:    1.72;
+  --lh-lead:    1.722;   /* 섹션 리드 18px→31 */
+  --lh-body:    1.556;   /* 카드 본문 18px→28 */
   --lh-meta:    1.625;
 
-  --ls-tight:   -0.02em;
+  /* 자간 실측: Space Grotesk 대형 헤딩만 -4px(=-0.04em), 나머지는 전부 0 */
+  --ls-tight:   -0.04em;
   --ls-eyebrow:  0.08em;
 
   /* ---------- 그리드 · 간격 ----------

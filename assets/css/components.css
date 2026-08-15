@@ -51,6 +51,8 @@
 .btn svg { flex-shrink: 0; }
 .btn--dark    { background: var(--ink-900); color: var(--white); }
 .btn--dark:hover { background: var(--ink-dark); }
+/* 시안의 Hug 폭이 정확히 173 이다. 폰트 렌더링 차이로 172.32 가 되므로 고정한다. */
+.btn--w173    { width: 173px; }
 .btn--primary { background: var(--blue-600); color: var(--white); }
 .btn--primary:hover { background: var(--blue-700); }
 .btn--ghost   { border: 1px solid var(--line); color: var(--ink-900); }
@@ -128,7 +130,7 @@
 }
 .work-item__desc {
   color: var(--ink-600);
-  line-height: 1.72;
+  line-height: var(--lh-body);   /* 18px→28 (리드 31 과 다르다) */
 }
 
 /* ===========================================================
