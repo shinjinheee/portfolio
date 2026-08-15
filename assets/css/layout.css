@@ -114,8 +114,9 @@ a { color: inherit; text-decoration: none; }
   display: block;
   color: var(--ink-dark);
 }
+/* 실측: logo 2 = 173 × 24.1 (SVG viewBox 173×25) — 폭이 기준이다 */
 .site-header__logo svg,
-.site-header__logo img { height: 24px; width: auto; }
+.site-header__logo img { width: 173px; height: auto; }
 
 /* GNB — 항목 간 100px */
 .gnb {
@@ -252,6 +253,8 @@ a { color: inherit; text-decoration: none; }
 
 @media (max-width: 767px) {
   .site-header__inner { height: 64px; }
+  .site-header__logo svg,
+  .site-header__logo img { width: 140px; }
   .nav-toggle { display: flex; }
 
   /* 모바일 메뉴 — 헤더 아래로 펼친다 */

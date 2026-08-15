@@ -96,39 +96,6 @@
   }
 
   /* -----------------------------------------------------------
-     스크롤스파이 — 현재 섹션의 GNB 항목에 밑줄
-     시안에서 Work가 밑줄 상태인 것을 재현한다.
-     ----------------------------------------------------------- */
-  function initScrollSpy() {
-    var links = [].slice.call(document.querySelectorAll('.gnb a[href^="#"]'));
-    if (!links.length || !('IntersectionObserver' in window)) return;
-
-    var map = {};
-    var sections = [];
-    links.forEach(function (link) {
-      var section = document.querySelector(link.getAttribute('href'));
-      if (!section) return;
-      map[section.id] = link;
-      sections.push(section);
-    });
-    if (!sections.length) return;
-
-    function setCurrent(link) {
-      links.forEach(function (l) { l.removeAttribute('aria-current'); });
-      if (link) link.setAttribute('aria-current', 'true');
-    }
-
-    // 화면 상단 1/3 지점을 지나는 섹션을 현재로 본다
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) setCurrent(map[entry.target.id]);
-      });
-    }, { rootMargin: '-90px 0px -66% 0px', threshold: 0 });
-
-    sections.forEach(function (s) { observer.observe(s); });
-  }
-
-  /* -----------------------------------------------------------
      Back to the Top
      ----------------------------------------------------------- */
   function initToTop() {
@@ -148,7 +115,6 @@
     initHeader();
     initNavToggle();
     initMarquee();
-    initScrollSpy();
     initToTop();
   });
 })();
