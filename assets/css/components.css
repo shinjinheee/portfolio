@@ -4,6 +4,9 @@
    설계서 §4 / 실측 docs/02
    =========================================================== */
 
+/* <picture> 는 레이아웃에 관여하지 않는다 — img 가 그대로 flex/grid 아이템이 된다 */
+picture { display: contents; }
+
 /* ===========================================================
    .link-display — 밑줄 대형 영문 링크
    View All(100px) · Detail(48px) · Work with me(100px)가
@@ -555,7 +558,7 @@
   opacity: 1;
 }
 
-/* 닫기 — 패널 우상단 (실측 28×28) */
+/* 닫기 — 패널 우상단. 실측: 28×28 원 #EFEFEF, X 는 #939DA7 1.2px */
 .modal__close {
   position: absolute;
   top: 26px;
@@ -566,8 +569,8 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: var(--surface);
-  color: var(--ink-650);
+  background: var(--close-bg);
+  color: var(--ink-400);
   transition: background var(--dur-fast) var(--ease);
 }
 .modal__close:hover { background: var(--line-chip); }

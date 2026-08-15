@@ -178,9 +178,15 @@
       if (!d) return;
       lastFocus = trigger || document.activeElement;
 
-      elVisual.innerHTML = d.image
-        ? '<img src="' + d.image + '" alt="' + d.title.replace(/\n/g, ' ') + ' 상세 이미지">'
-        : '';
+      elVisual.innerHTML = '';
+      if (d.image) {
+        var im = new Image();
+        im.alt = d.title.replace(/\n/g, ' ') + ' 상세 이미지';
+        im.src = d.image;
+        // WebP 를 못 읽는 브라우저는 PNG 로 되돌린다
+        if (d.imagePng) im.onerror = function () { im.onerror = null; im.src = d.imagePng; };
+        elVisual.appendChild(im);
+      }
       elYear.textContent = d.year || '';
       elTitle.innerHTML = (d.title || '').split('\n').join('<br>');
       elCompany.textContent = d.company || '';
@@ -203,6 +209,34 @@
       document.body.classList.remove('is-modal-open');
       if (lastFocus && lastFocus.focus) lastFocus.focus();
     }
+
+    /* 프리로드 — 클릭 후 받기 시작하면 모달이 빈 채로 뜬다.
+       (1) 카드에 마우스를 올리거나 포커스가 닿으면 그 한 장을 즉시 받고
+       (2) 페이지가 한가할 때 나머지를 순서대로 받아둔다. */
+    var warmed = {};
+    function warm(key) {
+      var d = data[key];
+      if (!d || !d.image || warmed[key]) return;
+      warmed[key] = true;
+      var im = new Image();
+      if (d.imagePng) im.onerror = function () { im.onerror = null; im.src = d.imagePng; };
+      im.src = d.image;
+    }
+
+    ['pointerenter', 'focusin'].forEach(function (evt) {
+      document.addEventListener(evt, function (e) {
+        var t = e.target.closest ? e.target.closest('[data-modal-open]') : null;
+        if (t) warm(t.getAttribute('data-modal-open'));
+      }, true);
+    });
+
+    var idle = window.requestIdleCallback || function (fn) { return setTimeout(fn, 300); };
+    var queue = Object.keys(data);
+    (function next() {
+      if (!queue.length) return;
+      warm(queue.shift());
+      idle(next, { timeout: 2000 });
+    })();
 
     // 카드 클릭 → 열기
     document.addEventListener('click', function (e) {
