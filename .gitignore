@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# IDE (JetBrains)
+.idea/
+*.iml
+
+# Claude Code
+.claude/
+
+# 에디터 임시파일
+*.swp
+*~
