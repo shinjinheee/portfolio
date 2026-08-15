@@ -56,7 +56,15 @@
   --ink-400:  #939DA7;   /* 캡션 · 메타 (회사명·연도) */
   --ink-dark: #2A2A2A;   /* 다크 버튼 */
 
-  --line:        #D9D9D9;   /* 구분선 — Selected work 아이템 경계 */
+  /* about 실측에서 추가된 회색 (어두운 순서) */
+  --ink-750:     #626262;   /* 보조(아웃라인) 버튼 글자 */
+  --ink-700:     #606C79;   /* 표 셀 텍스트 */
+  --ink-650:     #6E767E;   /* 정보 값 텍스트 */
+
+  --line:        #D9D9D9;   /* 구분선 — Selected work 아이템 경계, 표 괘선 */
+  --line-soft:   #DCDCDC;   /* 본문 블록 상하 경계 */
+  --line-chip:   #E7E7E7;   /* 칩 테두리 */
+  --icon-muted:  #ADADAD;   /* 보조 버튼 아이콘 (글자보다 연하다) */
   --placeholder: #D9DDE8;   /* 썸네일 미확보 상태 */
   --surface:     #F7F7F7;   /* 섹션 배경 · 아카이브 카드 */
   --surface-2:   #FBFBFB;   /* 한 단계 밝은 배경 */

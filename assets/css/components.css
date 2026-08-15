@@ -55,7 +55,13 @@
 .btn--w173    { width: 173px; }
 .btn--primary { background: var(--blue-600); color: var(--white); }
 .btn--primary:hover { background: var(--blue-700); }
-.btn--ghost   { border: 1px solid var(--line); color: var(--ink-900); }
+/* 실측(about 좌측): 흰 배경 + #d9d9d9 테두리 + #626262 글자
+   단, 아이콘 stroke 는 #ADADAD 로 글자보다 연하다 */
+.btn--ghost   { background: var(--white); border: 1px solid var(--line); color: var(--ink-750); }
+.btn--ghost svg { color: var(--icon-muted); }
+.btn--ghost:hover { border-color: var(--ink-400); }
+/* about 다운로드 버튼: 폭 100% / 높이 52 / 글자 16 */
+.btn--block   { width: 100%; min-height: 52px; font-size: var(--fs-meta); }
 
 /* ===========================================================
    .meta-line — 「소속 · 연도」 세로 구분선 조합
@@ -203,6 +209,143 @@
 }
 
 /* ===========================================================
+   about — 좌측 프로필 / 우측 정보 리스트
+   실측: 본문 상하 1px #dcdcdc / 좌우 패딩 60 / 컬럼 간격 100
+         좌측 366 고정 + sticky, 우측 가변
+   =========================================================== */
+.about-body {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  margin-bottom: var(--space-section);
+  border-block: 1px solid var(--line-soft);
+}
+.about-grid {
+  display: grid;
+  grid-template-columns: 366px 1fr;
+  gap: 100px;
+  padding: 0 var(--pad-x) 60px;
+}
+
+/* 좌측 — 스크롤해도 따라오도록 sticky (실측 sticky top:0) */
+.profile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding-block: 60px;
+  position: sticky;
+  top: 90px;                 /* 헤더 높이만큼 내려 붙인다 */
+  align-self: start;
+}
+.profile__photo {
+  width: 100%;
+  aspect-ratio: 366 / 530;
+  border-radius: var(--radius-card);
+  object-fit: cover;
+  background: var(--surface);
+}
+.profile__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* 우측 — 블록 간격 60, 라벨↔값 16 */
+.info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  padding-top: 60px;
+  margin: 0;
+}
+.info-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.info-block__label {
+  font-weight: 500;
+  font-size: var(--fs-meta);
+  line-height: 28px;
+  color: var(--ink-400);
+}
+.info-block__value {
+  margin: 0;
+  font-size: var(--fs-body);
+  line-height: 28px;
+  color: var(--ink-650);
+}
+
+/* 연도 + 내용 2열 행 (학력 · 자격증 · 경력) */
+.def-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+}
+.def-row {
+  display: flex;
+  gap: 12px;
+  font-size: var(--fs-body);
+  line-height: 28px;
+  color: var(--ink-650);
+}
+.def-row__term {
+  flex-shrink: 0;
+  width: 200px;
+}
+.def-row__desc { margin: 0; }
+
+/* 스킬 칩 — 실측 radius 12 / pad 20·10 / 18px lh24 / 간격 10·14 */
+.chip-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+/* 테두리는 inset box-shadow 로 그린다.
+   border 를 쓰면 칩마다 2px 씩 커져 1행이 한 줄에 안 들어간다
+   (실측: 1행 합계 1323 / 컬럼 1334 — 여유가 11px 뿐이다) */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding-inline: 20px;
+  border-radius: 12px;
+  background: var(--white);
+  box-shadow: inset 0 0 0 1px var(--line-chip);
+  font-size: var(--fs-body);
+  line-height: 24px;
+  color: var(--ink-650);
+}
+.chip--on {
+  background: var(--blue-600);
+  box-shadow: none;
+  color: var(--white);
+}
+
+/* 수상 및 이력 — 4열 표, 행마다 괘선 */
+.record-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-body);
+  line-height: 28px;
+  text-align: center;
+}
+.record-table td {
+  padding: 12px 10px;
+  border-top: 1px solid var(--line);
+  color: var(--ink-700);
+}
+.record-table tr:last-child td { border-bottom: 1px solid var(--line); }
+.record-table td:first-child { color: var(--ink-400); }
+
+/* ===========================================================
    케이스 페이지용 — 설계서 §4-2 / §4-4 / §4-5
    index에서는 아직 안 쓰지만 골격을 먼저 잡아둔다.
    =========================================================== */
@@ -270,6 +413,10 @@
   .marquee__card { width: 520px; }
 }
 
+@media (max-width: 1279px) {
+  .about-grid { gap: var(--space-5); }
+}
+
 @media (max-width: 1023px) {
   .work-item {
     grid-template-columns: 1fr;
@@ -281,6 +428,23 @@
   .marquee__card { width: 420px; }
   .metabar { grid-template-columns: repeat(2, 1fr); }
   .compare { grid-template-columns: 1fr; }
+
+  /* 좌우 2단 → 1단, sticky 해제 */
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+    padding-bottom: var(--space-5);
+  }
+  .profile {
+    position: static;
+    padding-block: var(--space-5) 0;
+    max-width: 366px;
+  }
+  .info-list { padding-top: 0; gap: var(--space-5); }
+
+  /* 표는 가로 스크롤로 흘린다 */
+  .record-scroll { overflow-x: auto; }
+  .record-table { min-width: 720px; }
 }
 
 @media (max-width: 767px) {
@@ -289,4 +453,9 @@
   .marquee__card { width: 280px; }
   .metabar { grid-template-columns: 1fr; }
   .metric__value { font-size: 44px; }
+
+  .about-grid { padding-inline: var(--pad-x); }
+  .def-row { flex-direction: column; gap: 2px; }
+  .def-row__term { width: auto; }
+  .chip { font-size: 16px; padding: 8px 16px; }
 }

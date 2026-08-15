@@ -52,6 +52,10 @@ a { color: inherit; text-decoration: none; }
 .section { padding-block: var(--space-section); }
 .section--first { padding-top: var(--space-first); }
 .section--flush-x { padding-inline: 0; }
+/* 헤더만 있는 섹션 (about) — 실측 헤더 끝 628 → 본문 시작 718 = 90px.
+   본문이 섹션 밖에 있으므로 .section-head 의 하단 여백(160)은 쓰지 않는다. */
+.section--head-only { padding-bottom: 90px; }
+.section--head-only .section-head { margin-bottom: 0; }
 
 /* 섹션 헤더 — 제목 행 + 리드 문장, 사이 48px */
 .section-head {
@@ -74,10 +78,9 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: var(--ls-tight);
   color: var(--ink-900);
 }
-.section-lead {
-  max-width: 72ch;
-  color: var(--ink-600);
-}
+/* 시안의 리드는 컨테이너 폭을 그대로 쓰고 줄바꿈은 <br> 로 지정한다.
+   max-width 를 걸면 의도한 줄수가 어긋난다. */
+.section-lead { color: var(--ink-600); }
 .eyebrow {
   display: block;
   font-family: var(--font-en);
@@ -171,8 +174,13 @@ a { color: inherit; text-decoration: none; }
    푸터 — 파란 박스 + 우상단 탭
    Frame 18: 1800×647, radius 20/0/20/20, #0986D3
    =========================================================== */
+/* 탭은 absolute 라 자리를 차지하지 않는다.
+   박스 위로 튀어나온 만큼(높이 − 겹침 = 49)을 상단 패딩에 더해야
+   앞 섹션과 탭 사이가 실측대로 400 이 된다. */
 .site-footer {
-  padding-top: var(--space-section);
+  --to-top-h: 57px;
+  --to-top-overlap: 8px;
+  padding-top: calc(var(--space-section) + var(--to-top-h) - var(--to-top-overlap));
   padding-bottom: 60px;
 }
 /* 실측: 상단 60 패딩, 하단 바는 박스 바닥에 붙는다(하단 패딩 없음) */
@@ -189,8 +197,6 @@ a { color: inherit; text-decoration: none; }
    탭 SVG 의 평평한 밑변은 y=49.31 이고 그 아래 7.69px 은
    박스 안으로 흘러드는 오목 필렛이다. 겹치지 않으면 탭이 떠 보인다. */
 .to-top {
-  --to-top-h: 57px;
-  --to-top-overlap: 8px;
   position: absolute;
   right: 0;                                        /* 우측 flush (실측 차이 0.00px) */
   bottom: calc(100% - var(--to-top-overlap));
@@ -256,7 +262,8 @@ a { color: inherit; text-decoration: none; }
   .site-footer__title { padding-inline: 40px; margin-bottom: 140px; }
   .site-footer__bottom { padding-inline: 24px; }
   /* 겹침은 탭 높이의 13.49% (필렛 비율) 로 유지 */
-  .to-top { width: 260px; --to-top-h: 44px; --to-top-overlap: 6px; }
+  .site-footer { --to-top-h: 44px; --to-top-overlap: 6px; }
+  .to-top { width: 260px; }
 }
 
 @media (max-width: 767px) {
@@ -302,6 +309,7 @@ a { color: inherit; text-decoration: none; }
     align-items: flex-start;
     gap: var(--space-2);
   }
-  .to-top { width: 200px; --to-top-h: 36px; --to-top-overlap: 5px; }
+  .site-footer { --to-top-h: 36px; --to-top-overlap: 5px; }
+  .to-top { width: 200px; }
   .to-top__label { font-size: 13px; }
 }
