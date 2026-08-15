@@ -3,425 +3,238 @@
 
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta property="og:url" content="내사이트링크주소">
-  <meta property="og:title" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>신진희 · UI/UX 디자이너 포트폴리오</title>
+  <meta name="description" content="문제 정의부터 검증까지 과정이 남아 있는 작업. 공공 문서 AI, 음성 접근성, 디자인 시스템.">
+
   <meta property="og:type" content="website">
-  <meta property="og:image" content="./assets/img/og_img.png">
-  <meta property="og:description" content="">
-  <meta name="format-detection" content="telephone=no">
-  <meta name="description" content="">
-  <meta name="keywords" content="">
-  <title>신진희 포토폴리오 | chrome에 최적화 되어있습니다.</title>
+  <meta property="og:title" content="신진희 · UI/UX 디자이너 포트폴리오">
+  <meta property="og:description" content="문제 정의부터 검증까지 과정이 남아 있는 작업. 공공 문서 AI, 음성 접근성, 디자인 시스템.">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
   <meta name="theme-color" content="#ffffff">
 
-  <link rel="stylesheet" href="./assets/css/reset.css">
-  <link rel="stylesheet" href="./assets/css/tokens.css">
-  <link rel="stylesheet" href="./assets/css/layout.css">
-  <link rel="stylesheet" href="./assets/css/components.css">
-  <link rel="stylesheet" href="./assets/css/common.css">
-  <link rel="stylesheet" href="./assets/css/swiper.min.css">
-  <link rel="stylesheet" href="./assets/css/wow.css">
+  <link rel="stylesheet" href="./assets/css/reset.css?v=4">
+  <link rel="stylesheet" href="./assets/css/tokens.css?v=4">
+  <link rel="stylesheet" href="./assets/css/layout.css?v=4">
+  <link rel="stylesheet" href="./assets/css/components.css?v=4">
 </head>
 
 <body>
-  <div class="scetion">
-    <header class="haeder minimize">
-      <h1><a href="./index.html" class="logo"></a></h1>
-      <ul class="nav">
-        <li><a href="#">나의 프로필</a></li>
-        <li><a href="#">최근 프로젝트</a></li>
-        <li><a href="#">제안서 시안</a></li>
-        <li><a href="#">퍼블리싱 가이드</a></li>
-      </ul>
-      <div class="btngroup"><a href="#" class="narrow">Let’s contact me</a></div>
-    </header>
-    <section class="wrap section01">
-      메인비주얼
+  <a href="#main" class="sr-only">본문 바로가기</a>
+
+  <header class="site-header" data-header>
+    <div class="container site-header__inner">
+      <a href="./index.html" class="site-header__logo" aria-label="SHINJINHEE 홈">
+        <img src="./assets/img/logo.svg" alt="SHINJINHEE" width="193" height="24">
+      </a>
+
+      <nav class="gnb" aria-label="주요 메뉴">
+        <a href="#work" aria-current="true">Work</a>
+        <a href="#archive">Archive</a>
+        <a href="./about.html">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <a href="./docs/portfolio.pdf" class="btn btn--dark" download>
+        포토폴리오 다운로드
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M8 3v8m0 0 3.5-3.5M8 11 4.5 7.5M3 13h10" stroke="currentColor" stroke-width="1.4"
+            stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+
+      <button type="button" class="nav-toggle" data-nav-toggle aria-expanded="false" aria-label="메뉴 열기">
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ===================== Selected Work ===================== -->
+    <section class="section section--first" id="work" aria-labelledby="work-title">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-head__row">
+            <h2 class="section-title" id="work-title">Selected Work</h2>
+            <a href="#work" class="link-display">View All</a>
+          </div>
+          <p class="section-lead">
+            문제 정의부터 검증까지 과정이 남아 있는 작업입니다.<br>
+            공공 문서 AI, 음성 접근성, 디자인 시스템을 다뤘습니다.
+          </p>
+        </div>
+      </div>
+
+      <div class="work-list">
+        <article class="work-item">
+          <!-- 썸네일 미확보 — assets/img/case-zephy/ 에 추가 후 <img> 삽입 -->
+          <div class="work-item__thumb" role="img" aria-label="문서 특화 AI 에이전트 제피 대표 이미지 준비 중"></div>
+          <div class="work-item__body">
+            <div class="work-item__head">
+              <h3 class="work-item__title">
+                <a href="./case-zephy.html">문서 특화 AI 에이전트 제피</a>
+              </h3>
+              <p class="work-item__desc">
+                AI 답변과 원문 근거를 연결해 검증을 응답 안에서 끝내도록 했습니다.<br>
+                검증 포기율 73% 해소 GS인증 1등급으로 공공조달 요건을 충족했습니다.
+              </p>
+            </div>
+            <p class="meta-line"><span>주식회사 유니바</span><span>2026</span></p>
+          </div>
+        </article>
+
+        <article class="work-item">
+          <div class="work-item__thumb" role="img" aria-label="AI 베리어프리 키오스크 대표 이미지 준비 중"></div>
+          <div class="work-item__body">
+            <div class="work-item__head">
+              <h3 class="work-item__title">
+                <a href="./case-kiosk.html">AI 베리어프리 키오스크</a>
+              </h3>
+              <p class="work-item__desc">
+                고령자와 외국인이 화면을 읽지 않고 말로 주문하고 결제합니다.<br>
+                영남 방언과 고령자 발화를 반영하고 리빙랩 사용성 테스트로 검증했습니다.
+              </p>
+            </div>
+            <p class="meta-line"><span>주식회사 유니바</span><span>2026</span></p>
+          </div>
+        </article>
+
+        <article class="work-item">
+          <div class="work-item__thumb" role="img" aria-label="Design Token 스타일 기준 대표 이미지 준비 중"></div>
+          <div class="work-item__body">
+            <div class="work-item__head">
+              <h3 class="work-item__title">
+                <a href="./case-ds.html">반복 전달을 없앤 Design Token 스타일 기준</a>
+              </h3>
+              <p class="work-item__desc">
+                Base에서 Semantic으로 이어지는 2-tier 컬러 토큰과 Variables 라이브러리를 세웠습니다.<br>
+                design.md 단일 명세로 디자인과 개발이 같은 문서를 참조합니다.
+              </p>
+            </div>
+            <p class="meta-line"><span>주식회사 유니바</span><span>2026</span></p>
+          </div>
+        </article>
+
+        <article class="work-item">
+          <div class="work-item__thumb" role="img" aria-label="그룹 라운드 탐색·예약 경험 설계 대표 이미지 준비 중"></div>
+          <div class="work-item__body">
+            <div class="work-item__head">
+              <h3 class="work-item__title">
+                <a href="./case-round.html">그룹 라운드 탐색·예약 경험 설계</a>
+              </h3>
+              <p class="work-item__desc">
+                여러 사람이 함께 가는 라운드의 조율과 정산이 늘 앱 밖에서 일어나는 문제를 다뤘습니다.<br>
+                모든 선택을 인당 총액이라는 하나의 축으로 환산하고 1/N·혼합 결제까지 안으로 넣었습니다.
+              </p>
+            </div>
+            <p class="meta-line"><span>개인 스터디</span><span>2026</span></p>
+          </div>
+        </article>
+      </div>
     </section>
-    <section class="section02">
-      <div class="wrap sec">
-        <div class="titwrap">
-          <div class="right">
-            <h3 class="tit">Recent Work<span class="cont">
-                <p>125</p>
-              </span></h3>
-            <p class="txt mt20">
-              UX ˑ UI 디자이너의 일은 나은 정보를 전달하기 위함이거나 작업물의 의도와 프로젝트 결과물이 효과적으로 전달되기 위함입니다.<br>
-              클라이언트의 요청도 결국 사용자를 향합니다. 어떤 일이든 결국 사람에게 닿습니다.
+
+    <!-- ===================== 스테이트먼트 ===================== -->
+    <section class="section" aria-labelledby="statement-title">
+      <div class="container">
+        <div class="statement">
+          <div class="statement__head">
+            <h2 class="statement__title" id="statement-title">
+              Before I draw a screen<br>
+              I find where the flow <em>breaks</em>
+            </h2>
+            <p class="statement__lead">
+              저는 화면을 그리기 전에 데이터로 사용자 플로우의 단절 지점을 찾고 UX가 사용자의 신뢰를 얻고 있는지 확인합니다.<br>
+              또한 다양한 도메인에서 문제의 원인을 구조화하고 사용자 경험으로 해결해왔습니다.
             </p>
           </div>
-          <div class="left">
-            <div class="btngroup"><a href="#" class="btn1">View all</a></div>
-          </div>
-        </div>
-      </div>
-      <div class="sec">
-        <div class="service_container">
-          <div class="move_box_container move_box_container1">
-            <div class="move_box">
-              <div class="service_box_wrap">
-                <a href="#" class="service_box">
-                  <img src="./assets/img/work1.png" alt="포토폴리오">
-                  <p class="service_tag">
-                    한국특허전략원<br>
-                    대표 홈페이지 재구축
-                  </p>
-                </a>
-                <a href="#" class="service_box">
-                  <img src="./assets/img/work1.png" alt="포토폴리오">
-                  <p class="service_tag">
-                    한국식품안전관리인증원<br>
-                    대표 홈페이지 재구축
-                  </p>
-                </a>
-                <a href="#" class="service_box">
-                  <img src="./assets/img/work1.png" alt="포토폴리오">
-                  <p class="service_tag">
-                    두낫디스터브<br>
-                    대표홈페이지 재구축
-                  </p>
-                </a>
-                <a href="#" class="service_box">
-                  <img src="./assets/img/work1.png" alt="포토폴리오">
-                  <p class="service_tag">
-                    한국특허전략원<br>
-                    대표홈페이지 재구축
-                  </p>
-                </a>
-                <a href="#" class="service_box">
-                  <img src="./assets/img/work1.png" alt="포토폴리오">
-                  <p class="service_tag">
-                    (재)한국국학진흥원<br>
-                    이야기할머니 활동 지원 시스템 개선
-                  </p>
-                </a>
-                <a href="#" class="service_box">
-                  <img src="./assets/img/work1.png" alt="포토폴리오">
-                  <p class="service_tag">
-                    국토안전관리원<br>
-                    인재교육원 모바일 웹 구축
-                  </p>
-                </a>
-              </div>
-              <div class="service_box_wrap">
-                <a href="#" class="service_box">
-                  <img src="./assets/img/work1.png" alt="포토폴리오">
-                  <p class="service_tag">
-                    경북귀어귀촌지원샌터<br>
-                    대표홈페이지 재구축
-                  </p>
-                </a>
-                <a href="#" class="service_box">
-                  <img src="./assets/img/work1.png" alt="포토폴리오">
-                  <p class="service_tag">
-                    한국특허전략원<br>
-                    대표홈페이지 개선
-                  </p>
-                </a>
-                <a href="#" class="service_box">
-                  <img src="./assets/img/work1.png" alt="포토폴리오">
-                  <p class="service_tag">
-                    한국특허전략원<br>
-                    대표홈페이지 개선
-                  </p>
-                </a>
-                <a href="#" class="service_box">
-                  <img src="./assets/img/work1.png" alt="포토폴리오">
-                  <p class="service_tag">
-                    한국특허전략원<br>
-                    대표홈페이지 개선
-                  </p>
-                </a>
-                <a href="#" class="service_box">
-                  <img src="./assets/img/work1.png" alt="포토폴리오">
-                  <p class="service_tag">
-                    한국특허전략원<br>
-                    대표홈페이지 개선
-                  </p>
-                </a>
-                <a href="#" class="service_box">
-                  <img src="./assets/img/work1.png" alt="포토폴리오">
-                  <p class="service_tag">
-                    한국특허전략원<br>
-                    대표홈페이지 개선
-                  </p>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="move_box_container move_box_container2">
-            <div class="move_box">
-              <div class="service_box_wrap">
-                <a href="#" class="service_box">
-                  <img src="./assets/img/work1.png" alt="포토폴리오">
-                  <p class="service_tag">
-                    한국특허전략원<br>
-                    대표홈페이지 개선
-                  </p>
-                </a>
-                <a href="#" class="service_box">
-                  <img src="./assets/img/work1.png" alt="포토폴리오">
-                  <p class="service_tag">
-                    한국특허전략원<br>
-                    대표홈페이지 개선
-                  </p>
-                </a>
-                <a href="#" class="service_box">
-                  <img src="./assets/img/work1.png" alt="포토폴리오">
-                  <p class="service_tag">
-                    한국특허전략원<br>
-                    대표홈페이지 개선
-                  </p>
-                </a>
-                <a href="#" class="service_box">
-                  <img src="./assets/img/work1.png" alt="포토폴리오">
-                  <p class="service_tag">
-                    한국특허전략원<br>
-                    대표홈페이지 개선
-                  </p>
-                </a>
-                <a href="#" class="service_box">
-                  <img src="./assets/img/work1.png" alt="포토폴리오">
-                  <p class="service_tag">
-                    한국특허전략원<br>
-                    대표홈페이지 개선
-                  </p>
-                </a>
-                <a href="#" class="service_box">
-                  <img src="./assets/img/work1.png" alt="포토폴리오">
-                  <p class="service_tag">
-                    한국특허전략원<br>
-                    대표홈페이지 개선
-                  </p>
-                </a>
-              </div>
-              <div class="service_box_wrap">
-                <a href="#" class="service_box">
-                  <img src="./assets/img/work1.png" alt="포토폴리오">
-                  <p class="service_tag">
-                    한국특허전략원<br>
-                    대표홈페이지 개선
-                  </p>
-                </a>
-                <a href="#" class="service_box">
-                  <img src="./assets/img/work1.png" alt="포토폴리오">
-                  <p class="service_tag">
-                    한국특허전략원<br>
-                    대표홈페이지 개선
-                  </p>
-                </a>
-                <a href="#" class="service_box">
-                  <img src="./assets/img/work1.png" alt="포토폴리오">
-                  <p class="service_tag">
-                    한국특허전략원<br>
-                    대표홈페이지 개선
-                  </p>
-                </a>
-                <a href="#" class="service_box">
-                  <img src="./assets/img/work1.png" alt="포토폴리오">
-                  <p class="service_tag">
-                    한국특허전략원<br>
-                    대표홈페이지 개선
-                  </p>
-                </a>
-                <a href="#" class="service_box">
-                  <img src="./assets/img/work1.png" alt="포토폴리오">
-                  <p class="service_tag">
-                    한국특허전략원<br>
-                    대표홈페이지 개선
-                  </p>
-                </a>
-                <a href="#" class="service_box">
-                  <img src="./assets/img/work1.png" alt="포토폴리오">
-                  <p class="service_tag">
-                    한국특허전략원<br>
-                    대표홈페이지 개선
-                  </p>
-                </a>
-              </div>
-            </div>
-          </div>
+          <a href="./about.html" class="link-display link-display--md">Detail</a>
         </div>
       </div>
     </section>
-    <section class="wrap section03">
-      <div class="sec">
-        <h3 class="tit">With continued <i>interest<br>
-            and consideration</i><br>
-          Provides <i>a new user experience</i>
-        </h3>
-        <p class="txt mt100">
-          UX ˑ UI 디자이너 신진희는 기술과 예술이<br>
-          만나는 영역에서 사용자 편의성의 지속적인 관심과<br>
-          고찰로 새로운 사용자 경험을 선사합니다. <br>
-        </p>
-        <div class="btngroup mt100"><a href="#" class="btn2">프로필 바로가기</a></div>
-      </div>
-    </section>
-    <section class="wrap sec section04">
-      <div class="titwrap">
-        <div class="right">
-          <h3 class="tit">Skill and service</h3>
-        </div>
-      </div>
-      <div class="con">
-          <div class="box">
-            <div class="txt">
-              <h4 class="fw700">UI UX</h4>
-              <p>사용자의 요구나 동향을 예측하여 사용자가 목적을<br>
-                달성할 수 있도록 기획과 디자인 및 개발</p>
-            </div>
-            <div class="img ico_uiux"></div>
+
+    <!-- ===================== Archive ===================== -->
+    <section class="section" id="archive" aria-labelledby="archive-title">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-head__row">
+            <h2 class="section-title" id="archive-title">Archive</h2>
+            <a href="./archive.html" class="link-display">View All</a>
           </div>
-          <div class="box">
-            <div class="txt">
-              <h4 class="fw700">Convergence</h4>
-              <p>인공지능 기반기술을 융합하여 사용자에게<br>
-                디지털 전환을 통한 향상된 가치를 제공</p>
-            </div>
-            <div class="img ico_convergence"></div>
-          </div>
-      </div>
-      <div class="con">
-        <div class="box">
-          <div class="txt">
-            <h4 class="fw700">Mobile App</h4>
-            <p>웹 앱을 포함한 안드로이드 iOS개발 네이티브 및<br>
-              IONIC React Flutter 등의 플랫폼 개발</p>
-          </div>
-          <div class="img ico_mobileapp"></div>
-        </div>
-        <div class="box">
-          <div class="txt">
-            <h4 class="fw700">Virtual</h4>
-            <p>가상현실 디바이스를 위한 완성도 높은<br>
-              VR 교육 전시관 등 콘텐츠 및 플랫폼 제작</p>
-          </div>
-          <div class="img ico_virtual"></div>
-        </div>
-    </div>
-    </section>
-    <section class="wrap sec section05">
-      <div class="titwrap">
-        <div class="right">
-          <h3 class="tit">Draft and publishing-guide</h3>
-        </div>
-        <div class="left">
-          <h3 class="tit">etc.</h3>
-        </div>
-      </div>
-      <div class="txtwrap">
-        <p>
-          인간의 호흡 및 음성과 언어를 활용하여 미래를 예측하는 혁신적인 기술을 제시합니다.<br>
-          우리의 기술 구현을 통해 인류는 또 다른 가치를 얻을 수 있으며,<br>
-          노력으로 현재보다 더욱 풍요로운 삶을 살 수 있을 것으로 확신합니다.
-        </p>
-        <div class="btngroup mt100"><a href="#" class="btn3">프로필 바로가기</a></div>
-      </div>
-      <div class="con">
-        <div class="box">1</div>
-        <div class="box">2</div>
-        <div class="box">3</div>
-        <div class="box">4</div>
-      </div>
-    </section>
-    <section class="wrap section06">
-    </section>
-    <section class="footer">
-      <div class="gotop">
-        <a href="">Back top go top</a>
-      </div>
-      <footer>
-        <div class="top">
-          <p class="txt">
-            UX ˑ UI 디자이너 신진희는 사람을 먼저 생각하여 유용하고 가치있는 일들을 통해<br class="pc">
-            지속가능한 새로운 트렌드를 만들어갑니다.
+          <p class="section-lead">
+            2021년부터 2026년의 공공기관 웹 서비스의 정보 구조 재설계, 리뉴얼, 제안서 시안<br>
+            마케팅팀과 협업을 통한 랜딩페이지의 아카이빙 입니다.
           </p>
-          <div class="contact">
-            <a href="#">Work With ME</a>
+        </div>
+      </div>
+
+      <!-- 트랙은 main.js가 복제해 이어붙인다 -->
+      <div class="marquee" data-marquee>
+        <div class="marquee__row">
+          <div class="marquee__track" data-marquee-track data-direction="left">
+            <figure class="marquee__card"><img src="./assets/img/archive/archive-01.png" alt="" loading="lazy" width="677" height="386"></figure>
+            <figure class="marquee__card"><img src="./assets/img/archive/archive-02.png" alt="" loading="lazy" width="677" height="386"></figure>
+            <figure class="marquee__card"><img src="./assets/img/archive/archive-03.png" alt="" loading="lazy" width="677" height="386"></figure>
+            <figure class="marquee__card"><img src="./assets/img/archive/archive-04.png" alt="" loading="lazy" width="677" height="386"></figure>
+            <figure class="marquee__card"><img src="./assets/img/archive/archive-05.png" alt="" loading="lazy" width="677" height="386"></figure>
+            <figure class="marquee__card"><img src="./assets/img/archive/archive-06.png" alt="" loading="lazy" width="677" height="386"></figure>
+            <figure class="marquee__card"><img src="./assets/img/archive/archive-07.png" alt="" loading="lazy" width="677" height="386"></figure>
           </div>
         </div>
-        <div class="bottom">
-          <ul>
-            <div class="left">
-              <li>SHINJINHEE © 2024</li>
-              <li><a href="tel:010-9506-7324">+ 82 010 9506 7324</a></li>
-              <li><a href="mailto:jinhee950617@gmail.com">jinhee950617@gmail.com</a></li>
-            </div>
-            <div class="right">
-              <li><a href="docs/portfolio.pdf">Download my profile PDF</a></li>
-              <li><a href="docs/resume.pdf">Design Portfolio PDF</a></li>
-            </div>
-          </ul>
+        <div class="marquee__row">
+          <div class="marquee__track" data-marquee-track data-direction="right">
+            <figure class="marquee__card"><img src="./assets/img/archive/archive-08.png" alt="" loading="lazy" width="677" height="386"></figure>
+            <figure class="marquee__card"><img src="./assets/img/archive/archive-09.png" alt="" loading="lazy" width="677" height="386"></figure>
+            <figure class="marquee__card"><img src="./assets/img/archive/archive-10.png" alt="" loading="lazy" width="677" height="386"></figure>
+            <figure class="marquee__card"><img src="./assets/img/archive/archive-11.png" alt="" loading="lazy" width="677" height="386"></figure>
+            <figure class="marquee__card"><img src="./assets/img/archive/archive-12.png" alt="" loading="lazy" width="677" height="386"></figure>
+            <figure class="marquee__card"><img src="./assets/img/archive/archive-13.png" alt="" loading="lazy" width="677" height="386"></figure>
+            <figure class="marquee__card"><img src="./assets/img/archive/archive-14.png" alt="" loading="lazy" width="677" height="386"></figure>
+          </div>
         </div>
-      </footer>
+        <p class="sr-only">2021년부터 2026년까지의 작업 썸네일 14건. 전체 목록은 Archive 페이지에서 확인할 수 있습니다.</p>
+      </div>
     </section>
-  </div>
-  <!-- 라이브러리 먼저, main.js 마지막 -->
-  <script src="./assets/js/jquery-1.11.2.min.js"></script>
-  <script src="./assets/js/swiper.min.js"></script>
-  <script src="./assets/js/wow.js"></script>
+
+  </main>
+
+  <!-- ===================== Footer CTA ===================== -->
+  <footer class="site-footer" id="contact">
+    <div class="container">
+      <div class="site-footer__box">
+        <a href="#main" class="to-top" data-to-top>
+          <svg class="to-top__shape" viewBox="0 0 364 57" fill="none" aria-hidden="true" preserveAspectRatio="none">
+            <path
+              d="M364 57V36.85C364 16.5 353.25 0 339.99 0H47.34C40.52 0 34.02 4.45 29.46 12.25L14.78 37.38C10.91 43.99 5.65999 48.18 -0.0100098 49.31H349.32C354.85 49.31 359.94 52.18 363.99 57H364Z"
+              fill="currentColor" />
+          </svg>
+          <span class="to-top__label">
+            Back to the Top
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M7 11V3m0 0L3.5 6.5M7 3l3.5 3.5" stroke="currentColor" stroke-width="1.4"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
+        </a>
+
+        <h2 class="site-footer__title">
+          <a href="mailto:jinhee950617@gmail.com" class="link-display link-display--invert">Work with me</a>
+        </h2>
+
+        <div class="site-footer__bottom">
+          <p class="site-footer__links">
+            <a href="./docs/resume.pdf" download>경력기술서 다운로드</a>
+            <a href="./docs/portfolio.pdf" download>포토폴리오 다운로드</a>
+          </p>
+          <p><small>SHINJINHEE &copy; 2026</small></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
   <script src="./assets/js/gsap.min.js"></script>
-  <script src="./assets/js/ScrollTrigger.min.js"></script>
-  <script src="./assets/js/main.js"></script>
+  <script src="./assets/js/main.js?v=4"></script>
 </body>
-<script>
-  // Work 애니메이션
-  var marqueeTimeline = [];
-  var element = document.querySelector(".move_box_container");
-  var element2 = document.querySelector(".move_box_container2");
-  var itemWidth = $(".service_box_wrap").width();
-  const screenWidth = window.innerWidth;
-  var move = gsap.to(element, {
-    duration: 100,
-    x: itemWidth + 30,
-    timeScale: 1,
-    repeat: -1,
-    ease: "none",
-  });
-  document.ready = function() {
-    move.play();
-  }
-  const boxHover = gsap.to(element, {
-    timeScale: 0.1,
-    duration: 0.75,
-    paused: true
-  })
-  console.log("hover")
-  element.addEventListener("mouseover", function() {
-    gsap.to(move, {
-      timeScale: 0.3,
-      duration: 1
-    });
-  });
-  element.addEventListener("mouseleave", function() {
-    gsap.to(move, {
-      timeScale: 1,
-      duration: 1
-    });
-  });
-  var move2 = gsap.to(element2, {
-    duration: 100,
-    x: -itemWidth - 29,
-    // xPercent: 100,
-    timeScale: 1,
-    repeat: -1,
-    ease: "none",
-  });
-  element2.addEventListener("mouseover", function() {
-    gsap.to(move2, {
-      timeScale: 0.3,
-      duration: 1
-    });
-  });
-  element2.addEventListener("mouseleave", function() {
-    gsap.to(move2, {
-      timeScale: 1,
-      duration: 1
-    });
-  });
-</script>
 
 </html>

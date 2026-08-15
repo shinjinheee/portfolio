@@ -1,28 +1,205 @@
 @charset "utf-8";
 /* ===========================================================
-   components.css — 반복 컴포넌트
-   설계서: docs/01-IA-레이아웃-설계서.md §4-2, §4-4, §4-5
+   components.css — 재사용 컴포넌트
+   설계서 §4 / 실측 docs/02
    =========================================================== */
 
-/* ---------- 버튼 ---------- */
+/* ===========================================================
+   .link-display — 밑줄 대형 영문 링크
+   View All(100px) · Detail(48px) · Work with me(100px)가
+   모두 같은 형태다. 크기만 변형(modifier)으로 분리한다.
+   =========================================================== */
+.link-display {
+  display: inline-block;
+  font-family: var(--font-en);
+  font-weight: 600;
+  font-size: var(--fs-display);
+  line-height: var(--lh-display);
+  letter-spacing: var(--ls-tight);
+  color: var(--ink-900);
+  border-bottom: 4px solid currentColor;
+  padding-bottom: 2px;
+  transition: color var(--dur-base) var(--ease),
+              opacity var(--dur-base) var(--ease);
+}
+.link-display:hover { opacity: 0.6; }
+.link-display--md {
+  font-size: var(--fs-h1);
+  border-bottom-width: 3px;
+}
+.link-display--invert { color: var(--white); }
+
+/* ===========================================================
+   .btn
+   =========================================================== */
 .btn {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-1);
-  height: 52px;
-  padding-inline: var(--space-3);
+  justify-content: center;
+  gap: 4px;
+  min-height: 42px;
+  padding: 8px 20px;
   border-radius: var(--radius-btn);
   font-size: var(--fs-meta);
   font-weight: 500;
+  line-height: 1.6;
   transition: background var(--dur-fast) var(--ease);
 }
+.btn--dark    { background: var(--ink-900); color: var(--white); }
+.btn--dark:hover { background: var(--ink-dark); }
 .btn--primary { background: var(--blue-600); color: var(--white); }
 .btn--primary:hover { background: var(--blue-700); }
-.btn--dark { background: var(--ink-dark); color: var(--white); }
-.btn--ghost { border: 1px solid var(--line); color: var(--ink-900); }
+.btn--ghost   { border: 1px solid var(--line); color: var(--ink-900); }
 
-/* ---------- 메타 바 — docs/01 §4-2 ----------
-   케이스 페이지 H1 바로 아래 고정. 참여도 기재 요건 충족 지점. */
+/* ===========================================================
+   .meta-line — 「소속 · 연도」 세로 구분선 조합
+   Selected work · Archive 양쪽에서 쓴다.
+   =========================================================== */
+.meta-line {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: var(--fs-meta);
+  color: var(--ink-400);
+}
+.meta-line > * + *::before {
+  content: "";
+  display: inline-block;
+  width: 1px;
+  height: 17px;
+  margin-right: 12px;
+  background: currentColor;
+  opacity: 0.5;
+  vertical-align: -3px;
+}
+
+/* ===========================================================
+   .work-item — Selected work 한 줄
+   실측: 아이템 467h / 패딩 40·60 / 썸네일 599×386 / 간격 60
+   =========================================================== */
+/* 구분선은 1920 폭 전체를 가로지른다 → 컨테이너 밖에 둔다 */
+.work-list {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  border-top: 1px solid var(--line);
+}
+.work-item {
+  display: grid;
+  grid-template-columns: 599px 1fr;
+  gap: var(--space-5);
+  padding: var(--space-4) var(--pad-x);
+  border-bottom: 1px solid var(--line);
+}
+.work-item__thumb {
+  aspect-ratio: 599 / 386;
+  border-radius: var(--radius-card);
+  background: var(--placeholder);
+  overflow: hidden;
+}
+.work-item__thumb img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform var(--dur-base) var(--ease);
+}
+.work-item:hover .work-item__thumb img { transform: scale(1.03); }
+
+/* 텍스트 열 — 제목블록 위, 메타 아래로 벌린다 */
+.work-item__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-block: 10px;
+}
+.work-item__head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.work-item__title {
+  font-weight: 700;
+  font-size: var(--fs-h3);
+  line-height: 1.4;
+  color: var(--ink-900);
+}
+.work-item__desc {
+  color: var(--ink-600);
+  line-height: 1.72;
+}
+
+/* ===========================================================
+   .statement — 「Before I draw a screen …」
+   =========================================================== */
+.statement {
+  max-width: 1505px;
+  margin-left: auto;
+  margin-right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+  align-items: flex-start;
+}
+.statement__head {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.statement__title {
+  font-family: var(--font-en);
+  font-weight: 600;
+  font-size: var(--fs-display);
+  line-height: var(--lh-display);
+  letter-spacing: var(--ls-tight);
+  color: var(--ink-900);
+  text-wrap: balance;
+}
+.statement__title em {
+  font-style: normal;
+  color: var(--blue-600);
+}
+.statement__lead { color: var(--ink-600); }
+
+/* ===========================================================
+   .marquee — 아카이브 2행 무한 스크롤
+   카드 677×386 (이미지 @2x). JS가 트랙을 복제해 이어붙인다.
+   =========================================================== */
+.marquee {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  overflow: hidden;
+}
+.marquee__row { overflow: hidden; }
+.marquee__track {
+  display: flex;
+  gap: var(--space-3);
+  width: max-content;
+  will-change: transform;
+}
+.marquee__card {
+  flex-shrink: 0;
+  width: 677px;
+  aspect-ratio: 677 / 386;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  background: var(--surface);
+}
+.marquee__card img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+
+/* 모션 최소화 설정 존중 */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .marquee__row { overflow-x: auto; }
+  .marquee__track { animation: none !important; }
+}
+
+/* ===========================================================
+   케이스 페이지용 — 설계서 §4-2 / §4-4 / §4-5
+   index에서는 아직 안 쓰지만 골격을 먼저 잡아둔다.
+   =========================================================== */
 .metabar {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -31,57 +208,35 @@
   border-radius: var(--radius-card);
   padding: 32px var(--space-4);
 }
-.metabar dt {
-  font-size: var(--fs-caption);
-  color: var(--ink-400);
-  margin-bottom: var(--space-1);
-}
-.metabar dd {
-  font-size: var(--fs-body);
-  color: var(--ink-900);
-}
+.metabar dt { font-size: var(--fs-caption); color: var(--ink-400); margin-bottom: var(--space-1); }
+.metabar dd { color: var(--ink-900); }
 
-/* ---------- As-is / To-be 비교 블록 — docs/01 §4-4 ---------- */
 .compare {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--space-4);
 }
-.compare__col {
-  border-radius: var(--radius-card);
-  padding: var(--space-4);
-}
+.compare__col { border-radius: var(--radius-card); padding: var(--space-4); }
 .compare__col--asis { background: var(--surface); }
 .compare__col--tobe { background: var(--blue-50); }
 .compare__label {
+  display: block;
+  margin-bottom: var(--space-3);
   font-family: var(--font-en);
   font-weight: 500;
   font-size: var(--fs-eyebrow);
   letter-spacing: var(--ls-eyebrow);
   text-transform: uppercase;
-  margin-bottom: var(--space-3);
-  display: block;
 }
 .compare__col--asis .compare__label { color: var(--ink-400); }
 .compare__col--tobe .compare__label { color: var(--blue-700); }
-.compare__img {
-  width: 100%;
-  border-radius: var(--radius-img);
-  margin-bottom: var(--space-3);
-}
 
-/* ---------- 지표 카드 — docs/01 §4-5 ----------
-   측정 근거 줄(.metric__source)은 반드시 채운다. */
 .metric {
-  background: var(--white);
   border: 1px solid var(--line);
   border-radius: var(--radius-card);
   padding: var(--space-4);
 }
-.metric__label {
-  font-size: var(--fs-caption);
-  color: var(--ink-400);
-}
+.metric__label { font-size: var(--fs-caption); color: var(--ink-400); }
 .metric__value {
   font-family: var(--font-en);
   font-weight: 600;
@@ -91,6 +246,7 @@
   margin-block: var(--space-1);
 }
 .metric__unit { font-size: var(--fs-body); color: var(--ink-600); }
+/* 측정 근거 — 설계서 §4-5. 비우지 않는다. */
 .metric__source {
   margin-top: var(--space-3);
   padding-top: var(--space-2);
@@ -99,73 +255,32 @@
   color: var(--ink-400);
 }
 
-/* ---------- Selected work 카드 ----------
-   시안은 가로형 리스트(좌 이미지 / 우 텍스트). docs/02 §2 참조 */
-.work-item {
-  display: grid;
-  grid-template-columns: 5fr 7fr;
-  gap: var(--space-5);
-  align-items: start;
-  padding-block: var(--space-4);
-  border-top: 1px solid var(--line);
-}
-.work-item__thumb {
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  border-radius: var(--radius-img);
-  background: var(--line);
-  object-fit: cover;
-  transition: transform var(--dur-base) var(--ease);
-}
-.work-item:hover .work-item__thumb { transform: scale(1.03); }
-.work-item__title {
-  font-weight: 700;
-  font-size: var(--fs-h3);
-  line-height: var(--lh-heading);
-  color: var(--ink-900);
-}
-.work-item__desc {
-  margin-top: var(--space-2);
-  color: var(--ink-600);
-}
-.work-item__meta {
-  margin-top: var(--space-4);
-  display: flex;
-  gap: var(--space-3);
-  font-size: var(--fs-meta);
-  color: var(--ink-400);
+/* ===========================================================
+   반응형
+   =========================================================== */
+@media (max-width: 1439px) {
+  .work-item { grid-template-columns: 40% 1fr; }
+  .statement { gap: 64px; }
+  .marquee__card { width: 520px; }
 }
 
-/* ---------- 아카이브 마퀴 ----------
-   2행 역방향 스크롤. 카드 677x386 (이미지는 @2x 1354x772) */
-.marquee { overflow: hidden; }
-.marquee__track {
-  display: flex;
-  gap: var(--space-3);
-  width: max-content;
-}
-.marquee__card {
-  width: 677px;
-  aspect-ratio: 677 / 386;
-  border-radius: var(--radius-card);
-  overflow: hidden;
-  background: var(--surface);
-  flex-shrink: 0;
-}
-.marquee__card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* ---------- 반응형 ---------- */
 @media (max-width: 1023px) {
+  .work-item {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+    padding-inline: 0;
+  }
+  .work-item__body { padding-block: 0; gap: var(--space-4); }
+  .statement { max-width: none; gap: var(--space-5); }
+  .marquee__card { width: 420px; }
   .metabar { grid-template-columns: repeat(2, 1fr); }
   .compare { grid-template-columns: 1fr; }
-  .work-item { grid-template-columns: 1fr; gap: var(--space-3); }
 }
+
 @media (max-width: 767px) {
-  .metabar { grid-template-columns: 1fr; }
+  .link-display { border-bottom-width: 3px; }
+  .work-item__title { font-size: 20px; }
   .marquee__card { width: 280px; }
+  .metabar { grid-template-columns: 1fr; }
   .metric__value { font-size: 44px; }
 }

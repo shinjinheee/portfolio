@@ -1,530 +1,77 @@
 @charset "utf-8";
+/* ===========================================================
+   reset.css — 최소 리셋
+   구 프로젝트의 529줄짜리 스타일시트를 대체한다.
+   (!important 131개 + 사이트 전용 클래스 + 중복 :root 변수)
+   원본은 git 커밋 2c03811 에 있다.
+   =========================================================== */
 
-/* 
- * reset setting CSS Document
- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
 
-/***********************************************************************************
-  font
-************************************************************************************/
-/* 경로는 이 CSS 파일(/css/) 기준 상대경로 '../font/' 입니다.
-   '/font/'(루트 절대경로)는 file:// 로 열거나 하위폴더로 배포하면 404 납니다. */
-
-/* Space Grotesk - 가변폰트 1개로 300~700 전 굵기 커버 (47.8KB)
-   시안에서 Regular/Medium/SemiBold/Bold 를 쓰므로 400·500·600·700 모두 진짜 굵기로 나옵니다. */
-@font-face {
-  font-family: 'SpaceGrotesk';
-  font-weight: 300 700;
-  font-display: swap;
-  src: url('../font/SpaceGrotesk-Variable.woff2')format("woff2-variations"),
-  url('../font/SpaceGrotesk-Variable.woff2')format("woff2");
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
 }
 
-/* [대안] 가변폰트 대신 굵기별 파일을 쓰려면 위 블록을 지우고 아래 주석을 푸세요.
-@font-face { font-family:'SpaceGrotesk'; font-weight:300; font-display:swap; src:url('../font/SpaceGrotesk-Light.woff2')format("woff2"); }
-@font-face { font-family:'SpaceGrotesk'; font-weight:400; font-display:swap; src:url('../font/SpaceGrotesk-Regular.woff2')format("woff2"); }
-@font-face { font-family:'SpaceGrotesk'; font-weight:500; font-display:swap; src:url('../font/SpaceGrotesk-Medium.woff2')format("woff2"); }
-@font-face { font-family:'SpaceGrotesk'; font-weight:600; font-display:swap; src:url('../font/SpaceGrotesk-SemiBold.woff2')format("woff2"); }
-@font-face { font-family:'SpaceGrotesk'; font-weight:700; font-display:swap; src:url('../font/SpaceGrotesk-Bold.woff2')format("woff2"); }
-*/
+body,
+h1, h2, h3, h4, h5, h6,
+p, figure, blockquote,
+dl, dd, ol, ul,
+fieldset, legend { margin: 0; padding: 0; }
 
-@font-face {
-  font-family: 'Pretendard';
-  font-weight: 200;
-  font-display: swap;
-  src: url('../font/Pretendard-ExtraLight.subset.woff')format("woff");
+ul, ol { list-style: none; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: inherit;
 }
 
-@font-face {
-  font-family: 'Pretendard';
-  font-weight: 300;
-  font-display: swap;
-  src: url('../font/Pretendard-Light.subset.woff')format("woff");
+body { min-height: 100vh; }
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
 }
 
-@font-face {
-  font-family: 'Pretendard';
-  font-weight: 400;
-  font-display: swap;
-  src: url('../font/Pretendard-Regular.subset.woff2')format("woff2"),
-  url('../font/Pretendard-Regular.subset.woff')format("woff");
+img { border: 0; }
+
+a {
+  color: inherit;
+  text-decoration: none;
+  background-color: transparent;
 }
 
-@font-face {
-  font-family: 'Pretendard';
-  font-weight: 500;
-  font-display: swap;
-  src: url('../font/Pretendard-Medium.subset.woff')format("woff");
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
 }
 
-@font-face {
-  font-family: 'Pretendard';
-  font-weight: 600;
-  font-display: swap;
-  src: url('../font/Pretendard-SemiBold.subset.woff')format("woff");
+button {
+  background: none;
+  border: 0;
+  cursor: pointer;
 }
 
-@font-face {
-  font-family: 'Pretendard';
-  font-weight: 700;
-  font-display: swap;
-  src: url('../font/Pretendard-Bold.subset.woff')format("woff");
+textarea { resize: vertical; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
-@font-face {
-  font-family: 'Pretendard';
-  font-weight: 800;
-  font-display: swap;
-  src: url('../font/Pretendard-ExtraBold.subset.woff')format("woff");
+address, em, i { font-style: normal; }
+
+legend,
+caption { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+
+hr {
+  height: 0;
+  border: 0;
+  border-top: 1px solid currentColor;
 }
 
-/* Thin(100) / Black(900) 은 font 폴더에 파일이 없어 제거했습니다.
-   필요하면 Pretendard-Thin.subset.woff / Pretendard-Black.subset.woff 를 넣고 다시 선언하세요. */
-
-/***********************************************************************************
-  css reset
-************************************************************************************/
-html, body { width:100%; min-width:320px; font-weight:400; position:relative; color:var(--txt-color1); line-height: 1.7; font-size:16px; scroll-behavior:smooth; font-family: 'SpaceGrotesk','Pretendard','Malgun Gothic','맑은 고딕',Dotum,'돋움',Helvetica,"Apple SD Gothic Neo","애플 SD 산돌고딕 Neo",sans-serif, 'Font Awesome 6 Pro', 'Font Awesome 6 Brands'; letter-spacing: -0.01em;-webkit-text-size-adjust:none;-webkit-font-smoothing:antialiased;-webkit-touch-callout:none; } 
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, header, hgroup, menu, output, ruby, section, summary, time, mark, audio, video { margin:0; padding:0; border:0; font-weight:400; vertical-align:baseline; -ms-text-size-adjust:100%; -webkit-text-size-adjust: 100%;  -moz-text-size-adjust:100%; -o-text-size-adjust:100%; }
-*, *:after, *::before { -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box; }
-a, a:link, a:link, a:visited { text-decoration:none;}
-a:hover, a:active, a:focus { text-decoration:none; color:var(--txt-color1); }
-h1, h2, h3, h4, h5, h6 { font-weight:normal; color:var(--txt-color1); }
-a[href^="tel"], .tel{ color:inherit; text-decoration:none; }
-button, select { font-family:  'SpaceGrotesk','Pretendard','Malgun Gothic','맑은 고딕',Dotum,'돋움',Helvetica,"Apple SD Gothic Neo","애플 SD 산돌고딕 Neo",sans-serif, 'Font Awesome 6 Pro', 'Font Awesome 6 Brands'; letter-spacing:0em; cursor:pointer; vertical-align:middle; line-height:1.3; font-weight:500; color:var(--txt-color1); }
-label { cursor:pointer; }
-address { font-style:normal; }
-
-/* HTML5 display-role reset for older browsers */
-pre { font-family:  'SpaceGrotesk','Pretendard','Malgun Gothic','맑은 고딕',Dotum,'돋움',Helvetica,"Apple SD Gothic Neo","애플 SD 산돌고딕 Neo",sans-serif, 'Font Awesome 6 Pro', 'Font Awesome 6 Brands'; white-space:normal; }
-article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display:block; }
-ol, ul, li { list-style:none; }
-blockquote, q { quotes:none; }
-blockquote::before, blockquote::after, q::before, q::after { content:''; content:none; }
-button { font-family:  'SpaceGrotesk','Pretendard','맑은고딕', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif, 'Font Awesome 6 Pro', 'Font Awesome 6 Brands'; margin:0; padding:0; -webkit-box-sizing:border-box; box-sizing:border-box; border:0 none; background-color:transparent; border-color:#ededed; font-family: inherit; font-size: inherit; cursor: pointer; -webkit-appearance: none; -moz-appearance: none; -ms-appearance: none; appearance: none; -webkit-box-sizing: border-box; box-sizing: border-box; cursor:pointer; background:#fff; padding:0; border:0; cursor:pointer; vertical-align:middle; font-size:1em; } 
-textarea { font-family:  'SpaceGrotesk','Pretendard', '맑은고딕', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif, 'Font Awesome 6 Pro', 'Font Awesome 6 Brands'; display:block; color:#222a2e; border:1px solid #e9e9e9; border-radius:0; padding:0.5em 1em; width:100%; line-height:1.6; box-sizing:border-box; font-size:1em; letter-spacing:0; font-weight:400; }
-input[type="text"], input[type="password"], input[type="tel"], input[type="email"], input[type="url"], input[type="number"], input[type="date"] { font-family:  'SpaceGrotesk','Pretendard', '맑은고딕', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif, 'Font Awesome 6 Pro', 'Font Awesome 6 Brands'; 
-  /* ios 둥근 테두리 제거, 그림자 삭제 */
-    -webkit-appearance:none; -moz-appearance:none; -o-appearance:none; appearance:none; 
-    -webkit-border-radius:0; -moz-border-radius:0; -o-border-radius:0; border-radius:0; 
-    font-size:1em; letter-spacing:0; width:100%; height:44px; padding:0 10px 0 20px; background:#fff; font-weight:400; color: #222a2e; vertical-align:middle; 
-    -webkit-box-sizing:border-box; -moz-box-sizing:border-box; -o-box-sizing:border-box; box-sizing:border-box; 
-    -webkit-border:1px solid #c1ced5; -moz-border:1px solid #c1ced5; -o-border:1px solid #c1ced5; border:1px solid #c1ced5; line-height:44px;
-}
-input[type="date"] { cursor:pointer; }
-select::-ms-expand { display:none; } 
-input::-ms-check { display: none; } 
-textarea { resize: none !important; }
-/* input,
-select,
-textarea { padding: 0 15px; -webkit-appearance: none; -moz-appearance: none; -ms-appearance: none; appearance: none; -webkit-box-sizing: border-box; box-sizing: border-box; width: 100%; display: block; border: 0; font-family: inherit; }  */
-form { display: block; width: 100%; } 
-a { color:inherit; }
-a, a:hover, a:visited, a:link { color:inherit; text-decoration:none; }
-a:focus { outline:2px dotted #4b5c65; }
-input[type="text"]:focus, input[type="password"]:focus, input[type="tel"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="date"]:focus, input[type="radio"]:focus + label, input[type="checkbox"]:focus + label, .select:focus .placeholder, textarea:focus { outline:1px dotted var(--main-color1); }
-button:focus { outline:1px dotted #4b5c65; }
-input[readonly],
-input[type="text"]:disabled,
-input[type="email"]:disabled { color:#aaaaaa; background:#efefef; -webkit-border-color:#e9e9e9; border-color:#e9e9e9; cursor:auto; }
-input[type="text"] { width:100%; }
-input[type="text"].xs { width:50px !important; }
-input[type="text"].s { width:100px !important; }
-input[type="text"].m { width:200px !important; }
-input[type="text"].l { width:400px !important; }
-textarea:disabled { color:#aaa; background:#efefef; } 
-
-/* hr , legend , caption */
-hr, legend {clear:both; display:none; list-style:none; position:absolute; top:0; left:0; width:0; height:0; margin:0; padding:0; border:0; background:none; font-size:0px; line-height:0; visibility:hidden;}
-caption, .irtext { overflow: hidden; position: absolute; width: 0; height: 0; line-height: 0; text-indent: -9999px;}
-.irtext { position: absolute; /* position: absolute/fixed 에서만 clip 속성 작동 */ margin: -1px; /* 부트스트랩에선 안씀 */ width: 1px; height: 1px; padding: 0; border: 0; white-space: nowrap; overflow: hidden; /* overflow: visible 이면 clip 속성 작동 안됨 */ clip: rect(0, 0, 0, 0); clip-path: inset(50%); /* H5BP에선 안씀 */}
-caption {width:0;height:0;font-size:0;line-height:0;zoom:1;text-indent:-99999px;}
-
-table { display:table; width:100%; border-collapse:collapse; border-spacing:0; table-layout:fixed; }
-hr { clear:both; display:none; list-style:none; position:absolute; top:0; left:0; width:0; height:0; margin:0; padding:0; border:0; background:none; font-size:0px; line-height:0; visibility:hidden;}
-caption, legend { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(1px 1px 1px 1px); clip: rect(1px, 1px, 1px, 1px); } 
-.skip { overflow:hidden; position:absolute; border:0; padding:0; margin:0; width:1px; height:1px; clip:rect(1px, 1px, 1px, 1px); clip-path:inset(50%); white-space:nowrap; }  
-
-/***********************************************************************************
-  layout
-************************************************************************************/
-:root { --area-main-wrap:1800px; --area-main-width:100%; --area-sub-wrap:1700px; --area-sub-width:1100px; --area-p-padding:30px; --area-t-padding:20px; --area-m-padding: 10px; --header-h:70px; --header-t-padding:0 20px; --header-m-padding:0 10px; }
-.wrap { position:relative; /*overflow:hidden;*/ margin: 0 auto; width:100%; max-width:var(--area-main-wrap); }
-.sub_sec { max-width:var(--area-sub-width); margin:0 auto;}
-.section02 { max-width:var(--area-main-width); width:100%!important; }
-
-/***********************************************************************************
-  text
-************************************************************************************/
-/* text color */
-:root {
---txt-color1:#242b35; --txt-color2:#a2a5ae; --txt-color3:#077dd0; --txt-color4:#343843; --colorw:#fff;
---txt-point1:#077dd0;
-}
-/* background color */
-:root {
---main-color1: #077dd0;
---sub-color1: #343843;
-}
-.underline { text-decoration:underline !important; }
-.hover_under:hover { text-decoration:underline; }
-.narrow { letter-spacing:-0.03em; }
-.nowrap { white-space:nowrap; }
-/* ie10+ > input[type=text]에 포커스 있을 경우 표출되는 X버튼 숨기기 */
-input[type=text]::-ms-clear{ display:none !important; }
-
-/***********************************************************************************
-  selection
-************************************************************************************/
-::selection { background:#f0f0f0; }
-:-webkit-selection { background:#f0f0f0; }
-:-moz-selection { background:#f0f0f0; }
-::-moz-selection { background:#f0f0f0; }
-:-ms-selection { background:#f0f0f0; }
-::-ms-selection { background:#f0f0f0; }
-
-/***********************************************************************************
-  scroll style
-************************************************************************************/
-*::-webkit-scrollbar { width:6px; height: 5px; }
-*::-webkit-scrollbar-button { width:5px; height: 5px; }
-*::-webkit-scrollbar-thumb { background:#aaa; border: 1px none #fff; border-radius:5em; transition:all 0.5s }
-*::-webkit-scrollbar-thumb:hover { background: #aaa; }
-*::-webkit-scrollbar-thumb:active { background: #aaa; }
-*::-webkit-scrollbar-track { background: #eee; border: 65px none #fff; background:rgba(255,255,255,0.5); border-radius:0; }
-*::-webkit-scrollbar-track:hover { background: #eee; }
-*::-webkit-scrollbar-track:active { background: #eee; }
-*::-webkit-scrollbar-corner { background: transparent; }
-
-/***********************************************************************************
-  display
-  align
-  float
-  border
-  font
-************************************************************************************/
-.alignL { text-align: left !important; }
-.alignR { text-align: right !important; }
-.alignC { text-align: center !important; }
-
-.fw600 { font-weight:600 !important; }
-.fw700 { font-weight:700 !important; }
-.fw800 { font-weight:800 !important; }
-.fw900 { font-weight:900 !important; }
-
-.fl { float: left !important; }
-.fr { float: right !important; }
-.fn { float: none !important; }
-.clearfix {*zoom:1;}
-.clearfix:before, .clearfix:after {display:block; content: ''; line-height: 0;}
-.clearfix:after {clear: both;}
-
-.block { display:block !important; }
-.inlineblock { display:inline-block !important; }
-
-.b0 { border:0 !important; }
-.bl0 { border-left:0 !important; }
-.bt0 { border-top:0 !important; }
-.br0 { border-right:0 !important; }
-.bb0 { border-bottom:0 !important; }
-
-/***********************************************************************************
-  padding
-************************************************************************************/
-.pd0 { padding:0 !important; }
-.pd05 { padding:5px !important; }
-.pd10 { padding:10px !important; }
-.pd15 { padding:15px !important; }
-.pd20 { padding:20px !important; }
-.pd25 { padding:25px !important; }
-.pd30 { padding:30px !important; }
-.pl05 { padding-left:5px !important; }
-.pl10 { padding-left:10px !important; }
-.pl15 { padding-left:15px !important; }
-.pl20 { padding-left:20px !important; }
-.pl25 { padding-left:25px !important; }
-.pl30 { padding-left:30px !important; }
-.pl40 { padding-left:40px !important; }
-.pl50 { padding-left:50px !important; }
-.pl60 { padding-left:60px !important; }
-.pt05 { padding-top:5px !important; }
-.pt10 { padding-top:10px !important; }
-.pt15 { padding-top:15px !important; }
-.pt20 { padding-top:20px !important; }
-.pt25 { padding-top:25px !important; }
-.pt30 { padding-top:30px !important; }
-.pr05 { padding-right:5px !important; }
-.pr10 { padding-right:10px !important; }
-.pr15 { padding-right:15px !important; }
-.pr20 { padding-right:20px !important; }
-.pr25 { padding-right:25px !important; }
-.pr30 { padding-right:30px !important; }
-.pb05 { padding-bottom:5px !important; }
-.pb10 { padding-bottom:10px !important; }
-.pb15 { padding-bottom:15px !important; }
-.pb20 { padding-bottom:20px !important; }
-.pb25 { padding-bottom:25px !important; }
-.pb30 { padding-bottom:30px !important; }
-
-/***********************************************************************************
-  margin
-************************************************************************************/
-.mg0auto { margin:0 auto !important; }
-.mg0 { margin:0 !important; }
-.mt0 { margin-top:0px !important; }
-.mt05 { margin-top:5px !important; }
-.mt10 { margin-top:10px !important; }
-.mt15 { margin-top:15px !important; }
-.mt20 { margin-top:20px !important; }
-.mt25 { margin-top:25px !important; }
-.mt30 { margin-top:30px !important; }
-.mt35 { margin-top:35px !important; }
-.mt40 { margin-top:40px !important; }
-.mt45 { margin-top:45px !important; }
-.mt50 { margin-top:50px !important; }
-.mt55 { margin-top:55px !important; }
-.mt60 { margin-top:60px !important; }
-.mt100 { margin-top:100px !important; }
-.mb0 { margin-bottom:0px !important; }
-.mb02 { margin-bottom:2px !important; }
-.mb03 { margin-bottom:3px !important; }
-.mb05 { margin-bottom:5px !important; }
-.mb10 { margin-bottom:10px !important; }
-.mb15 { margin-bottom:15px !important; }
-.mb20 { margin-bottom:20px !important; }
-.mb25 { margin-bottom:25px !important; }
-.mb30 { margin-bottom:30px !important; }
-.mb35 { margin-bottom:35px !important; }
-.mb40 { margin-bottom:40px !important; }
-.mb45 { margin-bottom:45px !important; }
-.mb50 { margin-bottom:50px !important; }
-.ml0 { margin-left:0px !important; }
-.ml02 { margin-left:2px !important; }
-.ml03 { margin-left:3px !important; }
-.ml05 { margin-left:5px !important; }
-.ml10 { margin-left:10px !important; }
-.ml15 { margin-left:15px !important; }
-.ml20 { margin-left:20px !important; }
-.ml25 { margin-left:25px !important; }
-.ml30 { margin-left:30px !important; }
-.ml35 { margin-left:35px !important; }
-.ml40 { margin-left:40px !important; }
-.ml45 { margin-left:45px !important; }
-.ml50 { margin-left:50px !important; }
-.mr0 { margin-right:0px !important; }
-.mr02 { margin-right:2px !important; }
-.mr03 { margin-right:3px !important; }
-.mr04 { margin-right:4px !important; }
-.mr05 { margin-right:5px !important; }
-.mr08 { margin-right:8px !important; }
-.mr10 { margin-right:10px !important; }
-.mr15 { margin-right:15px !important; }
-.mr20 { margin-right:20px !important; }
-.mr25 { margin-right:25px !important; }
-.mr30 { margin-right:30px !important; }
-.mr35 { margin-right:35px !important; }
-.mr40 { margin-right:40px !important; }
-.mr45 { margin-right:45px !important; }
-.mr50 { margin-right:50px !important; }
-
-/***********************************************************************************
-  width
-  height
-************************************************************************************/
-.w10p { width:10% !important; }
-.w20p { width:20% !important; }
-.w30p { width:30% !important; }
-.w40p { width:40% !important; }
-.w50p { width:50% !important; }
-.w60p { width:60% !important; }
-.w70p { width:70% !important; }
-.w80p { width:80% !important; }
-.w90p { width:90% !important; }
-.w100p { width:100% !important; }
-.h100 { height:100px !important; }
-.h150 { height:150px !important; }
-.h200 { height:200px !important; }
-.h300 { height:300px !important; }
-
-/***********************************************************************************
-  keyframe
-************************************************************************************/
-.left01 { animation:LeftIn .5s linear 0s forwards; }
-.left02 { animation:LeftIn .5s linear 0.3s forwards; }
-.left03 { animation:LeftIn .5s linear 0.6s forwards; }
-.left04 { animation:LeftIn .5s linear 0.9s forwards; }
-.left05 { animation:LeftIn .5s linear 1.2s forwards; }
-.left06 { animation:LeftIn .5s linear 1.5s forwards; }
-.right01 { animation:RightIn .5s linear 0s forwards; }
-.right02 { animation:RightIn .5s linear 0.3s forwards; }
-.right03 { animation:RightIn .5s linear 0.6s forwards; }
-.right04 { animation:RightIn .5s linear 0.9s forwards; }
-.right05 { animation:RightIn .5s linear 1.2s forwards; }
-.right06 { animation:RightIn .5s linear 1.5s forwards; }
-.top01 { animation:TopIn .5s linear 0s forwards; }
-.top02 { animation:TopIn .5s linear 0.3s forwards; }
-.top03 { animation:TopIn .5s linear 0.6s forwards; }
-.top04 { animation:TopIn .5s linear 0.9s forwards; }
-.top05 { animation:TopIn .5s linear 1.2s forwards; }
-.top06 { animation:TopIn .5s linear 1.5s forwards; }
-.bottom01 { animation:BottomIn .5s linear 0s forwards; }
-.bottom02 { animation:BottomIn .5s linear 0.3s forwards; }
-.bottom03 { animation:BottomIn .5s linear 0.6s forwards; }
-.bottom04 { animation:BottomIn .5s linear 0.9s forwards; }
-.bottom05 { animation:BottomIn .5s linear 1.2s forwards; }
-.bottom06 { animation:BottomIn .5s linear 1.5s forwards; }
-
-@-webkit-keyframes LeftIn {
-    0% { opacity:0; -webkit-transform:translateX(-30px); }
-    100% { opacity:1; -webkit-transform:translateX(0); }
-}
-@-moz-keyframes LeftIn {
-    0% { opacity:0; -moz-transform:translateX(-30px); }
-    100% { opacity:1; -moz-transform:translateX(0); }
-}
-@-o-keyframes LeftIn {
-    0% { opacity:0; -o-transform:translateX(-30px); }
-    100% { opacity:1; -o-transform:translateX(0); }
-}
-@keyframes LeftIn {
-    0% { opacity:0; transform:translateX(-30px); }
-    100% { opacity:1; transform:translateX(0); }
-}
-@-webkit-keyframes RightIn {
-    0% { opacity:0; transform:translateX(30px); }
-    100% { opacity:1; transform:translateX(0); }
-}
-@keyframes RightIn {
-    0% { opacity:0; transform:translateX(30px); }
-    100% { opacity:1; transform:translateX(0); }
-}
-@-webkit-keyframes TopIn {
-    0% { opacity:0; -webkit-transform:translateY(-70px); }
-    40% { opacity:0; -webkit-transform:translateY(-40px); }
-    100% { opacity:1; -webkit-transform:translateY(0); }
-}
-@-moz-keyframes TopIn {
-    0% { opacity:0; -moz-transform:translateY(-70px); }
-    40% { opacity:0; -moz-transform:translateY(-40px); }
-    100% { opacity:1; -moz-transform:translateY(0); }
-}
-@-o-keyframes TopIn {
-    0% { opacity:0; -o-transform:translateY(-70px); }
-    40% { opacity:0; -o-transform:translateY(-40px); }
-    100% { opacity:1; -o-transform:translateY(0); }
-}
-@keyframes TopIn {
-    0% { opacity:0; transform:translateY(-70px); }
-    40% { opacity:0; transform:translateY(-40px); }
-    100% { opacity:1; transform:translateY(0); }
-}
-@-webkit-keyframes BottomIn {
-    0% { opacity:0; -webkit-transform:translateY(50px); }
-    40% { opacity:0; -webkit-transform:translateY(30px); }
-    100% { opacity:1; -webkit-transform:translateY(0); }
-}
-@-moz-keyframes BottomIn {
-    0% { opacity:0; -moz-transform:translateY(50px); }
-    40% { opacity:0; -moz-transform:translateY(30px); }
-    100% { opacity:1; -moz-transform:translateY(0); }
-}
-@-o-keyframes BottomIn {
-    0% { opacity:0; -o-transform:translateY(50px); }
-    40% { opacity:0; -o-transform:translateY(30px); }
-    100% { opacity:1; -o-transform:translateY(0); }
-}
-@keyframes BottomIn {
-    0% { opacity:0; transform:translateY(50px); }
-    40% { opacity:0; transform:translateY(30px); }
-    100% { opacity:1; transform:translateY(0); }
-}
-@-webkit-keyframes scale01 {
-  0% { opacity:0; -webkit-transform:scale(0); }
-  100% { opacity:1; -webkit-transform:scale(1); }
-}
-@keyframes scale01 {
-  0% { opacity:0; transform:scale(0); }
-  100% { opacity:1; transform:scale(1); }
-}
-@-webkit-keyframes fadeIn { 
-  0% { opacity:0; }
-  100% { opacity:1; }
-}
-@keyframes fadeIn { 
-  0% { opacity:0; }
-  100% { opacity:1; }
-}
-
-/***********************************************************************************
-  mediaquery
-************************************************************************************/
-@media screen and ( max-width : 1800px ) {
-  .wrap { padding:var(--area-p-padding); }
-  .sub_sec { padding:var(--area-p-padding); }
-}
-
-@media screen and ( max-width : 1700px ) {
-  header { padding:var(--header-t-padding); }
-}
-
-@media screen and ( max-width : 1400px ) {
-  .sub_sec { padding:var(--area-p-padding); }
-}
-@media screen and ( max-width : 1280px ) {
-  html, body { font-size:15px; letter-spacing:-0.01em; }
-  .wrap { padding:var(--area-t-padding); }
-  .sub_sec { padding:var(--area-t-padding); }
-}
-@media screen and ( max-width : 1024px ) {
-  .t_hidden { display:none !important; }
-  br.tablet { display:block; opacity:1; visibility:visible; }
-  br.mo_2,
-  br.mo,
-  br.desk { display:none; opacity:0; visibility:hidden; }
-}
-@media screen and ( max-width : 946px ) {
-  .radio li { margin-bottom:5px; } 
-  .radio li:last-child { margin-bottom:0; } 
-}
-@media screen and ( max-width : 800px ) {
-  .wrap { padding:var(--area-m-padding); }
-  .sub_sec { padding:var(--area-m-padding); }
-  header { padding:var(--header-m-padding); }
-}
-@media screen and ( max-width : 768px ) {
-  .checks input[type="radio"] + label:before { top:9px; }
-  .checks input[type="radio"]:checked + label:after { top:13px; }
-}
-@media screen and ( max-width : 600px ) {
-  html, body { font-size:13px; word-break:break-word; }
-  input[type="text"], input[type="password"], input[type="tel"], input[type="email"], input[type="url"], input[type="number"], input[type="date"] { height:45px; padding-left:15px; }
-  textarea { padding:10px 15px; }
-  .checks input[type="radio"] + label:before { top:8px; }
-  .checks input[type="radio"]:checked + label:after { top:12px; }
-  .filebox label { line-height:1.8; }
-  .m_hidden { display:none; }
-  .popup { width:90%;}
-  .popup.xs,
-  .popup.s,
-  .popup.m,
-  .popup.l { max-width:360px; }
-  br.mo { display:block; opacity:1; visibility:visible; }
-  br.mo_2,
-  br.tablet,
-  br.desk { display:none; opacity:0; visibility:hidden; }
-}
-@media screen and ( max-width : 480px ) {
-  br.mo_2 { display:block; opacity:1; visibility:visible; }
-  br.mo, 
-  br.tablet,
-  br.desk { display:none; opacity:0; visibility:hidden; }
-  .checks input[type="radio"] + label:before { top:7px; }
-  .checks input[type="radio"]:checked + label:after { top:11px; }
-}
-
-@media screen and ( max-width : 340px ) {
-  br.mo_2,
-  br.mo, 
-  br.tablet,
-  br.desk { display:none; opacity:0; visibility:hidden; }
-}
+/* 긴 단어가 레이아웃을 밀지 않게 */
+p, h1, h2, h3, h4 { overflow-wrap: break-word; }

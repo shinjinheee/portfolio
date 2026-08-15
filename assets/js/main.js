@@ -1,6 +1,154 @@
-$(document).ready(function(){
-    // 위로가기
-    var speed = 500;
-    $(".gotop").css("cursor", "pointer").click(function()
-    {$('body, html').animate({scrollTop:0}, speed);});
-});
+/* ===========================================================
+   main.js
+   라이브러리(gsap) 뒤에 로드된다. — 설계서 §2
+   각 init는 대상 요소가 없으면 조용히 빠져나간다.
+   =========================================================== */
+(function () {
+  'use strict';
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* -----------------------------------------------------------
+     헤더 — 스크롤하면 하단 경계선을 드러낸다
+     ----------------------------------------------------------- */
+  function initHeader() {
+    var header = document.querySelector('[data-header]');
+    if (!header) return;
+
+    var ticking = false;
+    function update() {
+      header.classList.toggle('is-scrolled', window.scrollY > 8);
+      ticking = false;
+    }
+    window.addEventListener('scroll', function () {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(update);
+    }, { passive: true });
+    update();
+  }
+
+  /* -----------------------------------------------------------
+     모바일 메뉴 토글
+     ----------------------------------------------------------- */
+  function initNavToggle() {
+    var btn = document.querySelector('[data-nav-toggle]');
+    var gnb = document.querySelector('.gnb');
+    if (!btn || !gnb) return;
+
+    btn.addEventListener('click', function () {
+      var open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      btn.setAttribute('aria-label', open ? '메뉴 열기' : '메뉴 닫기');
+      gnb.classList.toggle('is-open', !open);
+    });
+
+    gnb.addEventListener('click', function (e) {
+      if (e.target.tagName !== 'A') return;
+      btn.setAttribute('aria-expanded', 'false');
+      gnb.classList.remove('is-open');
+    });
+  }
+
+  /* -----------------------------------------------------------
+     아카이브 마퀴
+     트랙을 한 벌 복제해 이어붙인 뒤 -50%까지 밀면 이음매가 없다.
+     data-direction="right" 는 역방향.
+     ----------------------------------------------------------- */
+  function initMarquee() {
+    var tracks = document.querySelectorAll('[data-marquee-track]');
+    if (!tracks.length) return;
+
+    // GSAP이 없거나 모션 최소화 설정이면 정적 목록으로 남긴다
+    if (reduceMotion || typeof window.gsap === 'undefined') return;
+
+    Array.prototype.forEach.call(tracks, function (track) {
+      var originals = Array.prototype.slice.call(track.children);
+      if (!originals.length) return;
+
+      originals.forEach(function (node) {
+        var clone = node.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        track.appendChild(clone);
+      });
+
+      var toRight = track.dataset.direction === 'right';
+      var tween = window.gsap.fromTo(
+        track,
+        { xPercent: toRight ? -50 : 0 },
+        {
+          xPercent: toRight ? 0 : -50,
+          duration: 60,
+          ease: 'none',
+          repeat: -1
+        }
+      );
+
+      // hover 시 감속 — 설계서 §5-4
+      var row = track.parentElement;
+      row.addEventListener('mouseenter', function () {
+        window.gsap.to(tween, { timeScale: 0.25, duration: 0.6 });
+      });
+      row.addEventListener('mouseleave', function () {
+        window.gsap.to(tween, { timeScale: 1, duration: 0.6 });
+      });
+    });
+  }
+
+  /* -----------------------------------------------------------
+     스크롤스파이 — 현재 섹션의 GNB 항목에 밑줄
+     시안에서 Work가 밑줄 상태인 것을 재현한다.
+     ----------------------------------------------------------- */
+  function initScrollSpy() {
+    var links = [].slice.call(document.querySelectorAll('.gnb a[href^="#"]'));
+    if (!links.length || !('IntersectionObserver' in window)) return;
+
+    var map = {};
+    var sections = [];
+    links.forEach(function (link) {
+      var section = document.querySelector(link.getAttribute('href'));
+      if (!section) return;
+      map[section.id] = link;
+      sections.push(section);
+    });
+    if (!sections.length) return;
+
+    function setCurrent(link) {
+      links.forEach(function (l) { l.removeAttribute('aria-current'); });
+      if (link) link.setAttribute('aria-current', 'true');
+    }
+
+    // 화면 상단 1/3 지점을 지나는 섹션을 현재로 본다
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) setCurrent(map[entry.target.id]);
+      });
+    }, { rootMargin: '-90px 0px -66% 0px', threshold: 0 });
+
+    sections.forEach(function (s) { observer.observe(s); });
+  }
+
+  /* -----------------------------------------------------------
+     Back to the Top
+     ----------------------------------------------------------- */
+  function initToTop() {
+    var btn = document.querySelector('[data-to-top]');
+    if (!btn) return;
+
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: reduceMotion ? 'auto' : 'smooth'
+      });
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    initHeader();
+    initNavToggle();
+    initMarquee();
+    initScrollSpy();
+    initToTop();
+  });
+})();
