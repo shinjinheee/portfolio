@@ -100,31 +100,46 @@
      ----------------------------------------------------------- */
   function initYearTabs() {
     var wrap = document.querySelector('[data-year-tabs]');
-    if (!wrap || !('IntersectionObserver' in window)) return;
+    if (!wrap) return;
 
-    var links = [].slice.call(wrap.querySelectorAll('a[href^="#"]'));
-    var map = {};
-    var groups = [];
-    links.forEach(function (a) {
+    var pairs = [];
+    [].slice.call(wrap.querySelectorAll('a[href^="#"]')).forEach(function (a) {
       var g = document.querySelector(a.getAttribute('href'));
-      if (!g) return;
-      map[g.id] = a;
-      groups.push(g);
+      if (g) pairs.push({ link: a, group: g });
     });
-    if (!groups.length) return;
+    if (!pairs.length) return;
 
-    function mark(a) {
-      links.forEach(function (l) { l.removeAttribute('aria-current'); });
-      if (a) a.setAttribute('aria-current', 'true');
+    // 고정 바(헤더 + 탭) 아래 첫 픽셀을 기준선으로 삼는다
+    function offset() {
+      var h = document.querySelector('.site-header');
+      return (h ? h.getBoundingClientRect().height : 0) + wrap.getBoundingClientRect().height;
     }
 
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) mark(map[e.target.id]);
+    var ticking = false;
+    function update() {
+      ticking = false;
+      var line = offset() + 1;
+      var active = pairs[0];
+      pairs.forEach(function (p) {
+        if (p.group.getBoundingClientRect().top <= line) active = p;
       });
-    }, { rootMargin: '-160px 0px -70% 0px', threshold: 0 });
+      // 맨 아래에 닿으면 마지막 연도를 활성으로
+      if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 2) {
+        active = pairs[pairs.length - 1];
+      }
+      pairs.forEach(function (p) {
+        if (p === active) p.link.setAttribute('aria-current', 'true');
+        else p.link.removeAttribute('aria-current');
+      });
+    }
 
-    groups.forEach(function (g) { io.observe(g); });
+    window.addEventListener('scroll', function () {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(update);
+    }, { passive: true });
+    window.addEventListener('resize', update);
+    update();
   }
 
   /* -----------------------------------------------------------

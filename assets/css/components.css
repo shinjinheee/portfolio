@@ -372,8 +372,11 @@
   color: var(--white);
 }
 
-/* 연도 탭 — 각 연도 그룹으로 이동 */
+/* 연도 탭 — 각 연도 그룹으로 이동. 헤더(90) 아래에 붙는다 */
 .year-tabs {
+  position: sticky;
+  top: 90px;
+  z-index: 90;            /* 헤더(100) 보다 아래 */
   border-bottom: 1px solid var(--line-tab);
   background: var(--white);
 }
@@ -409,8 +412,11 @@
   padding-bottom: var(--space-section);
 }
 
-/* 연도 그룹 */
-.year-group { padding-bottom: 41px; }
+/* 연도 그룹 — 헤더 90 + 탭 51 만큼 앵커 여유를 준다 */
+.year-group {
+  padding-bottom: 41px;
+  scroll-margin-top: 141px;
+}
 .year-group + .year-group {
   border-top: 1px solid var(--line);
   padding-top: 43px;
@@ -553,6 +559,8 @@
   .metabar { grid-template-columns: 1fr; }
   .metric__value { font-size: 44px; }
 
+  .year-tabs { top: 64px; }
+  .year-group { scroll-margin-top: 115px; }
   .about-grid { padding-inline: var(--pad-x); }
   .def-row { flex-direction: column; gap: 2px; }
   .def-row__term { width: auto; }
