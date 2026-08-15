@@ -67,6 +67,7 @@
   --icon-muted:  #ADADAD;   /* 보조 버튼 아이콘 (글자보다 연하다) */
   --line-tab:    #E9EAEA;   /* 연도 탭 바 하단선 */
   --ink-tab:     #B2BBC5;   /* 비활성 연도 탭 */
+  --blue-chip:   #E5F5FF;   /* 모달 연도 칩 배경 */
   --placeholder: #D9DDE8;   /* 썸네일 미확보 상태 */
   --surface:     #F7F7F7;   /* 섹션 배경 · 아카이브 카드 */
   --surface-2:   #FBFBFB;   /* 한 단계 밝은 배경 */

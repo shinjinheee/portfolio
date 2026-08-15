@@ -435,7 +435,12 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 60px;
 }
-.arc-card { display: flex; flex-direction: column; gap: 28px; }
+.arc-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
 .arc-card__thumb {
   width: 100%;
   aspect-ratio: 405 / 231;
@@ -448,7 +453,148 @@
   line-height: 28px;
   color: var(--ink-900);
 }
-.arc-card:hover .arc-card__title { text-decoration: underline; }
+
+
+/* ===========================================================
+   archive 모달 — 좌 이미지 641 / 우 정보 448, 합계 1089×580
+   =========================================================== */
+.modal[hidden] { display: none; }
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-3);
+}
+.modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgb(0 0 0 / 45%);
+}
+.modal__dialog {
+  position: relative;
+  display: grid;
+  grid-template-columns: 641px 448px;
+  width: min(1089px, 100%);
+  max-height: calc(100vh - 48px);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  background: var(--white);
+}
+.modal__visual {
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.modal__visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 우측 정보 패널 — 위/아래로 벌린다 (실측 justify-between) */
+.modal__panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: 40px;
+  overflow-y: auto;
+}
+.modal__head { display: flex; flex-direction: column; gap: 12px; }
+.modal__year {
+  align-self: flex-start;
+  padding: 6px 10px;
+  border-radius: 100px;
+  background: var(--blue-chip);
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 1;
+  color: var(--blue-600);
+}
+.modal__title {
+  font-weight: 700;
+  font-size: 21px;
+  line-height: 31px;
+  color: var(--ink-900);
+}
+.modal__company {
+  font-size: 15px;
+  line-height: 25px;
+  color: var(--ink-400);
+}
+
+.modal__facts { display: flex; flex-direction: column; gap: var(--space-2); }
+.modal__fact { display: flex; flex-direction: column; }
+.modal__fact dt {
+  font-size: 14px;
+  line-height: 28px;
+  color: var(--ink-400);
+}
+.modal__fact dd {
+  margin: 0;
+  font-size: 14px;
+  line-height: 28px;
+  color: var(--ink-650);
+}
+.modal__fact .meta-line {
+  font-size: 14px;
+  line-height: 28px;
+  color: var(--ink-600);
+}
+
+/* 닫기 — 패널 우상단 (실측 28×28) */
+.modal__close {
+  position: absolute;
+  top: 26px;
+  right: 26px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--ink-650);
+  transition: background var(--dur-fast) var(--ease);
+}
+.modal__close:hover { background: var(--line-chip); }
+
+/* 카드 전체를 클릭 영역으로 — 접근성을 위해 실제 버튼은 제목 하나만 둔다 */
+.arc-card--linked { cursor: pointer; }
+.arc-card__open {
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  padding: 0;
+}
+.arc-card__open::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+.arc-card--linked:hover .arc-card__title { text-decoration: underline; }
+
+body.is-modal-open { overflow: hidden; }
+
+@media (max-width: 1023px) {
+  .modal__dialog {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    width: min(641px, 100%);
+  }
+  .modal__visual { aspect-ratio: 641 / 580; }
+}
+@media (max-width: 767px) {
+  .modal { padding: var(--space-2); }
+  .modal__panel { padding: var(--space-3); }
+  .modal__close { top: 14px; right: 14px; }
+}
 
 /* ===========================================================
    케이스 페이지용 — 설계서 §4-2 / §4-4 / §4-5

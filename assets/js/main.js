@@ -143,6 +143,92 @@
   }
 
   /* -----------------------------------------------------------
+     아카이브 모달
+     데이터는 <script type="application/json" id="modal-data"> 에서 읽는다.
+     file:// 로 열어도 동작해야 하므로 fetch 를 쓰지 않는다.
+     ----------------------------------------------------------- */
+  function initModal() {
+    var modal = document.querySelector('[data-modal-root]');
+    var store = document.getElementById('modal-data');
+    if (!modal || !store) return;
+
+    var data;
+    try { data = JSON.parse(store.textContent); } catch (e) { return; }
+
+    var elVisual  = modal.querySelector('[data-modal-visual]');
+    var elYear    = modal.querySelector('[data-modal-year]');
+    var elTitle   = modal.querySelector('[data-modal-title]');
+    var elCompany = modal.querySelector('[data-modal-company]');
+    var elFacts   = modal.querySelector('[data-modal-facts]');
+    var closeBtn  = modal.querySelector('[data-modal-close]');
+    var lastFocus = null;
+
+    function factRow(label, values) {
+      if (!values || !values.length) return '';
+      var dd = values.length > 1
+        ? '<dd><span class="meta-line meta-line--tight">' +
+            values.map(function (v) { return '<span>' + v + '</span>'; }).join('') +
+          '</span></dd>'
+        : '<dd>' + values[0] + '</dd>';
+      return '<div class="modal__fact"><dt>' + label + '</dt>' + dd + '</div>';
+    }
+
+    function open(key, trigger) {
+      var d = data[key];
+      if (!d) return;
+      lastFocus = trigger || document.activeElement;
+
+      elVisual.innerHTML = d.image
+        ? '<img src="' + d.image + '" alt="' + d.title.replace(/\n/g, ' ') + ' 상세 이미지">'
+        : '';
+      elYear.textContent = d.year || '';
+      elTitle.innerHTML = (d.title || '').split('\n').join('<br>');
+      elCompany.textContent = d.company || '';
+      elFacts.innerHTML =
+        factRow('기간', d.period ? [d.period] : []) +
+        factRow('참여도', d.roles) +
+        factRow('사용 스킬', d.tools) +
+        (d.url
+          ? '<div class="modal__fact"><dt>사이트</dt><dd>' +
+            '<a href="' + d.url + '" target="_blank" rel="noopener noreferrer">' + d.url + '</a></dd></div>'
+          : '');
+
+      modal.hidden = false;
+      document.body.classList.add('is-modal-open');
+      closeBtn.focus();
+    }
+
+    function close() {
+      modal.hidden = true;
+      document.body.classList.remove('is-modal-open');
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+
+    // 카드 클릭 → 열기
+    document.addEventListener('click', function (e) {
+      var opener = e.target.closest ? e.target.closest('[data-modal-open]') : null;
+      if (opener) {
+        e.preventDefault();
+        open(opener.getAttribute('data-modal-open'), opener);
+        return;
+      }
+      if (!modal.hidden && e.target.closest('[data-modal-close], [data-modal-backdrop]')) close();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (modal.hidden) return;
+      if (e.key === 'Escape') { close(); return; }
+      if (e.key !== 'Tab') return;
+      // 포커스를 모달 안에 가둔다
+      var f = modal.querySelectorAll('a[href], button, [tabindex]:not([tabindex="-1"])');
+      if (!f.length) return;
+      var first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+  }
+
+  /* -----------------------------------------------------------
      Back to the Top
      ----------------------------------------------------------- */
   function initToTop() {
@@ -163,6 +249,7 @@
     initNavToggle();
     initMarquee();
     initYearTabs();
+    initModal();
     initToTop();
   });
 })();
