@@ -56,6 +56,8 @@ a { color: inherit; text-decoration: none; }
    본문이 섹션 밖에 있으므로 .section-head 의 하단 여백(160)은 쓰지 않는다. */
 .section--head-only { padding-bottom: 90px; }
 .section--head-only .section-head { margin-bottom: 0; }
+/* archive — 헤더 끝 618 → 연도 탭 688 = 70px */
+.section--head-archive { padding-bottom: 70px; }
 
 /* 섹션 헤더 — 제목 행 + 리드 문장, 사이 48px */
 .section-head {
@@ -70,6 +72,11 @@ a { color: inherit; text-decoration: none; }
   justify-content: space-between;
   gap: var(--space-3);
 }
+/* archive — 제목 옆에 배지가 붙는다 (양끝 정렬 아님) */
+.section-head__row--start {
+  justify-content: flex-start;
+  align-items: center;
+}
 .section-title {
   font-family: var(--font-en);
   font-weight: 600;
@@ -81,6 +88,8 @@ a { color: inherit; text-decoration: none; }
 /* 시안의 리드는 컨테이너 폭을 그대로 쓰고 줄바꿈은 <br> 로 지정한다.
    max-width 를 걸면 의도한 줄수가 어긋난다. */
 .section-lead { color: var(--ink-600); }
+/* archive 리드는 16px/26 (index·about 은 18px/31) */
+.section-lead--sm { font-size: var(--fs-meta); line-height: var(--lh-meta); }
 .eyebrow {
   display: block;
   font-family: var(--font-en);

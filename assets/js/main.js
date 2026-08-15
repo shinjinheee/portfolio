@@ -96,6 +96,38 @@
   }
 
   /* -----------------------------------------------------------
+     연도 탭 (archive) — 보고 있는 연도 그룹을 표시한다
+     ----------------------------------------------------------- */
+  function initYearTabs() {
+    var wrap = document.querySelector('[data-year-tabs]');
+    if (!wrap || !('IntersectionObserver' in window)) return;
+
+    var links = [].slice.call(wrap.querySelectorAll('a[href^="#"]'));
+    var map = {};
+    var groups = [];
+    links.forEach(function (a) {
+      var g = document.querySelector(a.getAttribute('href'));
+      if (!g) return;
+      map[g.id] = a;
+      groups.push(g);
+    });
+    if (!groups.length) return;
+
+    function mark(a) {
+      links.forEach(function (l) { l.removeAttribute('aria-current'); });
+      if (a) a.setAttribute('aria-current', 'true');
+    }
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) mark(map[e.target.id]);
+      });
+    }, { rootMargin: '-160px 0px -70% 0px', threshold: 0 });
+
+    groups.forEach(function (g) { io.observe(g); });
+  }
+
+  /* -----------------------------------------------------------
      Back to the Top
      ----------------------------------------------------------- */
   function initToTop() {
@@ -115,6 +147,7 @@
     initHeader();
     initNavToggle();
     initMarquee();
+    initYearTabs();
     initToTop();
   });
 })();

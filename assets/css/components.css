@@ -68,18 +68,21 @@
    Selected work · Archive 양쪽에서 쓴다.
    =========================================================== */
 .meta-line {
+  --meta-gap: 12px;          /* archive 카드는 8 */
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--meta-gap);
   font-size: var(--fs-meta);
+  line-height: var(--lh-meta);   /* body 행간(1.722) 상속 시 27.55 가 된다 */
   color: var(--ink-400);
 }
+.meta-line--tight { --meta-gap: 8px; }
 .meta-line > * + *::before {
   content: "";
   display: inline-block;
   width: 1px;
   height: 17px;
-  margin-right: 12px;
+  margin-right: var(--meta-gap);
   background: currentColor;
   opacity: 0.5;
   vertical-align: -3px;
@@ -344,6 +347,102 @@
 }
 .record-table tr:last-child td { border-bottom: 1px solid var(--line); }
 .record-table td:first-child { color: var(--ink-400); }
+
+/* ===========================================================
+   archive — 개수 배지 · 연도 탭 · 연도별 카드 그리드
+   실측: 카드 405×321 (썸네일 405×231 + 28 + 텍스트 62)
+         4열 × gap 60 = 1800 / 행 간격 60
+   =========================================================== */
+
+/* 제목 옆 개수 배지 */
+.count-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 50px;
+  border-radius: 100px;
+  border: 1px solid var(--white);
+  background: rgb(217 221 232 / 60%);
+  backdrop-filter: blur(5px);
+  font-family: var(--font-en);
+  font-weight: 600;
+  font-size: 60px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--white);
+}
+
+/* 연도 탭 — 각 연도 그룹으로 이동 */
+.year-tabs {
+  border-bottom: 1px solid var(--line-tab);
+  background: var(--white);
+}
+.year-tabs__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+.year-tabs a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;                  /* 밑줄 2px 을 포함한 높이 (실측) */
+  padding-inline: 22px;
+  border-bottom: 2px solid transparent;
+  font-size: 18px;
+  line-height: 26px;
+  color: var(--ink-tab);
+  transition: color var(--dur-fast) var(--ease),
+              border-color var(--dur-fast) var(--ease);
+}
+.year-tabs a:hover { color: var(--ink-900); }
+.year-tabs a[aria-current] {
+  font-weight: 700;
+  color: var(--ink-900);
+  border-bottom-color: var(--ink-900);
+}
+
+/* 목록 영역 — 탭 끝 739 → 목록 842 = 103px */
+.archive-list {
+  padding-top: 103px;
+  padding-bottom: var(--space-section);
+}
+
+/* 연도 그룹 */
+.year-group { padding-bottom: 41px; }
+.year-group + .year-group {
+  border-top: 1px solid var(--line);
+  padding-top: 43px;
+}
+.year-group__label {
+  font-weight: 700;
+  font-size: var(--fs-h3);
+  line-height: 42px;
+  color: var(--ink-900);
+  margin-bottom: 58px;      /* 라벨 42 아래 18 + 카드행 상단 40 */
+}
+
+/* 카드 그리드 */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 60px;
+}
+.arc-card { display: flex; flex-direction: column; gap: 28px; }
+.arc-card__thumb {
+  width: 100%;
+  aspect-ratio: 405 / 231;
+  object-fit: contain;   /* 내보낸 PNG 에 라운드 배경이 포함돼 있다 */
+}
+.arc-card__body { display: flex; flex-direction: column; gap: var(--space-1); }
+.arc-card__title {
+  font-weight: 700;
+  font-size: var(--fs-body);
+  line-height: 28px;
+  color: var(--ink-900);
+}
+.arc-card:hover .arc-card__title { text-decoration: underline; }
 
 /* ===========================================================
    케이스 페이지용 — 설계서 §4-2 / §4-4 / §4-5
