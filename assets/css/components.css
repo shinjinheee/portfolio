@@ -476,7 +476,9 @@
 .modal__dialog {
   position: relative;
   display: grid;
-  grid-template-columns: 641px 448px;
+  /* 고정 641+448 = 1089 를 쓰면 창이 1089+패딩 보다 좁을 때 패널이 잘린다.
+     비율을 유지하되 줄어들 수 있게 fr 로 둔다. */
+  grid-template-columns: 641fr 448fr;
   width: min(1089px, 100%);
   max-height: calc(100vh - 48px);
   border-radius: var(--radius-card);
