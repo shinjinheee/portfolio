@@ -390,7 +390,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 50px;                  /* 밑줄 2px 을 포함한 높이 (실측) */
+  height: 80px;                  /* 밑줄 2px 포함 */
   padding-inline: 22px;
   border-bottom: 2px solid transparent;
   font-size: 18px;
@@ -415,7 +415,7 @@
 /* 연도 그룹 — 헤더 90 + 탭 51 만큼 앵커 여유를 준다 */
 .year-group {
   padding-bottom: 41px;
-  scroll-margin-top: 141px;
+  scroll-margin-top: 172px;   /* 헤더 90 + 탭 80 + 보더 2 — 보더끼리 맞닿지 않게 1px 여유 */
 }
 .year-group + .year-group {
   border-top: 1px solid var(--line);
@@ -547,6 +547,12 @@
   font-size: 14px;
   line-height: 28px;
   color: var(--ink-600);
+}
+
+/* 모달 안 구분 바는 본문보다 연하다 */
+.modal__fact .meta-line > * + *::before {
+  background: var(--line-tab);
+  opacity: 1;
 }
 
 /* 닫기 — 패널 우상단 (실측 28×28) */
@@ -708,7 +714,7 @@ body.is-modal-open { overflow: hidden; }
   .metric__value { font-size: 44px; }
 
   .year-tabs { top: 64px; }
-  .year-group { scroll-margin-top: 115px; }
+  .year-group { scroll-margin-top: 146px; }   /* 헤더 64 + 탭 80 + 2 */
   .about-grid { padding-inline: var(--pad-x); }
   .def-row { flex-direction: column; gap: 2px; }
   .def-row__term { width: auto; }

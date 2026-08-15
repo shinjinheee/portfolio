@@ -126,12 +126,12 @@ a { color: inherit; text-decoration: none; }
   display: block;
   color: var(--ink-dark);
 }
-/* 실측: logo 2 = 173 × 24.15. SVG viewBox 도 24.15 로 맞춰뒀다(내보내기 기본값 25 는 올림값) */
+/* 로고 193 × 24.15 (제공 SVG 의 clipPath 기준). 폭이 기준 축이다. */
 .site-header__logo svg,
 .site-header__logo img {
   display: block;          /* inline 이면 baseline 아래 여백이 붙는다 */
-  width: 173px;
-  height: auto;            /* 내재 비율 173:24.15 */
+  width: 193px;
+  height: auto;
 }
 
 /* GNB — 항목 간 100px */
