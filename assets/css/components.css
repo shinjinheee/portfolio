@@ -1,0 +1,171 @@
+@charset "utf-8";
+/* ===========================================================
+   components.css — 반복 컴포넌트
+   설계서: docs/01-IA-레이아웃-설계서.md §4-2, §4-4, §4-5
+   =========================================================== */
+
+/* ---------- 버튼 ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  height: 52px;
+  padding-inline: var(--space-3);
+  border-radius: var(--radius-btn);
+  font-size: var(--fs-meta);
+  font-weight: 500;
+  transition: background var(--dur-fast) var(--ease);
+}
+.btn--primary { background: var(--blue-600); color: var(--white); }
+.btn--primary:hover { background: var(--blue-700); }
+.btn--dark { background: var(--ink-dark); color: var(--white); }
+.btn--ghost { border: 1px solid var(--line); color: var(--ink-900); }
+
+/* ---------- 메타 바 — docs/01 §4-2 ----------
+   케이스 페이지 H1 바로 아래 고정. 참여도 기재 요건 충족 지점. */
+.metabar {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-3);
+  background: var(--surface);
+  border-radius: var(--radius-card);
+  padding: 32px var(--space-4);
+}
+.metabar dt {
+  font-size: var(--fs-caption);
+  color: var(--ink-400);
+  margin-bottom: var(--space-1);
+}
+.metabar dd {
+  font-size: var(--fs-body);
+  color: var(--ink-900);
+}
+
+/* ---------- As-is / To-be 비교 블록 — docs/01 §4-4 ---------- */
+.compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+.compare__col {
+  border-radius: var(--radius-card);
+  padding: var(--space-4);
+}
+.compare__col--asis { background: var(--surface); }
+.compare__col--tobe { background: var(--blue-50); }
+.compare__label {
+  font-family: var(--font-en);
+  font-weight: 500;
+  font-size: var(--fs-eyebrow);
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  margin-bottom: var(--space-3);
+  display: block;
+}
+.compare__col--asis .compare__label { color: var(--ink-400); }
+.compare__col--tobe .compare__label { color: var(--blue-700); }
+.compare__img {
+  width: 100%;
+  border-radius: var(--radius-img);
+  margin-bottom: var(--space-3);
+}
+
+/* ---------- 지표 카드 — docs/01 §4-5 ----------
+   측정 근거 줄(.metric__source)은 반드시 채운다. */
+.metric {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  padding: var(--space-4);
+}
+.metric__label {
+  font-size: var(--fs-caption);
+  color: var(--ink-400);
+}
+.metric__value {
+  font-family: var(--font-en);
+  font-weight: 600;
+  font-size: 64px;
+  line-height: 1.1;
+  color: var(--blue-600);
+  margin-block: var(--space-1);
+}
+.metric__unit { font-size: var(--fs-body); color: var(--ink-600); }
+.metric__source {
+  margin-top: var(--space-3);
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--line);
+  font-size: 12px;
+  color: var(--ink-400);
+}
+
+/* ---------- Selected work 카드 ----------
+   시안은 가로형 리스트(좌 이미지 / 우 텍스트). docs/02 §2 참조 */
+.work-item {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: var(--space-5);
+  align-items: start;
+  padding-block: var(--space-4);
+  border-top: 1px solid var(--line);
+}
+.work-item__thumb {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius-img);
+  background: var(--line);
+  object-fit: cover;
+  transition: transform var(--dur-base) var(--ease);
+}
+.work-item:hover .work-item__thumb { transform: scale(1.03); }
+.work-item__title {
+  font-weight: 700;
+  font-size: var(--fs-h3);
+  line-height: var(--lh-heading);
+  color: var(--ink-900);
+}
+.work-item__desc {
+  margin-top: var(--space-2);
+  color: var(--ink-600);
+}
+.work-item__meta {
+  margin-top: var(--space-4);
+  display: flex;
+  gap: var(--space-3);
+  font-size: var(--fs-meta);
+  color: var(--ink-400);
+}
+
+/* ---------- 아카이브 마퀴 ----------
+   2행 역방향 스크롤. 카드 677x386 (이미지는 @2x 1354x772) */
+.marquee { overflow: hidden; }
+.marquee__track {
+  display: flex;
+  gap: var(--space-3);
+  width: max-content;
+}
+.marquee__card {
+  width: 677px;
+  aspect-ratio: 677 / 386;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  background: var(--surface);
+  flex-shrink: 0;
+}
+.marquee__card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---------- 반응형 ---------- */
+@media (max-width: 1023px) {
+  .metabar { grid-template-columns: repeat(2, 1fr); }
+  .compare { grid-template-columns: 1fr; }
+  .work-item { grid-template-columns: 1fr; gap: var(--space-3); }
+}
+@media (max-width: 767px) {
+  .metabar { grid-template-columns: 1fr; }
+  .marquee__card { width: 280px; }
+  .metric__value { font-size: 44px; }
+}

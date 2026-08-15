@@ -1,0 +1,161 @@
+@charset "utf-8";
+/* ===========================================================
+   layout.css — 그리드 · 헤더 · 푸터 골격
+   설계서: docs/01-IA-레이아웃-설계서.md §4-1, §4-6
+   =========================================================== */
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-kr);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--ink-900);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- 컨테이너 ---------- */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--pad-x);
+}
+
+.grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--gutter);
+}
+
+/* ---------- 섹션 ---------- */
+.section {
+  padding-block: var(--space-6);
+}
+.section--surface { background: var(--surface); }
+
+/* 섹션 헤더 — docs/01 §4-3 */
+.section-head { margin-bottom: var(--space-5); }
+.eyebrow {
+  font-family: var(--font-en);
+  font-weight: 500;
+  font-size: var(--fs-eyebrow);
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--blue-600);
+  display: block;
+  margin-bottom: var(--space-2);
+}
+.section-title {
+  font-family: var(--font-en);
+  font-weight: 600;
+  font-size: var(--fs-display);
+  line-height: var(--lh-display);
+  letter-spacing: var(--ls-tight);
+  color: var(--ink-900);
+}
+.section-lead {
+  margin-top: var(--space-3);
+  font-size: var(--fs-lead);
+  color: var(--ink-600);
+}
+
+/* ---------- 헤더 ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: 88px;
+  display: flex;
+  align-items: center;
+  background: transparent;
+  transition: height var(--dur-base) var(--ease),
+              background var(--dur-base) var(--ease);
+}
+.site-header.is-scrolled {
+  height: 72px;
+  background: var(--white);
+  border-bottom: 1px solid var(--line);
+}
+.site-header__inner {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--pad-x);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.site-header__logo {
+  font-family: var(--font-en);
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: 0.02em;
+  color: var(--ink-900);
+}
+.gnb {
+  display: flex;
+  gap: var(--space-4);
+}
+.gnb a {
+  font-family: var(--font-en);
+  font-weight: 500;
+  font-size: 18px;
+  color: var(--ink-900);
+  padding-block: 4px;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--dur-fast) var(--ease);
+}
+.gnb a:hover,
+.gnb a[aria-current="page"] { border-bottom-color: var(--ink-900); }
+
+/* ---------- 푸터 ---------- */
+.site-footer {
+  background: var(--blue-600);
+  color: var(--white);
+  padding-block: var(--space-6) var(--space-4);
+  border-radius: var(--radius-card) var(--radius-card) 0 0;
+}
+.site-footer__title {
+  font-family: var(--font-en);
+  font-weight: 600;
+  font-size: var(--fs-display);
+  line-height: var(--lh-display);
+  letter-spacing: var(--ls-tight);
+  border-bottom: 2px solid var(--white);
+  display: inline-block;
+}
+.site-footer__bottom {
+  margin-top: var(--space-6);
+  padding-top: var(--space-3);
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--fs-meta);
+  font-weight: 500;
+}
+.site-footer__links { display: flex; gap: var(--space-4); }
+
+.to-top {
+  font-family: var(--font-en);
+  font-weight: 600;
+  font-size: var(--fs-meta);
+  color: var(--white);
+}
+
+/* ---------- 반응형 — docs/01 §10 ---------- */
+@media (max-width: 1023px) {
+  .grid-12 { grid-template-columns: repeat(6, 1fr); }
+}
+@media (max-width: 767px) {
+  .grid-12 { grid-template-columns: 1fr; }
+  .site-header { height: 64px; }
+  .gnb { display: none; }        /* 햄버거로 대체 */
+  .site-footer__bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+}
