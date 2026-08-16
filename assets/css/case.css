@@ -540,3 +540,29 @@
   .statechk__col, .statechk__col:nth-child(3) { width: auto; }
   .statechk__pill { white-space: normal; text-align: center; }
 }
+
+/* ===========================================================
+   .result — 결과 섹션 (좌 -100% 지표 / 우 라인 차트)
+   시안: 콘텐츠 (160,430) 1600×418 · 지표 729×216 · 차트 744×539
+   =========================================================== */
+.case-section--result {
+  --sec-bg: linear-gradient(180deg, #160d30 0%, #1f0c49 46%, #260b62 100%);
+}
+.result {
+  display: grid;
+  grid-template-columns: 729px 1fr;
+  gap: 127px;                       /* 856 − 729 */
+  align-items: center;
+}
+.result__stat { display: flex; flex-direction: column; gap: 38px; }
+.result__num { width: 619px; max-width: 100%; height: auto; }
+.result__cap {
+  font-weight: 500;
+  font-size: 18px;
+  color: #8e7cb4;
+}
+.result__chart { width: 100%; height: auto; }
+
+@media (max-width: 1279px) {
+  .result { grid-template-columns: 1fr; gap: 48px; }
+}
