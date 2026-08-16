@@ -203,7 +203,9 @@ picture { display: contents; }
   position: relative;                    /* 안의 이미지 배치 기준 */
   flex-shrink: 0;
   width: 677px;
-  aspect-ratio: 677 / 386;
+  /* aspect-ratio 로 높이를 잡으면 폭에 따라 소수가 나오고(420 → 239.46),
+     그러면 하단 테두리만 픽셀 경계에 걸쳐 흐려진다. 높이를 정수로 고정한다. */
+  height: 386px;
   background: var(--surface);
   border: 1px solid var(--line-card);
   border-radius: var(--radius-card);
@@ -720,7 +722,7 @@ body.is-modal-open { overflow: hidden; }
 @media (max-width: 1439px) {
   .work-item { grid-template-columns: 40% 1fr; }
   .statement { gap: 64px; }
-  .marquee__card { width: 520px; }
+  .marquee__card { width: 520px; height: 296px; }
 }
 
 @media (max-width: 1279px) {
@@ -736,7 +738,7 @@ body.is-modal-open { overflow: hidden; }
   }
   .work-item__body { padding-block: 0; gap: var(--space-4); }
   .statement { max-width: none; gap: var(--space-5); }
-  .marquee__card { width: 420px; }
+  .marquee__card { width: 420px; height: 239px; }
   .metabar { grid-template-columns: repeat(2, 1fr); }
   .compare { grid-template-columns: 1fr; }
 
@@ -763,7 +765,7 @@ body.is-modal-open { overflow: hidden; }
 @media (max-width: 767px) {
   .link-display { border-bottom-width: 3px; }
   .work-item__title { font-size: 20px; }
-  .marquee__card { width: 280px; }
+  .marquee__card { width: 280px; height: 160px; }
   .metabar { grid-template-columns: 1fr; }
   .metric__value { font-size: 44px; }
 
