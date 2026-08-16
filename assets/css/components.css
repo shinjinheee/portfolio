@@ -476,6 +476,11 @@ picture { display: contents; }
    있어서(각 변 4px 인셋) contain 으로 남는 여백은 배경색과 그대로 이어진다. */
 .arc-card__thumb {
   width: 100%;
+  /* img 의 width/height 속성은 presentational hint 로 들어와 height 를 고정시킨다.
+     그러면 aspect-ratio 가 무시돼 박스가 설계보다 세로로 길어지고,
+     남는 공간이 배경색 띠로 남아 테두리가 콘텐츠에서 떨어져 보인다.
+     작성자 스타일로 height 를 auto 로 눌러야 aspect-ratio 가 산다. */
+  height: auto;
   aspect-ratio: 405 / 231;
   object-fit: contain;
   background: var(--surface);
