@@ -388,3 +388,67 @@
   .flow__sep { display: none; }
   .flow__cards li { flex: 0 0 auto; }
 }
+
+/* ===========================================================
+   .steps — STEP 1·2·3 카드
+   시안: 카드 507×552 (헤드 63 + 28 + 본문 461) · 카드 간격 40
+         본문 = 패널 402 (#D8DCE3) + 캡션바 59 (#1A2032)
+   =========================================================== */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+.step__head {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+  margin-bottom: 28px;          /* 헤드 63 → 본문 91 */
+}
+.step__no {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: -0.01em;
+  color: #c9bbfa;
+  opacity: 0.9;
+}
+.step__label {
+  font-weight: 700;
+  font-size: 21px;
+  line-height: 31px;
+  color: var(--white);
+}
+/* 패널 배경·라운드는 CSS 가 그리고 이미지는 목업만 담는다 */
+.step__panel {
+  position: relative;
+  aspect-ratio: 507 / 402;
+  border-radius: 12px 12px 0 0;
+  background: #d8dce3;
+  overflow: hidden;
+}
+.step__panel img {
+  position: absolute;
+  left: var(--x, 0);
+  top: var(--y, 0);
+  width: var(--w, 100%);
+  height: var(--h, 100%);
+}
+.step__caption {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border-radius: 0 0 12px 12px;
+  background: #1a2032;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.2;
+  text-align: center;
+  color: var(--white);
+}
+
+@media (max-width: 1023px) {
+  .steps { grid-template-columns: 1fr; gap: 32px; }
+}
