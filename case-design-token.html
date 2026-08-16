@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>디자인 토큰 스타일 기준 | 신진희 포트폴리오</title>
+  <meta name="description" content="PD·FE와의 합의 부재로 반복되는 스타일 값 전달 비용을 제거한 디자인 토큰·Variables 구조화 사례.">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="디자인 토큰 스타일 기준 · 신진희 UI/UX 디자이너">
+  <meta property="og:description" content="PD·FE와의 합의 부재로 반복되는 스타일 값 전달 비용을 제거한 디자인 토큰·Variables 구조화 사례.">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+  <meta name="theme-color" content="#ffffff">
+
+  <link rel="stylesheet" href="./assets/css/reset.css?v=43">
+  <link rel="stylesheet" href="./assets/css/tokens.css?v=43">
+  <link rel="stylesheet" href="./assets/css/layout.css?v=43">
+  <link rel="stylesheet" href="./assets/css/components.css?v=43">
+  <link rel="stylesheet" href="./assets/css/case.css?v=43">
+</head>
+
+<body>
+  <a href="#main" class="sr-only">본문 바로가기</a>
+
+  <header class="site-header" data-header>
+    <div class="container site-header__inner">
+      <a href="./index.html" class="site-header__logo" aria-label="SHINJINHEE 홈">
+        <img src="./assets/img/logo.svg?v=4" alt="SHINJINHEE" width="193" height="24">
+      </a>
+
+      <nav class="gnb" aria-label="주요 메뉴">
+        <a href="./work.html" aria-current="page">Work</a>
+        <a href="./archive.html">Archive</a>
+        <a href="./about.html">About</a>
+        <a href="mailto:jinhee950617@gmail.com">Contact</a>
+      </nav>
+
+      <a href="./docs/portfolio.pdf" class="btn btn--dark btn--w173" download>
+        포트폴리오 다운로드
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <g stroke="currentColor" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 11.3333V2" />
+            <path d="M4 7.33333L8 11.3333L12 7.33333" />
+            <path d="M12.6667 14H3.33333" />
+          </g>
+        </svg>
+      </a>
+
+      <button type="button" class="nav-toggle" data-nav-toggle aria-expanded="false" aria-label="메뉴 열기">
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ===================== 히어로 ===================== -->
+    <section class="case-hero case-hero--dt" aria-labelledby="case-title">
+      <div class="case-hero__inner">
+        <h1 class="case-hero__title" id="case-title">반복 전달을 없앤<br>디자인 토큰 스타일 기준</h1>
+        <div class="case-hero__meta">
+          <div class="case-hero__block">
+            <p class="case-hero__label">목표</p>
+            <p class="case-hero__value">PD·FE와의 합의 부재로 반복되는 스타일 값 전달 비용 제거</p>
+          </div>
+          <div class="case-hero__block">
+            <p class="case-hero__label">결과</p>
+            <ul class="case-hero__list">
+              <li>PD·FE 작업 효율 40% 상승</li>
+              <li>월 핸드오프 수치 재확인 요청 감소</li>
+            </ul>
+          </div>
+          <div class="case-hero__block">
+            <p class="case-hero__label">키워드</p>
+            <div class="case-hero__tags">
+              <span class="case-chip">디자인 시스템</span>
+              <span class="case-chip">AI</span>
+              <span class="case-chip">Variables</span>
+              <span class="case-chip">Design.md</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-hero__shot case-hero__shot--a" aria-hidden="true">
+        <picture><source srcset="./assets/img/case/dt-hero-a.webp?v=43" type="image/webp"><img
+          src="./assets/img/case/dt-hero-a.png?v=43" alt="" loading="lazy"
+          style="--ix:-1.71%;--iy:0.16%;--iw:155.69%;--ih:137.74%"></picture>
+      </div>
+      <div class="case-hero__shot case-hero__shot--b" aria-hidden="true">
+        <picture><source srcset="./assets/img/case/dt-hero-b.webp?v=43" type="image/webp"><img
+          src="./assets/img/case/dt-hero-b.png?v=43" alt="" loading="lazy"
+          style="--ix:0;--iy:0;--iw:100.6%;--ih:133.3%"></picture>
+      </div>
+    </section>
+
+    <!-- ===================== 섹션 탭 ===================== -->
+    <nav class="case-tabs" aria-label="섹션 바로가기" data-case-tabs>
+      <div class="container">
+        <div class="case-tabs__list">
+          <a href="#bg" aria-current="true">배경</a>
+          <a href="#problem">문제 정의</a>
+          <a href="#hypothesis">가설</a>
+          <a href="#solution">문제 해결</a>
+          <a href="#result">결과</a>
+          <a href="#retro">회고</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ===================== 본문 섹션 (작업 중) ===================== -->
+    <!-- 본문 섹션은 다음 단계에서 채운다 -->
+
+
+    <!-- ===================== 이전 / 다음 ===================== -->
+    <nav class="case-nav container" aria-label="다른 작업">
+      <a class="case-nav__item" href="./work.html">
+        <span class="case-nav__dir">Prev</span>
+        <span class="case-nav__title">키오스크의 터치 프로세스 사용성 개선</span>
+      </a>
+      <a class="case-nav__item case-nav__item--next" href="./case-backoffice.html">
+        <span class="case-nav__dir">Next</span>
+        <span class="case-nav__title">엔터프라이즈 백오피스 환경 단순 반복 작업의 자율성 개선</span>
+      </a>
+    </nav>
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <div class="container">
+      <div class="site-footer__box">
+        <a href="#main" class="to-top" data-to-top>
+          <svg class="to-top__shape" viewBox="0 0 364 57" fill="none" aria-hidden="true" preserveAspectRatio="none">
+            <path
+              d="M364 57V36.85C364 16.5 353.25 0 339.99 0H47.34C40.52 0 34.02 4.45 29.46 12.25L14.78 37.38C10.91 43.99 5.65999 48.18 -0.0100098 49.31H349.32C354.85 49.31 359.94 52.18 363.99 57H364Z"
+              fill="currentColor" />
+          </svg>
+          <span class="to-top__label">
+            Back to the Top
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M7 11V3m0 0L3.5 6.5M7 3l3.5 3.5" stroke="currentColor" stroke-width="1.4"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
+        </a>
+
+        <h2 class="site-footer__title">
+          <a href="mailto:jinhee950617@gmail.com" class="link-display link-display--invert">Work with me</a>
+        </h2>
+
+        <div class="site-footer__bottom">
+          <p class="site-footer__links">
+            <a href="./docs/resume.pdf" download>경력기술서 다운로드</a>
+            <a href="./docs/portfolio.pdf" download>포트폴리오 다운로드</a>
+          </p>
+          <p><small>SHINJINHEE &copy; 2026</small></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./assets/js/main.js?v=43"></script>
+</body>
+
+</html>

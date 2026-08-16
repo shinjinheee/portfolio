@@ -1,0 +1,241 @@
+@charset "utf-8";
+/* ===========================================================
+   case.css — 케이스 상세 페이지 (work-3depth)
+   시안: Section 1 › 완료 › work-3depth 11 / 12
+   구성: nav 90 + 히어로 939 + 1920×1028 섹션들 + Prev/Next 361
+   =========================================================== */
+
+/* ===========================================================
+   히어로 — 좌측 제목·목표·결과·키워드, 우측 비주얼
+   시안: 높이 939 / 콘텐츠 좌 160 · 상 202 / 블록 간격 37·50·18
+   =========================================================== */
+.case-hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 939px;
+  padding: 202px var(--case-pad, 160px) 120px;
+}
+/* 디자인 토큰 — 하늘색 그라디언트 */
+.case-hero--dt {
+  background: linear-gradient(180deg, #65acf8 0%, #88d3f5 100%);
+  --hero-title: rgb(31 39 44 / 90%);
+  --hero-label: #2c373e;
+  --hero-text:  #485660;
+  --hero-chip-bg: #8bd4ff;
+  --hero-chip-fg: #485660;
+}
+/* 백오피스 — 어두운 그라디언트 */
+.case-hero--bo {
+  background: linear-gradient(180deg, #101b21 0%, #2c2d49 100%);
+  --hero-title: var(--white);
+  --hero-label: #bbbcc2;
+  --hero-text:  #d2d3d6;
+  --hero-chip-bg: #343255;
+  --hero-chip-fg: #ebeaee;
+}
+.case-hero__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 37px;
+  align-items: flex-start;
+}
+.case-hero__title {
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 68px;
+  letter-spacing: -0.01em;      /* 시안 -0.48px @48 */
+  color: var(--hero-title);
+}
+.case-hero__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  align-items: flex-start;
+}
+.case-hero__block {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: flex-start;
+}
+.case-hero__label {
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--hero-label);
+}
+.case-hero__value,
+.case-hero__list {
+  font-size: 18px;
+  line-height: 28px;
+  color: var(--hero-text);
+}
+.case-hero__list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+/* 시안의 불릿은 하이픈 + 8px 간격 */
+.case-hero__list li { display: flex; gap: 8px; }
+.case-hero__list li::before { content: "-"; }
+.case-hero__tags { display: flex; flex-wrap: wrap; gap: 12px; }
+.case-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 20px;
+  border-radius: 12px;
+  background: var(--hero-chip-bg);
+  font-size: 18px;
+  line-height: 24px;
+  color: var(--hero-chip-fg);
+}
+
+/* 히어로 우측 스크린샷 — 시안 좌표를 1920×939 기준 % 로 환산.
+   라운드·그림자는 CSS 가 그리고 이미지는 안에서 잘린다. */
+.case-hero__shot {
+  position: absolute;
+  overflow: hidden;
+  box-shadow: 8.5px 8.5px 17px rgb(0 0 0 / 10%);
+}
+.case-hero__shot img {
+  position: absolute;
+  left: var(--ix, 0);
+  top: var(--iy, 0);
+  width: var(--iw, 100%);
+  height: var(--ih, 100%);
+  max-width: none;
+}
+.case-hero__shot--a {
+  left: 69.792%;                /* 1340 / 1920 */
+  top: -0.107%;                 /*   -1 /  939 */
+  width: 30.186%;               /* 579.577 / 1920 */
+  height: 56.919%;              /* 534.470 /  939 */
+  border-bottom-left-radius: 10.2px;
+}
+.case-hero__shot--b {
+  left: 53.125%;                /* 1020 / 1920 */
+  top: 44.622%;                 /*  419 /  939 */
+  width: 40.803%;               /* 783.419 / 1920 */
+  height: 55.326%;              /* 519.513 /  939 */
+  border: 0.85px solid #ececec;
+  border-radius: 10.2px 10.2px 0 0;
+}
+
+/* ===========================================================
+   섹션 탭 — 헤더(90) 아래에 붙는다. 연도 탭과 같은 규칙
+   시안: 높이 80 / 하단선 #E9EAEA / 탭 간격 16 / 패딩 22·12
+   =========================================================== */
+.case-tabs {
+  position: sticky;
+  top: 90px;
+  z-index: 90;
+  background: var(--white);
+  border-bottom: 1px solid var(--line-card);
+}
+.case-tabs__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+.case-tabs a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 79px;
+  padding: 12px 22px;
+  font-size: 18px;
+  line-height: 26px;
+  color: var(--ink-tab);
+  transition: color var(--dur-fast) var(--ease);
+}
+/* 연도 탭과 같은 이유로 밑줄은 ::after 로 그린다 — border-bottom 이면
+   탭 바 하단 구분선에 붙어 한 덩어리로 보인다 */
+.case-tabs a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 1px;
+  height: 2px;
+  background: transparent;
+  transition: background-color var(--dur-fast) var(--ease);
+}
+.case-tabs a:hover { color: var(--ink-900); }
+.case-tabs a[aria-current] {
+  font-weight: 700;
+  color: var(--ink-900);
+}
+.case-tabs a[aria-current]::after { background: var(--ink-900); }
+
+/* ===========================================================
+   Prev / Next — 시안 1920×361, 좌우 60 패딩
+   =========================================================== */
+.case-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 361px;
+  padding-inline: var(--pad-x);
+  background: var(--white);
+}
+.case-nav__item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 22px;
+}
+.case-nav__item--next { align-items: flex-end; text-align: right; }
+.case-nav__dir {
+  font-family: var(--font-en);
+  font-weight: 600;
+  font-size: 21px;
+  line-height: 26px;
+  color: var(--ink-900);
+  text-decoration: underline;
+}
+.case-nav__title {
+  font-size: 18px;
+  line-height: 26px;
+  color: var(--ink-650);
+}
+.case-nav a:hover .case-nav__title { color: var(--ink-900); }
+
+/* ===========================================================
+   반응형
+   =========================================================== */
+@media (max-width: 1439px) {
+  .case-hero { --case-pad: 100px; min-height: 800px; padding-top: 160px; }
+  .case-hero__title { font-size: 40px; line-height: 58px; }
+}
+
+@media (max-width: 1023px) {
+  .case-hero {
+    --case-pad: var(--pad-x);
+    min-height: 0;
+    padding-top: 120px;
+    padding-bottom: 80px;
+  }
+  .case-hero__title { font-size: 34px; line-height: 48px; }
+  .case-hero__meta { gap: 36px; }
+  /* 좁은 화면에서는 배경 비주얼을 숨긴다 — 텍스트를 가린다 */
+  .case-hero__shot { display: none; }
+  .case-tabs { top: 90px; }
+  .case-nav { min-height: 220px; }
+}
+
+@media (max-width: 767px) {
+  .case-hero { padding-top: 88px; padding-bottom: 56px; }
+  .case-hero__title { font-size: 26px; line-height: 38px; }
+  .case-hero__value, .case-hero__list, .case-chip { font-size: 16px; }
+  .case-chip { padding: 10px 14px; }
+  .case-tabs { top: 64px; }
+  .case-tabs a { height: 59px; padding: 8px 12px; font-size: 16px; }
+  .case-nav { min-height: 160px; }
+  .case-nav__item { padding-inline: 0; }
+  .case-nav__dir { font-size: 18px; }
+  .case-nav__title { font-size: 15px; }
+}
