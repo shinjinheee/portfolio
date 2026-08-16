@@ -98,6 +98,34 @@
   /* -----------------------------------------------------------
      연도 탭 (archive) — 보고 있는 연도 그룹을 표시한다
      ----------------------------------------------------------- */
+  /**
+   * 마퀴를 디바이스 픽셀 경계에 맞춘다.
+   *
+   * 카드의 좌우 테두리는 정수 픽셀에 떨어지는데 위아래만 소수로 떨어져
+   * 두 픽셀에 절반씩 나뉘어 흐려 보였다 (실측: 좌 560.000 / 하 8998.406).
+   * 카드가 문제가 아니라 마퀴가 놓인 세로 위치가 소수여서인데, 그 소수는
+   * 위쪽 텍스트 블록(line-height 27.552)과 유동 폭 이미지들의 소수 높이가
+   * 쌓인 결과라 CSS 로는 없앨 수 없다. 남는 만큼만 여기서 밀어 준다.
+   */
+  function initPixelSnap() {
+    var marquee = document.querySelector('[data-marquee]');
+    if (!marquee) return;
+
+    function snap() {
+      marquee.style.transform = '';
+      var dpr = window.devicePixelRatio || 1;
+      var top = marquee.getBoundingClientRect().top + window.pageYOffset;
+      var off = Math.round(top * dpr) / dpr - top;
+      // 0.5px 미만만 보정한다 — 레이아웃을 옮기려는 게 아니다
+      if (off) marquee.style.transform = 'translateY(' + off + 'px)';
+    }
+
+    snap();
+    window.addEventListener('resize', snap);
+    // 폰트가 늦게 붙으면 위쪽 높이가 바뀐다
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(snap);
+  }
+
   function initYearTabs() {
     var wrap = document.querySelector('[data-year-tabs]');
     if (!wrap) return;
@@ -282,6 +310,7 @@
     initHeader();
     initNavToggle();
     initMarquee();
+    initPixelSnap();
     initYearTabs();
     initModal();
     initToTop();
