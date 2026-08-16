@@ -663,3 +663,91 @@
   .ia__side::after { display: none; }
 
 }
+
+/* ===========================================================
+   .dag — 좌: 개발팀 요청 의존(칩 + Slack) / 우: 등록 폼 → 크롤링 시작
+   시안: 좌측 어두운 패널 0~593 (페이지 끝에 붙는다) · 우측 699~1790
+   =========================================================== */
+.case-section--dag { --sec-bg: #0b151c; }
+.dag {
+  display: grid;
+  grid-template-columns: 593px 1fr;
+  gap: 106px;                       /* 699 − 593 */
+  align-items: center;
+  margin-left: calc(var(--case-pad, 160px) * -1);
+}
+/* 좌측 패널은 섹션보다 더 어둡다 */
+.dag__panel {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 52px;
+  padding: 60px 108px;
+  background: #161d24;
+}
+.dag__ttl {
+  margin-bottom: 20px;
+  font-weight: 700;
+  font-size: 21px;
+  letter-spacing: -0.01em;
+  color: #cf9198;
+}
+.dag__chips { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+.dag__chip {
+  padding: 10px;
+  border-radius: 12px;
+  background: #28212d;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+  color: #cf9198;
+}
+.dag__cap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 21px;
+  font-size: 14px;
+  color: var(--ink-tab);
+}
+.dag__cap::before {
+  content: "";
+  border: 6px solid transparent;
+  border-top: 9px solid currentColor;
+  border-bottom: 0;
+}
+.dag__slack { width: 376px; max-width: 100%; height: auto; border-radius: 12px; }
+
+.dag__steps { display: flex; align-items: flex-start; gap: 56px; }
+.dag__step { display: flex; gap: 17px; }
+.dag__no {
+  flex: 0 0 auto;
+  margin-top: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px; height: 20px;
+  border-radius: 999px;
+  background: #7868c8;
+  font-weight: 600;
+  font-size: 11.7px;
+  color: var(--white);
+}
+.dag__lbl { display: flex; flex-direction: column; gap: 4px; }
+.dag__lbl b {
+  font-weight: 700;
+  font-size: 21px;
+  line-height: 31px;
+  letter-spacing: -0.01em;
+  color: var(--white);
+  opacity: 0.9;
+}
+.dag__lbl span { font-size: 14px; line-height: 23.7px; color: var(--ink-tab); }
+.dag__shot { margin-top: 35px; width: 100%; height: auto; border-radius: 12px; }
+
+@media (max-width: 1279px) {
+  .dag { grid-template-columns: 1fr; gap: 48px; margin-left: 0; }
+  .dag__panel { padding: 40px var(--pad-x); }
+  .dag__steps { flex-direction: column; gap: 40px; }
+}
