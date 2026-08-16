@@ -238,6 +238,7 @@ picture { display: contents; }
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
+  max-width: 100%;
   padding-block: 60px;
   position: sticky;
   top: 90px;                 /* 헤더 높이만큼 내려 붙인다 */
@@ -256,14 +257,20 @@ picture { display: contents; }
   gap: 10px;
 }
 
-/* 우측 — 블록 간격 60, 라벨↔값 16 */
+/* 우측 — 블록 간격 60, 라벨↔값 16
+   min-width:0 이 없으면 안쪽 표의 min-width(720) 가 그리드 열을 밀어낸다.
+   그리드 아이템의 기본값이 min-width:auto 라 내용 최소폭만큼 부푼다. */
 .info-list {
   display: flex;
   flex-direction: column;
   gap: 60px;
   padding-top: 60px;
   margin: 0;
+  min-width: 0;
 }
+.info-block,
+.info-block__value { min-width: 0; }
+.record-scroll { max-width: 100%; }
 .info-block {
   display: flex;
   flex-direction: column;
@@ -677,6 +684,7 @@ body.is-modal-open { overflow: hidden; }
 
 @media (max-width: 1279px) {
   .about-grid { gap: var(--space-5); }
+  .card-grid { grid-template-columns: repeat(3, 1fr); gap: var(--space-4); }
 }
 
 @media (max-width: 1023px) {
@@ -707,6 +715,8 @@ body.is-modal-open { overflow: hidden; }
   /* 표는 가로 스크롤로 흘린다 */
   .record-scroll { overflow-x: auto; }
   .record-table { min-width: 720px; }
+
+  .card-grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-4); }
 }
 
 @media (max-width: 767px) {
@@ -718,6 +728,9 @@ body.is-modal-open { overflow: hidden; }
 
   .year-tabs { top: 64px; }
   .year-group { scroll-margin-top: 146px; }   /* 헤더 64 + 탭 80 + 2 */
+  .card-grid { grid-template-columns: 1fr; gap: var(--space-5); }
+  .year-group__label { margin-bottom: var(--space-4); }
+
   .about-grid { padding-inline: var(--pad-x); }
   .def-row { flex-direction: column; gap: 2px; }
   .def-row__term { width: auto; }
