@@ -452,3 +452,91 @@
 @media (max-width: 1023px) {
   .steps { grid-template-columns: 1fr; gap: 32px; }
 }
+
+/* ===========================================================
+   .statechk — 좌측 화면 캡처 → 우측 상태 패널 3열
+   시안: 캡처 0~527 (페이지 왼쪽 끝에 붙는다) · 패널 644~1760 (1116×523)
+         패널 안쪽 여백 68 · 열 간격 46 · 열 상단 52
+   =========================================================== */
+.statechk {
+  display: grid;
+  grid-template-columns: 527px 1fr;
+  align-items: center;
+  gap: 117px;
+  margin-left: calc(var(--case-pad, 160px) * -1);   /* 캡처를 화면 끝까지 */
+}
+.statechk__label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 100px;                                /* 시안 100 */
+  margin-bottom: 24px;
+  font-size: 16px;
+  line-height: 21px;
+  color: #b6babc;
+}
+.statechk__label::before {
+  content: "";
+  border: 7px solid transparent;
+  border-top: 10px solid currentColor;
+  border-bottom: 0;
+}
+/* 캡처는 527 폭으로 잘린다 (원본 714) */
+.statechk__shot {
+  width: 527px;
+  aspect-ratio: 527 / 346;
+  overflow: hidden;
+  border-radius: 0 8px 8px 0;
+}
+.statechk__shot img { width: 100%; height: 100%; object-fit: cover; object-position: left top; }
+
+.statechk__panel {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 46px;
+  padding: 52px 68px;
+  border-radius: 16px;
+  background: #d8dce3;
+}
+/* 시안 열 폭 295 / 295 / 298 — flex 기본값(auto)이면 이미지가 줄어 무너진다 */
+.statechk__col {
+  flex: 0 0 auto;
+  width: 295px;
+  display: flex;
+  flex-direction: column;
+}
+.statechk__col:nth-child(3) { width: 298px; }
+.statechk__col img { width: 100%; height: auto; border-radius: 8px; }
+.statechk__ttl {
+  font-weight: 700;
+  font-size: 14.73px;
+  line-height: 35px;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: #0f0f0f;
+  /* picture(display:contents) 때문에 flex gap 이 두 번 먹는다 — 마진으로 준다 */
+  margin-bottom: 11px;
+}
+.statechk__pill {
+  align-self: center;
+  margin-top: 19px;
+  padding: 3.7px 18.4px;
+  border-radius: 92px;
+  background: #957df4;
+  font-weight: 500;
+  font-size: 14.73px;
+  line-height: 31.3px;
+  color: var(--white);
+  white-space: nowrap;
+}
+.statechk__arrow { align-self: center; color: #957df4; }
+
+@media (max-width: 1279px) {
+  .statechk { grid-template-columns: 1fr; gap: 40px; margin-left: 0; }
+  .statechk__label { margin-left: 0; }
+  .statechk__shot { width: 100%; border-radius: 8px; }
+  .statechk__panel { flex-direction: column; align-items: stretch; gap: 32px; padding: 32px; }
+  .statechk__col, .statechk__col:nth-child(3) { width: auto; }
+  .statechk__pill { white-space: normal; text-align: center; }
+}
