@@ -200,6 +200,7 @@ picture { display: contents; }
    어떤 카드는 통째로 잘려나갔다 — 그게 보더가 들쭉날쭉해 보인 원인이다.
    이미지에서는 스트로크를 잘라내고(각 변 2px 인셋) 프레임은 여기서 그린다. */
 .marquee__card {
+  position: relative;                    /* 안의 이미지 배치 기준 */
   flex-shrink: 0;
   width: 677px;
   aspect-ratio: 677 / 386;
@@ -208,9 +209,16 @@ picture { display: contents; }
   border-radius: var(--radius-card);
   overflow: hidden;
 }
+/* 이미지는 카드 전체가 아니라 '콘텐츠(목업+그림자)' 만 담는다.
+   카드 안에서 콘텐츠가 놓이는 자리는 카드마다 다르므로
+   시안 좌표를 % 로 환산해 인라인 커스텀 프로퍼티로 넘긴다.
+   값이 없으면 카드를 꽉 채운다(풀블리드 카드·벡터 카드). */
 .marquee__card img {
-  width: 100%; height: 100%;
-  object-fit: cover;
+  position: absolute;
+  left: var(--x, 0);
+  top: var(--y, 0);
+  width: var(--w, 100%);
+  height: var(--h, 100%);
 }
 
 /* 모션 최소화 설정 존중 */
@@ -471,21 +479,23 @@ picture { display: contents; }
   flex-direction: column;
   gap: 28px;
 }
-/* 카드 프레임(#F7F7F7 배경 · 1px #E9EAEA 스트로크 · 라운드 16)은 이미지에 굽지 않고
-   여기서 그린다 — 23장이 항상 같은 테두리를 갖는다. 이미지는 프레임 안쪽만 담고
-   있어서(각 변 4px 인셋) contain 으로 남는 여백은 배경색과 그대로 이어진다. */
-.arc-card__thumb {
+/* 카드는 이미지가 아니라 박스다 — 배경·테두리·라운드를 여기서 그린다.
+   이미지는 안에 놓이는 콘텐츠일 뿐이라 23장의 테두리가 항상 같다. */
+.arc-card__media {
+  position: relative;
   width: 100%;
-  /* img 의 width/height 속성은 presentational hint 로 들어와 height 를 고정시킨다.
-     그러면 aspect-ratio 가 무시돼 박스가 설계보다 세로로 길어지고,
-     남는 공간이 배경색 띠로 남아 테두리가 콘텐츠에서 떨어져 보인다.
-     작성자 스타일로 height 를 auto 로 눌러야 aspect-ratio 가 산다. */
-  height: auto;
   aspect-ratio: 405 / 231;
-  object-fit: contain;
   background: var(--surface);
   border: 1px solid var(--line-card);
   border-radius: var(--radius-card);
+  overflow: hidden;
+}
+.arc-card__shot {
+  position: absolute;
+  left: var(--x, 0);
+  top: var(--y, 0);
+  width: var(--w, 100%);
+  height: var(--h, 100%);
 }
 .arc-card__body { display: flex; flex-direction: column; gap: var(--space-1); }
 .arc-card__title {
