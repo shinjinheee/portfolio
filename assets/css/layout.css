@@ -58,6 +58,8 @@ a { color: inherit; text-decoration: none; }
 .section--head-only .section-head { margin-bottom: 0; }
 /* archive — 헤더 끝 618 → 연도 탭 688 = 70px */
 .section--head-archive { padding-bottom: 70px; }
+/* work — 헤더 끝 628 → 목록 718 = 90px (index 는 160) */
+.section--work .section-head { margin-bottom: 90px; }
 
 /* 섹션 헤더 — 제목 행 + 리드 문장, 사이 48px */
 .section-head {
