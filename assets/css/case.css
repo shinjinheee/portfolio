@@ -566,3 +566,100 @@
 @media (max-width: 1279px) {
   .result { grid-template-columns: 1fr; gap: 48px; }
 }
+
+/* ===========================================================
+   .ia — As-is / To-be 정보구조 비교표
+   시안: 셀 200×58 · 행 간격 85 · 열 x 160/386/607 ‖ 902/1128/1349
+         신규 항목만 보라 강조 + New 배지
+   =========================================================== */
+.case-section--ia { --sec-bg: #1e2335; }
+.ia {
+  /* 시안 그룹 1394 = 표 652 + 간격 90 + 표 652. 1600 컨테이너 안에서 좌측 정렬 */
+  display: grid;
+  grid-template-columns: 652px 90px 652px;
+  align-items: start;
+}
+.ia__side { min-width: 0; }
+.ia__ttl {
+  margin-bottom: 18px;
+  font-weight: 700;
+  font-size: 21px;
+  line-height: 31px;
+  color: var(--white);
+}
+.ia__grid {
+  /* 시안 열 간격이 26 / 21 로 균일하지 않다 — 빈 트랙으로 정확히 재현한다 */
+  display: grid;
+  grid-template-columns: 200px 26px 200px 21px 200px;
+  grid-auto-rows: 58px;
+  row-gap: 27px;                  /* 행 85 − 58 */
+}
+.ia__lbl {
+  grid-row: 1;
+  font-size: 16px;
+  line-height: 34px;
+  color: var(--ink-tab);
+}
+.ia__cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  border-radius: 12px;
+  background: #191f28;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 34px;
+  text-align: center;
+  color: var(--ink-tab);
+}
+.ia__cell--d1 { color: var(--white); }
+/* 신규 항목 */
+.ia__cell--new {
+  position: relative;
+  background: #333253;
+  border: 2px solid #645da9;
+  color: var(--white);
+}
+.ia__cell--new::after {
+  content: "New";
+  position: absolute;
+  left: -14.5px;
+  top: -14px;
+  padding: 6px 10px;
+  border-radius: 1000px;
+  background: #e6bbfa;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.2;
+  color: #000;
+}
+.ia__sep { display: flex; align-items: center; justify-content: center; }
+.ia__arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 1000px;
+  background: #0b151c;
+  color: var(--white);
+}
+/* 하단 페이드 — 시안의 그라데이션 오버레이 */
+.ia__side { position: relative; }
+.ia__side::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 220px;
+  background: linear-gradient(180deg, rgb(30 35 53 / 0%), #1e2335 85%);
+  pointer-events: none;
+}
+
+@media (max-width: 1279px) {
+  .ia { grid-template-columns: 1fr; gap: 40px; }
+  .ia__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 12px; }
+  .ia__sep { display: none; }
+  .ia__side::after { display: none; }
+
+}
