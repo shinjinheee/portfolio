@@ -14,11 +14,11 @@
   <meta property="og:image" content="">
   <meta name="theme-color" content="#ffffff">
 
-  <link rel="stylesheet" href="./assets/css/reset.css?v=43">
-  <link rel="stylesheet" href="./assets/css/tokens.css?v=43">
-  <link rel="stylesheet" href="./assets/css/layout.css?v=43">
-  <link rel="stylesheet" href="./assets/css/components.css?v=43">
-  <link rel="stylesheet" href="./assets/css/case.css?v=43">
+  <link rel="stylesheet" href="./assets/css/reset.css?v=44">
+  <link rel="stylesheet" href="./assets/css/tokens.css?v=44">
+  <link rel="stylesheet" href="./assets/css/layout.css?v=44">
+  <link rel="stylesheet" href="./assets/css/components.css?v=44">
+  <link rel="stylesheet" href="./assets/css/case.css?v=44">
 </head>
 
 <body>
@@ -54,7 +54,7 @@
     </div>
   </header>
 
-  <main id="main">
+  <main id="main" style="--sec-accent:#65acf8">
     <!-- ===================== 히어로 ===================== -->
     <section class="case-hero case-hero--dt" aria-labelledby="case-title">
       <div class="case-hero__inner">
@@ -84,13 +84,13 @@
       </div>
 
       <div class="case-hero__shot case-hero__shot--a" aria-hidden="true">
-        <picture><source srcset="./assets/img/case/dt-hero-a.webp?v=43" type="image/webp"><img
-          src="./assets/img/case/dt-hero-a.png?v=43" alt="" loading="lazy"
+        <picture><source srcset="./assets/img/case/dt-hero-a.webp?v=44" type="image/webp"><img
+          src="./assets/img/case/dt-hero-a.png?v=44" alt="" loading="lazy"
           style="--ix:-1.71%;--iy:0.16%;--iw:155.69%;--ih:137.74%"></picture>
       </div>
       <div class="case-hero__shot case-hero__shot--b" aria-hidden="true">
-        <picture><source srcset="./assets/img/case/dt-hero-b.webp?v=43" type="image/webp"><img
-          src="./assets/img/case/dt-hero-b.png?v=43" alt="" loading="lazy"
+        <picture><source srcset="./assets/img/case/dt-hero-b.webp?v=44" type="image/webp"><img
+          src="./assets/img/case/dt-hero-b.png?v=44" alt="" loading="lazy"
           style="--ix:0;--iy:0;--iw:100.6%;--ih:133.3%"></picture>
       </div>
     </section>
@@ -99,18 +99,128 @@
     <nav class="case-tabs" aria-label="섹션 바로가기" data-case-tabs>
       <div class="container">
         <div class="case-tabs__list">
-          <a href="#bg" aria-current="true">배경</a>
-          <a href="#problem">문제 정의</a>
-          <a href="#hypothesis">가설</a>
-          <a href="#solution">문제 해결</a>
-          <a href="#result">결과</a>
-          <a href="#retro">회고</a>
+          <a href="#background" aria-current="true">Background</a>
+          <a href="#team-feedback">Team Feedback</a>
+          <a href="#approach">Approach</a>
+          <a href="#process">Process</a>
+          <a href="#improved">What&#x27;s improved?</a>
+          <a href="#output">Output</a>
         </div>
       </div>
     </nav>
 
     <!-- ===================== 본문 섹션 (작업 중) ===================== -->
-    <!-- 본문 섹션은 다음 단계에서 채운다 -->
+    <section class="case-section" id="background" aria-labelledby="d11-s1-t">
+      <div class="case-section__inner">
+          <div class="case-head">
+            <p class="case-head__eyebrow">Background</p>
+            <h2 class="case-head__title" id="d11-s1-t">PD·FE와의 합의 부재로 반복되는 스타일 값 전달 비용 제거</h2>
+            <p class="case-head__desc">Grid·Spacing·Font·Effect·Border Radius를 Design Token으로 정의하고 Figma Variables로 관리했으며, 구축된 구조를 기반으로 Component·Color 정의를 design.md 명세로 정리해 개발에 전달했어요.</p>
+          </div>
+          <!-- TODO 본문 다이어그램 -->
+      </div>
+    </section>
+
+    <section class="case-section" id="team-feedback" aria-labelledby="d11-s2-t">
+      <div class="case-section__inner">
+          <div class="case-head">
+            <p class="case-head__eyebrow">Team Feedback</p>
+            <h2 class="case-head__title" id="d11-s2-t">PD·FE와의 합의 부재로 반복되는 스타일 값 전달 비용 제거</h2>
+            <p class="case-head__desc">Grid·Spacing·Font·Effect·Border Radius를 Design Token으로 정의하고 Figma Variables로 관리했으며, 구축된 구조를 기반으로 Component·Color 정의를 design.md 명세로 정리해 개발에 전달했어요.</p>
+          </div>
+          <!-- TODO 본문 다이어그램 -->
+      </div>
+    </section>
+
+    <section class="case-section" aria-label="이미지 섹션">
+      <div class="case-section__inner">
+          <!-- TODO 목업 전용 섹션 -->
+      </div>
+    </section>
+
+    <section class="case-section" id="approach" aria-labelledby="d11-s4-t">
+      <div class="case-section__inner">
+          <div class="case-head">
+            <p class="case-head__eyebrow">Approach</p>
+            <h2 class="case-head__title" id="d11-s4-t">공유 가능한 기준이 없던 세 레이어의 구조화</h2>
+            <p class="case-head__desc">스타일 값 구조화부터 컬러 체계화, 명세 문서화까지 세 레이어를 순차적으로 정비해 반복되던 수동 전달 비용을 줄이고자 했어요.</p>
+          </div>
+          <!-- TODO 본문 다이어그램 -->
+      </div>
+    </section>
+
+    <section class="case-section" id="process" aria-label="이미지 섹션">
+      <div class="case-section__inner">
+          <!-- TODO 목업 전용 섹션 -->
+      </div>
+    </section>
+
+    <section class="case-section" aria-label="이미지 섹션">
+      <div class="case-section__inner">
+          <!-- TODO 목업 전용 섹션 -->
+      </div>
+    </section>
+
+    <section class="case-section" aria-label="이미지 섹션">
+      <div class="case-section__inner">
+          <!-- TODO 목업 전용 섹션 -->
+      </div>
+    </section>
+
+    <section class="case-section" id="improved" aria-labelledby="d11-s8-t">
+      <div class="case-section__inner">
+          <div class="case-head">
+            <p class="case-head__eyebrow">What&#x27;s improved?</p>
+            <h2 class="case-head__title" id="d11-s8-t">Variables 구조화 - 스타일 기준 일원화</h2>
+            <p class="case-head__desc">수치를 외우거나 매번 전달하던 구조에서, Design Token으로 즉시 참조하는 구조로 개선</p>
+          </div>
+          <!-- TODO 본문 다이어그램 -->
+      </div>
+    </section>
+
+    <section class="case-section" aria-labelledby="d11-s9-t">
+      <div class="case-section__inner">
+          <div class="case-head">
+            <p class="case-head__eyebrow">What&#x27;s improved?</p>
+            <h2 class="case-head__title" id="d11-s9-t">Color Token 구축 - 컬러 기준 체계화</h2>
+            <p class="case-head__desc">컬러 값을 외우거나 복사하던 방식에서, Semantic Color Token으로 용도 기반 즉시 적용으로 개선</p>
+          </div>
+          <!-- TODO 본문 다이어그램 -->
+      </div>
+    </section>
+
+    <section class="case-section" aria-labelledby="d11-s10-t">
+      <div class="case-section__inner">
+          <div class="case-head">
+            <p class="case-head__eyebrow">What&#x27;s improved?</p>
+            <h2 class="case-head__title" id="d11-s10-t">토큰 명세 문서화 - 공유 가능한 핸드오프</h2>
+            <p class="case-head__desc">매번 구두로 다시 설명하던 컴포넌트·토큰 사용 규칙을, design.md 단일 명세로 모아 변경이 생겨도 개발이 같은 문서를 참조하는 구조로 개선</p>
+          </div>
+          <!-- TODO 본문 다이어그램 -->
+      </div>
+    </section>
+
+    <section class="case-section" id="output" aria-labelledby="d11-s11-t">
+      <div class="case-section__inner">
+          <div class="case-head">
+            <p class="case-head__eyebrow">Output</p>
+            <h2 class="case-head__title" id="d11-s11-t">3단계 구조의 변경</h2>
+          </div>
+          <!-- TODO 본문 다이어그램 -->
+      </div>
+    </section>
+
+    <section class="case-section" aria-labelledby="d11-s12-t">
+      <div class="case-section__inner">
+          <div class="case-head">
+            <p class="case-head__eyebrow">Approach</p>
+            <h2 class="case-head__title" id="d11-s12-t">제품이 늘어도 기준은 하나 문서는 자동으로 처리</h2>
+            <p class="case-head__desc">디자인 산출물을 만드는 데서 끝나지 않고, 디자인 정보가 개발까지 흐르는 구조를 설계했어요.<br>
+              구조화·체계화·문서화가 하나의 흐름으로 연결될 때 비로소 반복 비용이 줄어들었어요.</p>
+          </div>
+          <!-- TODO 본문 다이어그램 -->
+      </div>
+    </section>
 
 
     <!-- ===================== 이전 / 다음 ===================== -->
@@ -159,7 +269,7 @@
     </div>
   </footer>
 
-  <script src="./assets/js/main.js?v=43"></script>
+  <script src="./assets/js/main.js?v=44"></script>
 </body>
 
 </html>

@@ -172,6 +172,58 @@
 .case-tabs a[aria-current]::after { background: var(--ink-900); }
 
 /* ===========================================================
+   본문 섹션 — 시안 1920×1028, 코멘트 지시로 100vh 고정
+   탭 바(80)가 헤더(90) 아래 붙으므로 앵커 여유는 170
+   =========================================================== */
+.case-section {
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  padding: 140px var(--case-pad, 160px);
+  scroll-margin-top: 170px;
+  background: var(--sec-bg, #0b151c);
+}
+.case-section__inner { width: 100%; }
+
+/* 섹션 헤더 — eyebrow / 제목 / 설명 (시안 간격 16) */
+.case-head {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  text-align: center;
+}
+.case-head--start { align-items: flex-start; text-align: left; }
+.case-head__eyebrow {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 28px;
+  color: var(--sec-accent, #65acf8);
+}
+.case-head__title {
+  font-weight: 700;
+  font-size: 38px;
+  line-height: 58px;
+  letter-spacing: -0.01em;
+  color: var(--white);
+}
+.case-head__desc {
+  font-size: 16px;
+  line-height: 26px;
+  color: var(--ink-tab);
+}
+
+@media (max-width: 1023px) {
+  .case-section { min-height: 0; padding: 96px var(--pad-x); }
+  .case-head__title { font-size: 28px; line-height: 42px; }
+}
+@media (max-width: 767px) {
+  .case-section { padding: 64px var(--pad-x); }
+  .case-head__title { font-size: 22px; line-height: 34px; }
+  .case-head__eyebrow { font-size: 16px; }
+}
+
+/* ===========================================================
    Prev / Next — 시안 1920×361, 좌우 60 패딩
    =========================================================== */
 .case-nav {
