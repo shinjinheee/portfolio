@@ -291,3 +291,100 @@
   .case-nav__dir { font-size: 18px; }
   .case-nav__title { font-size: 15px; }
 }
+
+/* ===========================================================
+   .flow — VOC → 문제 정의 → 솔루션 3단 다이어그램
+   시안: VOC 401 / 구분선 486 / 우측 그룹 562~1602 (열 간격 48)
+   =========================================================== */
+.flow {
+  display: grid;
+  grid-template-columns: 401px 161px 1fr 1fr;
+  align-items: stretch;
+  position: relative;
+}
+.flow__col {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: center;
+}
+/* 우측 두 열 사이만 48 (시안) */
+.flow__col + .flow__col { margin-left: 48px; }
+.flow__head {
+  width: 100%;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 34px;
+  text-align: center;
+  color: #b6babc;
+}
+.flow__head--accent { color: #c9bbfa; }
+.flow__cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--flow-gap, 32px);
+  width: 100%;
+  flex: 1;
+}
+.flow__cards li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: 20px 30px;
+  border-radius: 12px;
+  background: #222c32;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 34px;
+  text-align: center;
+  color: #bdc0c2;
+}
+/* VOC 카드는 더 작고 촘촘하다 */
+.flow__cards--voc { --flow-gap: 20px; }
+.flow__cards--voc li {
+  flex: 0 0 auto;
+  padding: 16px;
+  background: #191f28;
+  color: #878d90;
+}
+/* 솔루션 카드는 보더가 있고 글자가 희다 */
+.flow__cards--solution li {
+  background: #242742;
+  border: 2px solid #58567c;
+  color: var(--white);
+}
+/* 구분선 + 화살표 */
+.flow__sep {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.flow__sep::before {
+  content: "";
+  position: absolute;
+  top: 65px;
+  bottom: 0;
+  left: 53%;                    /* 시안 486 / 구분열(401~562) */
+  width: 1px;
+  background: #2a3138;
+}
+.flow__arrow {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 1000px;
+  background: #0b151c;
+  color: var(--white);
+}
+
+@media (max-width: 1279px) {
+  .flow { grid-template-columns: 1fr; gap: 32px; }
+  .flow__col + .flow__col { margin-left: 0; }
+  .flow__sep { display: none; }
+  .flow__cards li { flex: 0 0 auto; }
+}

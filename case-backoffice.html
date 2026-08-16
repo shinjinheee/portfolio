@@ -14,11 +14,11 @@
   <meta property="og:image" content="">
   <meta name="theme-color" content="#ffffff">
 
-  <link rel="stylesheet" href="./assets/css/reset.css?v=45">
-  <link rel="stylesheet" href="./assets/css/tokens.css?v=45">
-  <link rel="stylesheet" href="./assets/css/layout.css?v=45">
-  <link rel="stylesheet" href="./assets/css/components.css?v=45">
-  <link rel="stylesheet" href="./assets/css/case.css?v=45">
+  <link rel="stylesheet" href="./assets/css/reset.css?v=46">
+  <link rel="stylesheet" href="./assets/css/tokens.css?v=46">
+  <link rel="stylesheet" href="./assets/css/layout.css?v=46">
+  <link rel="stylesheet" href="./assets/css/components.css?v=46">
+  <link rel="stylesheet" href="./assets/css/case.css?v=46">
 </head>
 
 <body>
@@ -103,7 +103,42 @@
             <h2 class="case-head__title" id="d12-s1-t">운영자가 시스템을 직접 제어할 수 없는 구조가 문제</h2>
             <p class="case-head__desc">크롤링과 데이터 갱신 프로세스가 개발팀 중심으로 운영되어 운영자는 직접 제어할 수 없었어요. Airflow DAG를 몰라도 Admin UI에서 설정과 실행이 가능하도록 재설계했어요.</p>
           </div>
-          <!-- TODO 본문 다이어그램 -->
+          <div class="flow">
+            <div class="flow__col">
+              <p class="flow__head">누적된 기능 관련 VOC</p>
+              <ul class="flow__cards flow__cards--voc">
+              <li>&ldquo;매번 개발팀에 요청해야 해 번거로워요&rdquo;</li>
+              <li>&ldquo;바로 크롤링을 실행하고 싶어요&rdquo;</li>
+              <li>&ldquo;최신 데이터가 며칠씩 걸려요&rdquo;</li>
+              <li>&ldquo;대상 추가마다 티켓이 필요해요&rdquo;</li>
+              <li>&ldquo;진행 상황을 확인할 수 없어요&rdquo;</li>
+              </ul>
+            </div>
+            <div class="flow__sep" aria-hidden="true">
+              <span class="flow__arrow">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M4 10h12m0 0-4.5-4.5M16 10l-4.5 4.5" stroke="currentColor"
+                        stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+            </div>
+            <div class="flow__col">
+              <p class="flow__head">문제 정의</p>
+              <ul class="flow__cards">
+              <li>데이터 수집 프로세스가 개발팀 중심으로 설계</li>
+              <li>운영자가 크롤링·갱신을 제어할 수 없음</li>
+              <li>데이터 신선도 관리가 어려운 구조</li>
+              </ul>
+            </div>
+            <div class="flow__col">
+              <p class="flow__head flow__head--accent">솔루션</p>
+              <ul class="flow__cards flow__cards--solution">
+              <li>Airflow를 Admin UX로 추상화</li>
+              <li>UI에서 대상·주기·실행을 직접 제어</li>
+              <li>조회 도구에서 운영 도구로 확장</li>
+              </ul>
+            </div>
+          </div>
       </div>
     </section>
 
@@ -203,7 +238,7 @@
     </div>
   </footer>
 
-  <script src="./assets/js/main.js?v=45"></script>
+  <script src="./assets/js/main.js?v=46"></script>
 </body>
 
 </html>
