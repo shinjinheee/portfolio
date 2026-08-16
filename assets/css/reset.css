@@ -52,6 +52,9 @@ button, input, select, textarea {
 button {
   background: none;
   border: 0;
+  /* 브라우저 기본 좌우 패딩(약 6px)이 남아 있으면
+     고정 크기 버튼 안의 아이콘이 눌린다 (28px 버튼 → 내부 16px) */
+  padding: 0;
   cursor: pointer;
 }
 

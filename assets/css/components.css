@@ -194,13 +194,19 @@ picture { display: contents; }
   width: max-content;
   will-change: transform;
 }
-/* 이미지에 카드 배경·테두리·라운드(13px)가 이미 구워져 있고 그 바깥은 투명하다.
-   컨테이너가 배경(#F7F7F7)과 다른 라운드(16px)를 또 그리면
-   두 곡선이 어긋나 모서리에 회색이 비친다. 컨테이너는 크기만 잡는다. */
+/* 카드 프레임(#F7F7F7 배경 · 1px #E9EAEA 스트로크 · 라운드 16)은 시안에서
+   이미지에 구워져 있었다. 그런데 카드 피치가 705 가 아니라 704.75 라서
+   정수로 슬라이스하면 열마다 최대 3px 씩 밀려, 스트로크가 어떤 카드는 2px 남고
+   어떤 카드는 통째로 잘려나갔다 — 그게 보더가 들쭉날쭉해 보인 원인이다.
+   이미지에서는 스트로크를 잘라내고(각 변 2px 인셋) 프레임은 여기서 그린다. */
 .marquee__card {
   flex-shrink: 0;
   width: 677px;
   aspect-ratio: 677 / 386;
+  background: var(--surface);
+  border: 1px solid var(--line-card);
+  border-radius: var(--radius-card);
+  overflow: hidden;
 }
 .marquee__card img {
   width: 100%; height: 100%;
@@ -397,24 +403,35 @@ picture { display: contents; }
   gap: var(--space-2);
 }
 .year-tabs a {
+  position: relative;            /* 밑줄(::after) 기준 */
   display: inline-flex;
   align-items: center;
   justify-content: center;
   height: 80px;                  /* 밑줄 2px 포함 */
   padding-inline: 22px;
-  border-bottom: 2px solid transparent;
   font-size: 18px;
   line-height: 26px;
   color: var(--ink-tab);
-  transition: color var(--dur-fast) var(--ease),
-              border-color var(--dur-fast) var(--ease);
+  transition: color var(--dur-fast) var(--ease);
+}
+/* border-bottom 으로 그리면 밑줄이 탭 바 하단 구분선에 딱 붙어 한 덩어리로 보인다.
+   ::after 를 bottom:1px 에 두어 검은 밑줄과 하단 구분선 사이를 1px 띄운다. */
+.year-tabs a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 1px;
+  height: 2px;
+  background: transparent;
+  transition: background-color var(--dur-fast) var(--ease);
 }
 .year-tabs a:hover { color: var(--ink-900); }
 .year-tabs a[aria-current] {
   font-weight: 700;
   color: var(--ink-900);
-  border-bottom-color: var(--ink-900);
 }
+.year-tabs a[aria-current]::after { background: var(--ink-900); }
 
 /* 목록 영역 — 탭 끝 739 → 목록 842 = 103px */
 .archive-list {
@@ -425,7 +442,10 @@ picture { display: contents; }
 /* 연도 그룹 — 헤더 90 + 탭 51 만큼 앵커 여유를 준다 */
 .year-group {
   padding-bottom: 41px;
-  scroll-margin-top: 172px;   /* 헤더 90 + 탭 80 + 보더 2 — 보더끼리 맞닿지 않게 1px 여유 */
+  /* 헤더 90 + 탭 81(80+보더1) = 171 이 탭 하단선의 끝.
+     170 으로 두면 연도 그룹의 border-top 이 탭 하단선과 같은 픽셀에 겹쳐
+     선이 한 줄로 보인다. 172 면 1px 떨어져 두 줄로 보였다. */
+  scroll-margin-top: 170px;
 }
 .year-group + .year-group {
   border-top: 1px solid var(--line);
@@ -727,7 +747,7 @@ body.is-modal-open { overflow: hidden; }
   .metric__value { font-size: 44px; }
 
   .year-tabs { top: 64px; }
-  .year-group { scroll-margin-top: 146px; }   /* 헤더 64 + 탭 80 + 2 */
+  .year-group { scroll-margin-top: 144px; }   /* 헤더 64 + 탭 81 − 1 (겹침) */
   .card-grid { grid-template-columns: 1fr; gap: var(--space-5); }
   .year-group__label { margin-bottom: var(--space-4); }
 
