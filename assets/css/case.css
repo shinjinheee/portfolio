@@ -186,7 +186,7 @@
   border-radius: 999px;
   background: var(--badge);
   font-weight: 700;
-  font-size: 1.042vw;               /* 20 / 1920 */
+  font-size: 0.729vw;               /* 14 / 1920 — 시안 알약 폭에서 역산 */
   line-height: 1;
   color: var(--white);
   white-space: nowrap;
@@ -216,7 +216,8 @@
    시안 960,122 / 1280×694 가 오른쪽 끝(1920)에서 잘린다. */
 .case-hero__panel--ai {
   left: 50%;                    /*  960 / 1920 */
-  top: 3.4079%;                 /*   32 /  939 */
+  top: 12.9925%;                /*  122 /  939 — 목업은 히어로의 자식이라
+                                   백오피스처럼 90 을 빼면 안 된다 */
   width: 50%;                   /*  960 / 1920 — 화면 오른쪽 끝까지 */
   box-shadow: 0 8px 28px rgb(20 40 60 / 8%);
 }
