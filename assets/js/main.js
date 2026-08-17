@@ -126,6 +126,42 @@
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(snap);
   }
 
+  /**
+   * 케이스 섹션을 한 화면에 담는다.
+   *
+   * 섹션은 100vh 인데 시안 내용(1920×948 기준)은 그보다 클 때가 많다.
+   * 그대로 두면 아래가 잘려서 스크롤을 내려야 나머지가 보인다 —
+   * 「각 섹션 내용이 한 번에 나오도록」 하려면 남는 높이에 맞춰 줄여야 한다.
+   * 헤더(90)와 탭(80)이 위를 덮으므로 그만큼 뺀 영역을 기준으로 잡는다.
+   */
+  function initCaseFit() {
+    var inners = document.querySelectorAll('.case-section__inner');
+    if (!inners.length) return;
+
+    function fit() {
+      // 모바일에서는 축소하지 않고 자연스럽게 흐르게 둔다
+      if (window.matchMedia('(max-width: 1023px)').matches) {
+        for (var j = 0; j < inners.length; j++) inners[j].style.transform = '';
+        return;
+      }
+      for (var i = 0; i < inners.length; i++) {
+        var el = inners[i];
+        el.style.transform = '';                       // 먼저 원래 크기로
+        var box = el.parentElement.getBoundingClientRect();
+        var availH = box.height
+          - parseFloat(getComputedStyle(el.parentElement).paddingTop)
+          - parseFloat(getComputedStyle(el.parentElement).paddingBottom);
+        var s = Math.min(1, availH / el.scrollHeight);
+        if (s < 0.999) el.style.transform = 'scale(' + s + ')';
+      }
+    }
+
+    fit();
+    window.addEventListener('resize', fit);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+    window.addEventListener('load', fit);             // 이미지 로드 후 높이가 바뀐다
+  }
+
   function initYearTabs() {
     var wrap = document.querySelector('[data-year-tabs]');
     if (!wrap) return;
@@ -311,6 +347,7 @@
     initNavToggle();
     initMarquee();
     initPixelSnap();
+    initCaseFit();
     initYearTabs();
     initModal();
     initToTop();

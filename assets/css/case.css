@@ -176,14 +176,21 @@
    탭 바(80)가 헤더(90) 아래 붙으므로 앵커 여유는 170
    =========================================================== */
 .case-section {
+  /* 한 섹션이 정확히 한 화면. 내용이 세로로 넘치면 잘리므로
+     헤더(90)+탭(80) 을 뺀 영역 안에서 initCaseFit 이 축소한다. */
   display: flex;
   align-items: center;
-  min-height: 100vh;
-  padding: 140px var(--case-pad, 160px);
-  scroll-margin-top: 170px;
+  justify-content: center;
+  height: 100vh;
+  padding: 170px var(--case-pad, 160px) 24px;
+  overflow: hidden;
+  scroll-margin-top: 0;
   background: var(--sec-bg, #0b151c);
 }
-.case-section__inner { width: 100%; }
+.case-section__inner {
+  width: 100%;
+  transform-origin: center center;
+}
 
 /* 섹션 헤더 — eyebrow / 제목 / 설명 (시안 간격 16) */
 .case-head {
@@ -214,11 +221,13 @@
 }
 
 @media (max-width: 1023px) {
-  .case-section { min-height: 0; padding: 96px var(--pad-x); }
+  /* 좁은 화면에서는 축소 대신 자연스럽게 흐르게 둔다 */
+  .case-section { height: auto; padding: 120px var(--pad-x) 96px; overflow: visible; }
+  .case-section__inner { transform: none !important; }
   .case-head__title { font-size: 28px; line-height: 42px; }
 }
 @media (max-width: 767px) {
-  .case-section { padding: 64px var(--pad-x); }
+  .case-section { padding: 88px var(--pad-x) 64px; }
   .case-head__title { font-size: 22px; line-height: 34px; }
   .case-head__eyebrow { font-size: 16px; }
 }
