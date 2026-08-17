@@ -14,11 +14,11 @@
   <meta property="og:image" content="">
   <meta name="theme-color" content="#ffffff">
 
-  <link rel="stylesheet" href="./assets/css/reset.css?v=79">
-  <link rel="stylesheet" href="./assets/css/tokens.css?v=79">
-  <link rel="stylesheet" href="./assets/css/layout.css?v=79">
-  <link rel="stylesheet" href="./assets/css/components.css?v=79">
-  <link rel="stylesheet" href="./assets/css/case.css?v=79">
+  <link rel="stylesheet" href="./assets/css/reset.css?v=80">
+  <link rel="stylesheet" href="./assets/css/tokens.css?v=80">
+  <link rel="stylesheet" href="./assets/css/layout.css?v=80">
+  <link rel="stylesheet" href="./assets/css/components.css?v=80">
+  <link rel="stylesheet" href="./assets/css/case.css?v=80">
 </head>
 
 <body>
@@ -84,13 +84,13 @@
       </div>
 
       <div class="case-hero__shot case-hero__shot--a" aria-hidden="true">
-        <picture><source srcset="./assets/img/case/dt-hero-a.webp?v=79" type="image/webp"><img
-          src="./assets/img/case/dt-hero-a.png?v=79" alt="" loading="lazy"
+        <picture><source srcset="./assets/img/case/dt-hero-a.webp?v=80" type="image/webp"><img
+          src="./assets/img/case/dt-hero-a.png?v=80" alt="" loading="lazy"
           style="--ix:-1.71%;--iy:0.16%;--iw:155.69%;--ih:137.74%"></picture>
       </div>
       <div class="case-hero__shot case-hero__shot--b" aria-hidden="true">
-        <picture><source srcset="./assets/img/case/dt-hero-b.webp?v=79" type="image/webp"><img
-          src="./assets/img/case/dt-hero-b.png?v=79" alt="" loading="lazy"
+        <picture><source srcset="./assets/img/case/dt-hero-b.webp?v=80" type="image/webp"><img
+          src="./assets/img/case/dt-hero-b.png?v=80" alt="" loading="lazy"
           style="--ix:0;--iy:0;--iw:100.6%;--ih:133.3%"></picture>
       </div>
     </section>
@@ -110,409 +110,111 @@
     </nav>
 
     <!-- ===================== 본문 섹션 (작업 중) ===================== -->
-    <section class="case-section" id="background" aria-labelledby="d11-s1-t">
+    <section class="case-section case-section--shot" id="background" aria-labelledby="d11-s1-t" style="--sec-bg:#191F28">
       <div class="case-section__inner">
-          <div class="case-head">
-            <p class="case-head__eyebrow">Background</p>
-            <h2 class="case-head__title" id="d11-s1-t">PD·FE와의 합의 부재로 반복되는 스타일 값 전달 비용 제거</h2>
-            <p class="case-head__desc">Grid·Spacing·Font·Effect·Border Radius를 Design Token으로 정의하고 Figma Variables로 관리했으며, 구축된 구조를 기반으로 Component·Color 정의를 design.md 명세로 정리해 개발에 전달했어요.</p>
-          </div>
-          <ul class="pillars">
-            <li>
-              <b>스타일 기준 일원화</b>
-              <p>Grid·Spacing·Font 등을 Design Token으로 정의하고<br>
-                 Figma Variables로 관리해<br>
-                 디자인·개발이 동일한 기준을 참조하는 단일 구조를 수립</p>
-            </li>
-            <li>
-              <b>반복 소통 비용 제거</b>
-              <p>토큰 기반 참조 구조로 매번 수동 전달하던<br>
-                 스타일 값 커뮤니케이션을 대체하고<br>
-                 PD·FE 간 불필요한 소통을 최소화</p>
-            </li>
-            <li>
-              <b>Design.md 명세 생성</b>
-              <p>구축된 Design Token과 Component·Color 정의를<br>
-                 design.md 명세로 정리해<br>
-                 개발이 그대로 참조·구현하도록 전달</p>
-            </li>
-          </ul>
+        <h2 class="sr-only" id="d11-s1-t">Background — PD·FE와의 합의 부재로 반복되는 스타일 값 전달 비용 제거</h2>
+        <picture><source srcset="./assets/img/case/sec/dt-1.webp?v=80" type="image/webp"><img
+          class="case-shot" src="./assets/img/case/sec/dt-1.png?v=80"
+          alt="Background — PD·FE와의 합의 부재로 반복되는 스타일 값 전달 비용 제거" loading="lazy" width="1920" height="948"></picture>
       </div>
     </section>
 
-    <section class="case-section case-section--quotes" id="result" aria-labelledby="d11-s2-t">
+    <section class="case-section case-section--shot" id="result" aria-labelledby="d11-s2-t" style="--sec-bg:linear-gradient(180deg, #67AFF7, #87D2F5)">
       <div class="case-section__inner">
-          <div class="case-head">
-            <p class="case-head__eyebrow">Result</p>
-            <h2 class="case-head__title" id="d11-s2-t">기준이 만든 변화</h2>
-            <p class="case-head__desc">공통 기준이 생기자 디자이너와 개발자의 작업 방식이 달라졌어요.</p>
-          </div>
-          <ul class="quotes">
-            <li><span class="quotes__who quotes__who--pd">PD</span>디자인 할 때 컬러를 외울 필요가 없어졌어요 🥹</li>
-            <li><span class="quotes__who quotes__who--pd">PD</span>디자인 QA건 수가 현저히 줄어들었어요!</li>
-            <li><span class="quotes__who quotes__who--fe">FE</span>컬러가 토큰으로 묶여있어 호출·적용하기 편해요</li>
-            <li><span class="quotes__who quotes__who--fe">FE</span>design.md 명세로 정리돼 있어 컴포넌트 작업이 수월해졌어요</li>
-          </ul>
-          <p class="quotes__bg" aria-hidden="true"><span>1~2회</span><span>40%</span></p>
+        <h2 class="sr-only" id="d11-s2-t">Result — 기준이 만든 변화</h2>
+        <picture><source srcset="./assets/img/case/sec/dt-2.webp?v=80" type="image/webp"><img
+          class="case-shot" src="./assets/img/case/sec/dt-2.png?v=80"
+          alt="Result — 기준이 만든 변화" loading="lazy" width="1920" height="948"></picture>
       </div>
     </section>
 
-    <section class="case-section case-section--split" aria-label="Painpoint / Opportunity">
+    <section class="case-section case-section--shot" aria-labelledby="d11-s3-t" style="--sec-bg:#191F28">
       <div class="case-section__inner">
-          <div class="split">
-            <div>
-              <div class="split__head">
-                <p class="split__eyebrow split__eyebrow--pain">Painpoint</p>
-                <h3 class="split__title">단순한 UI 작업에도<br>소모되는 디자이너 리소스</h3>
-                <p class="split__desc">단순한 UI 상태값도 FE와의 합의 부재로 매번 전달해야 했고,<br>그 과정에서 발생하는 비용이 소모적이라고 느꼈어요.</p>
-              </div>
-              <div class="split__card">
-                <picture><source srcset="./assets/img/case/dt-slack.webp?v=79" type="image/webp"><img
-                  src="./assets/img/case/dt-slack.png?v=79" alt="스타일 값을 매번 되묻는 팀 대화" loading="lazy"
-                  width="562" height="322" style="--x:9.97%;--y:15.15%;--w:80.06%;--h:69.7%"></picture>
-              </div>
-            </div>
-
-            <div class="split__rule" aria-hidden="true"></div>
-
-            <div>
-              <div class="split__head">
-                <p class="split__eyebrow split__eyebrow--opp">Opportunity</p>
-                <h3 class="split__title">전달 방식이 아니라,<br>전달하지 않아도 되는 구조의 부재</h3>
-                <p class="split__desc">반복되는 수치 재확인은 소통 문제가 아니었어요.<br>공유 가능한 기준 자체가 없었고, 토큰 구조로 기준을 만들면 이 반복을 없앨 수 있다고 판단했어요.</p>
-              </div>
-              <div class="split__card">
-                <picture><source srcset="./assets/img/case/dt-lib.webp?v=79" type="image/webp"><img
-                  src="./assets/img/case/dt-lib.png?v=79" alt="네이밍 규칙이 없는 컬러 라이브러리" loading="lazy"
-                  width="250" height="348" style="--x:32.09%;--y:12.34%;--w:35.82%;--h:75.32%"></picture>
-                <p class="split__tip">네이밍 규칙 없음 · 용도 불명확</p>
-              </div>
-            </div>
-          </div>
+        <h2 class="sr-only" id="d11-s3-t">Painpoint / Opportunity — 단순한 UI 작업에도 소모되는 디자이너 리소스</h2>
+        <picture><source srcset="./assets/img/case/sec/dt-3.webp?v=80" type="image/webp"><img
+          class="case-shot" src="./assets/img/case/sec/dt-3.png?v=80"
+          alt="Painpoint / Opportunity — 단순한 UI 작업에도 소모되는 디자이너 리소스" loading="lazy" width="1920" height="948"></picture>
       </div>
     </section>
 
-    <section class="case-section case-section--layers" id="approach" aria-labelledby="d11-s4-t">
+    <section class="case-section case-section--shot" id="approach" aria-labelledby="d11-s4-t" style="--sec-bg:#191F28">
       <div class="case-section__inner">
-          <div class="case-head">
-            <p class="case-head__eyebrow">Approach</p>
-            <h2 class="case-head__title" id="d11-s4-t">공유 가능한 기준이 없던 세 레이어의 구조화</h2>
-          </div>
-          <div class="layers">
-            <div class="layers__col layers__col--1">
-              <div class="layers__block">
-                <div class="layers__head">
-                  <span class="layers__no">1</span>
-                  <span class="layers__ttl">스타일 값 기준 부재</span>
-                  <span class="layers__sub">Figma Variables 관리</span>
-                </div>
-                <div class="layers__chips">
-                  <span>Grid</span>
-                  <span>Spacing</span>
-                  <span>Font</span>
-                  <span>Effect</span>
-                  <span>Border Radius</span>
-                </div>
-              </div>
-            </div>
-            <div class="layers__rule" aria-hidden="true"></div>
-            <div class="layers__col layers__col--2">
-              <div class="layers__block">
-                <div class="layers__head">
-                  <span class="layers__no">2</span>
-                  <span class="layers__ttl">Color Token</span>
-                  <span class="layers__sub">Semantic Token 즉시 참조</span>
-                </div>
-                <div class="layers__chips">
-                  <span>Base Color</span>
-                  <span>Semantic Color</span>
-                  <span>Variables 구축</span>
-                </div>
-              </div>
-            </div>
-            <div class="layers__rule" aria-hidden="true"></div>
-            <div class="layers__col layers__col--3">
-              <div class="layers__block">
-                <div class="layers__head">
-                  <span class="layers__no">3</span>
-                  <span class="layers__ttl">문서화</span>
-                  <span class="layers__sub">공유 가능한 명세로 산출</span>
-                </div>
-                <div class="layers__chips">
-                  <span>Component 명세</span>
-                  <span>토큰 명세 전달</span>
-                  <span>Design.md 출력</span>
-                </div>
-              </div>
-            </div>
-          </div>
+        <h2 class="sr-only" id="d11-s4-t">Approach — 공유 가능한 기준이 없던 세 레이어의 구조화</h2>
+        <picture><source srcset="./assets/img/case/sec/dt-4.webp?v=80" type="image/webp"><img
+          class="case-shot" src="./assets/img/case/sec/dt-4.png?v=80"
+          alt="Approach — 공유 가능한 기준이 없던 세 레이어의 구조화" loading="lazy" width="1920" height="948"></picture>
       </div>
     </section>
 
-    <section class="case-section case-section--process" id="process" aria-labelledby="d11-s5-t">
+    <section class="case-section case-section--shot" id="process" aria-labelledby="d11-s5-t" style="--sec-bg:#191F28">
       <div class="case-section__inner">
-          <div class="process">
-            <div class="process__left">
-          <div class="case-head case-head--start">
-            <p class="case-head__eyebrow">Process</p>
-            <h2 class="case-head__title" id="d11-s5-t">반복 비용을 없애는 3단계 구조</h2>
-          </div>
-              <ul class="process__steps">
-                <li class="process__step" aria-current="step">
-                  <span class="process__no">1</span>
-                  <span class="process__label">구조화 - Design Token 전체 정의</span>
-                </li>
-                <li class="process__step">
-                  <span class="process__no">2</span>
-                  <span class="process__label">컬러 - Semantic Color Token</span>
-                </li>
-                <li class="process__step">
-                  <span class="process__no">3</span>
-                  <span class="process__label">문서화 - 명세 정리, 전달, design.md 구축</span>
-                </li>
-              </ul>
-            </div>
-            <div class="process__card">
-              <picture><source srcset="./assets/img/case/dt-p1-top.webp?v=79" type="image/webp"><img
-                src="./assets/img/case/dt-p1-top.png?v=79" alt="Typography·Border-Radius 토큰 표" loading="lazy"
-                width="941" height="295" style="--x:4.751%;--y:5.348%;--w:111.758%;--h:39.439%"></picture>
-              <picture><source srcset="./assets/img/case/dt-p1-a.webp?v=79" type="image/webp"><img
-                src="./assets/img/case/dt-p1-a.png?v=79" alt="Grid 토큰 표" loading="lazy"
-                width="353" height="294" style="--x:4.751%;--y:48.262%;--w:41.924%;--h:39.305%"></picture>
-              <picture><source srcset="./assets/img/case/dt-p1-b.webp?v=79" type="image/webp"><img
-                src="./assets/img/case/dt-p1-b.png?v=79" alt="Effect(Shadow) 토큰 표" loading="lazy"
-                width="357" height="296" style="--x:48.456%;--y:48.128%;--w:42.399%;--h:39.572%"></picture>
-              <p class="process__cap">Grid, Spacing, Font, Effect, Border Radius와 같이 흩어진 스타일 값을 Design Token으로<br>정의하고 Variables 한 곳에서 관리·라이브러리화 하여 모든 제품이 같은 기준을 참조하도록 일원화했어요.</p>
-            </div>
-          </div>
+        <h2 class="sr-only" id="d11-s5-t">Process — 반복 비용을 없애는 3단계 구조</h2>
+        <picture><source srcset="./assets/img/case/sec/dt-5.webp?v=80" type="image/webp"><img
+          class="case-shot" src="./assets/img/case/sec/dt-5.png?v=80"
+          alt="Process — 반복 비용을 없애는 3단계 구조" loading="lazy" width="1920" height="948"></picture>
       </div>
     </section>
 
-    <section class="case-section case-section--process" aria-labelledby="d11-s6-t">
+    <section class="case-section case-section--shot" aria-labelledby="d11-s6-t" style="--sec-bg:#191F28">
       <div class="case-section__inner">
-          <div class="process">
-            <div class="process__left">
-          <div class="case-head case-head--start">
-            <p class="case-head__eyebrow">Process</p>
-            <h2 class="case-head__title" id="d11-s6-t">반복 비용을 없애는 3단계 구조</h2>
-          </div>
-              <ul class="process__steps">
-                <li class="process__step">
-                  <span class="process__no">1</span>
-                  <span class="process__label">구조화 - Design Token 전체 정의</span>
-                </li>
-                <li class="process__step" aria-current="step">
-                  <span class="process__no">2</span>
-                  <span class="process__label">컬러 - Semantic Color Token</span>
-                </li>
-                <li class="process__step">
-                  <span class="process__no">3</span>
-                  <span class="process__label">문서화 - 명세 정리, 전달, design.md 구축</span>
-                </li>
-              </ul>
-            </div>
-            <div class="process__card">
-              <picture><source srcset="./assets/img/case/dt-p2.webp?v=79" type="image/webp"><img
-                src="./assets/img/case/dt-p2.png?v=79" alt="Semantic Color Token 체계" loading="lazy"
-                width="681" height="475" style="--x:9.501%;--y:9.492%;--w:80.879%;--h:63.503%"></picture>
-              <p class="process__cap">Primitives Token 위에 Surface·On-Surface·Text 같은 Semantic Token을 한 겹 올려 색상값 대신<br>용도 이름으로 즉시 참조하도록 체계화하고 Scope를 지정해 컬러가 용도에 맞지 않는 속성엔 쓰이지 않도록 제한했어요.</p>
-            </div>
-          </div>
+        <h2 class="sr-only" id="d11-s6-t">Process — 반복 비용을 없애는 3단계 구조</h2>
+        <picture><source srcset="./assets/img/case/sec/dt-6.webp?v=80" type="image/webp"><img
+          class="case-shot" src="./assets/img/case/sec/dt-6.png?v=80"
+          alt="Process — 반복 비용을 없애는 3단계 구조" loading="lazy" width="1920" height="948"></picture>
       </div>
     </section>
 
-    <section class="case-section case-section--process" aria-labelledby="d11-s7-t">
+    <section class="case-section case-section--shot" aria-labelledby="d11-s7-t" style="--sec-bg:#191F28">
       <div class="case-section__inner">
-          <div class="process">
-            <div class="process__left">
-          <div class="case-head case-head--start">
-            <p class="case-head__eyebrow">Process</p>
-            <h2 class="case-head__title" id="d11-s7-t">반복 비용을 없애는 3단계 구조</h2>
-          </div>
-              <ul class="process__steps">
-                <li class="process__step">
-                  <span class="process__no">1</span>
-                  <span class="process__label">구조화 - Design Token 전체 정의</span>
-                </li>
-                <li class="process__step">
-                  <span class="process__no">2</span>
-                  <span class="process__label">컬러 - Semantic Color Token</span>
-                </li>
-                <li class="process__step" aria-current="step">
-                  <span class="process__no">3</span>
-                  <span class="process__label">문서화 - 명세 정리, 전달, design.md 구축</span>
-                </li>
-              </ul>
-            </div>
-            <div class="process__card">
-              <picture><source srcset="./assets/img/case/dt-p3.webp?v=79" type="image/webp"><img
-                src="./assets/img/case/dt-p3.png?v=79" alt="design.md 토큰 명세 문서" loading="lazy"
-                width="904" height="498" style="--x:7.601%;--y:8.824%;--w:107.363%;--h:66.578%"></picture>
-              <p class="process__cap">정의한 토큰과 컴포넌트 사용 규칙을 design.md 명세로 정리해<br>개발팀에서 다시 묻지 않고 그대로 참조·구현하도록 전달했어요.</p>
-            </div>
-          </div>
+        <h2 class="sr-only" id="d11-s7-t">Process — 반복 비용을 없애는 3단계 구조</h2>
+        <picture><source srcset="./assets/img/case/sec/dt-7.webp?v=80" type="image/webp"><img
+          class="case-shot" src="./assets/img/case/sec/dt-7.png?v=80"
+          alt="Process — 반복 비용을 없애는 3단계 구조" loading="lazy" width="1920" height="948"></picture>
       </div>
     </section>
 
-    <section class="case-section case-section--improve" id="improved" aria-labelledby="d11-s8-t">
+    <section class="case-section case-section--shot" id="improved" aria-labelledby="d11-s8-t" style="--sec-bg:#191F28">
       <div class="case-section__inner">
-          <div class="case-head">
-            <p class="case-head__eyebrow">What&#x27;s improved?</p>
-            <h2 class="case-head__title" id="d11-s8-t">Variables 구조화 - 스타일 기준 일원화</h2>
-            <p class="case-head__desc">수치를 외우거나 매번 전달하던 구조에서, Design Token으로 즉시 참조하는 구조로 개선</p>
-          </div>
-          <div class="improve">
-            <div class="improve__half improve__half--as">
-              <div class="improve__top">
-                <p class="improve__label">As-is</p>
-                <p class="improve__pill">수치를 수동으로 맞추거나 이전 수치를 복사해서 적용</p>
-              </div>
-              <span class="improve__dash" aria-hidden="true"></span>
-              <picture><source srcset="./assets/img/case/dt-i1-as.webp?v=79" type="image/webp"><img
-                class="improve__shot" src="./assets/img/case/dt-i1-as.png?v=79" loading="lazy"
-                alt="수치를 직접 입력하던 Auto layout 패널" width="292" height="255" style="--x:31.375%;--y:36.773%;--w:36.538%;--h:47.767%"></picture>
-              <picture><source srcset="./assets/img/case/dt-i1-zoom.webp?v=79" type="image/webp"><img
-                class="improve__shot improve__shot--zoom" src="./assets/img/case/dt-i1-zoom.png?v=79" loading="lazy"
-                alt="수동으로 입력한 수치 확대" width="154" height="41" style="--x:28.250%;--y:68.293%;--w:19.312%;--h:7.692%"></picture>
-            </div>
-
-            <span class="improve__arrow" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
-                <path d="M4 10h12m0 0-4.5-4.5M16 10l-4.5 4.5" stroke="currentColor"
-                      stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-            </span>
-
-            <div class="improve__half improve__half--to">
-              <div class="improve__top">
-                <p class="improve__label">To-be</p>
-                <p class="improve__pill">라벨링된 Token으로 용도에 맞게 즉시 적용</p>
-              </div>
-              <span class="improve__dash" aria-hidden="true"></span>
-              <picture><source srcset="./assets/img/case/dt-i1-to.webp?v=79" type="image/webp"><img
-                class="improve__shot" src="./assets/img/case/dt-i1-to.png?v=79" loading="lazy"
-                alt="라벨링된 Border Radius 토큰 표" width="485" height="276" style="--x:19.837%;--y:32.833%;--w:60.562%;--h:51.745%"></picture>
-            </div>
-          </div>
+        <h2 class="sr-only" id="d11-s8-t">What's improved? — Variables 구조화 - 스타일 기준 일원화</h2>
+        <picture><source srcset="./assets/img/case/sec/dt-8.webp?v=80" type="image/webp"><img
+          class="case-shot" src="./assets/img/case/sec/dt-8.png?v=80"
+          alt="What's improved? — Variables 구조화 - 스타일 기준 일원화" loading="lazy" width="1920" height="948"></picture>
       </div>
     </section>
 
-    <section class="case-section case-section--improve" aria-labelledby="d11-s9-t">
+    <section class="case-section case-section--shot" aria-labelledby="d11-s9-t" style="--sec-bg:#191F28">
       <div class="case-section__inner">
-          <div class="case-head">
-            <p class="case-head__eyebrow">What&#x27;s improved?</p>
-            <h2 class="case-head__title" id="d11-s9-t">Color Token 구축 - 컬러 기준 체계화</h2>
-            <p class="case-head__desc">컬러 값을 외우거나 복사하던 방식에서, Semantic Color Token으로 용도 기반 즉시 적용으로 개선</p>
-          </div>
-          <div class="improve">
-            <div class="improve__half improve__half--as">
-              <div class="improve__top">
-                <p class="improve__label">As-is</p>
-                <p class="improve__pill">Base 팔레트 색상을 용도에 맞게 암기·복사 적용</p>
-              </div>
-              <picture><source srcset="./assets/img/case/dt-i2-as.webp?v=79" type="image/webp"><img
-                class="improve__shot" src="./assets/img/case/dt-i2-as.png?v=79" loading="lazy"
-                alt="Base 팔레트에서 색상을 직접 골라 적용하던 방식" width="522" height="295" style="--x:17.238%;--y:35.441%;--w:65.300%;--h:55.253%"></picture>
-            </div>
-
-            <span class="improve__arrow" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
-                <path d="M4 10h12m0 0-4.5-4.5M16 10l-4.5 4.5" stroke="currentColor"
-                      stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-            </span>
-
-            <div class="improve__half improve__half--to">
-              <div class="improve__top">
-                <p class="improve__label">To-be</p>
-                <p class="improve__pill">라벨링된 Semantic Token으로 용도에 맞는 컬러칩 빠르게 적용</p>
-              </div>
-              <picture><source srcset="./assets/img/case/dt-i2-to.webp?v=79" type="image/webp"><img
-                class="improve__shot" src="./assets/img/case/dt-i2-to.png?v=79" loading="lazy"
-                alt="Semantic Color Token으로 용도에 맞게 적용" width="522" height="295" style="--x:17.238%;--y:35.441%;--w:65.300%;--h:55.253%"></picture>
-            </div>
-          </div>
+        <h2 class="sr-only" id="d11-s9-t">What's improved? — Color Token 구축 - 컬러 기준 체계화</h2>
+        <picture><source srcset="./assets/img/case/sec/dt-9.webp?v=80" type="image/webp"><img
+          class="case-shot" src="./assets/img/case/sec/dt-9.png?v=80"
+          alt="What's improved? — Color Token 구축 - 컬러 기준 체계화" loading="lazy" width="1920" height="948"></picture>
       </div>
     </section>
 
-    <section class="case-section case-section--improve" aria-labelledby="d11-s10-t">
+    <section class="case-section case-section--shot" aria-labelledby="d11-s10-t" style="--sec-bg:#191F28">
       <div class="case-section__inner">
-          <div class="case-head">
-            <p class="case-head__eyebrow">What&#x27;s improved?</p>
-            <h2 class="case-head__title" id="d11-s10-t">토큰 명세 문서화 - 공유 가능한 핸드오프</h2>
-            <p class="case-head__desc">매번 구두로 다시 설명하던 컴포넌트·토큰 사용 규칙을, design.md 단일 명세로 모아 변경이 생겨도 개발이 같은 문서를 참조하는 구조로 개선</p>
-          </div>
-          <div class="improve">
-            <div class="improve__half improve__half--as">
-              <div class="improve__top improve__top--tight">
-                <p class="improve__label">As-is</p>
-                <p class="improve__pill">구두·수기 전달 → 변경 시 불일치 반복</p>
-              </div>
-              <picture><source srcset="./assets/img/case/dt-i3-as.webp?v=79" type="image/webp"><img
-                class="improve__shot" src="./assets/img/case/dt-i3-as.png?v=79" loading="lazy"
-                alt="토큰 변경을 대화로 다시 설명하던 기록" width="480" height="335" style="--x:19.875%;--y:24.559%;--w:60.038%;--h:62.758%"></picture>
-            </div>
-
-            <span class="improve__arrow" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
-                <path d="M4 10h12m0 0-4.5-4.5M16 10l-4.5 4.5" stroke="currentColor"
-                      stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-            </span>
-
-            <div class="improve__half improve__half--to">
-              <div class="improve__top improve__top--tight">
-                <p class="improve__label">To-be</p>
-                <p class="improve__pill">Token → 명세 정리 → design.md → 개발 참조</p>
-              </div>
-              <picture><source srcset="./assets/img/case/dt-i3-to.webp?v=79" type="image/webp"><img
-                class="improve__shot" src="./assets/img/case/dt-i3-to.png?v=79" loading="lazy"
-                alt="design.md 단일 명세 문서" width="553" height="351" style="--x:15.387%;--y:34.128%;--w:69.125%;--h:65.854%"></picture>
-            </div>
-          </div>
+        <h2 class="sr-only" id="d11-s10-t">What's improved? — 토큰 명세 문서화 - 공유 가능한 핸드오프</h2>
+        <picture><source srcset="./assets/img/case/sec/dt-10.webp?v=80" type="image/webp"><img
+          class="case-shot" src="./assets/img/case/sec/dt-10.png?v=80"
+          alt="What's improved? — 토큰 명세 문서화 - 공유 가능한 핸드오프" loading="lazy" width="1920" height="948"></picture>
       </div>
     </section>
 
-    <section class="case-section case-section--output" id="output" aria-labelledby="d11-s11-t">
+    <section class="case-section case-section--shot" id="output" aria-labelledby="d11-s11-t" style="--sec-bg:#191F28">
       <div class="case-section__inner">
-          <div class="case-head case-head--start">
-            <p class="case-head__eyebrow">Output</p>
-            <h2 class="case-head__title" id="d11-s11-t">3단계 구조의 변경</h2>
-          </div>
-          <div class="output">
-            <p class="output__row"><b>Grid·Spacing·Font·Effect·Border Radius</b><span>를</span></p>
-            <p class="output__row"><b>Design Token</b><span>으로 정의하여</span><b>Variables</b><span>로 관리하고</span></p>
-            <p class="output__row"><b>Color</b><span>값을</span><b>Semantic Token</b><span>으로 지정해</span></p>
-            <p class="output__row"><b>AI ✳️</b><span>를 활용해</span><b>토큰 명세</b><span>와</span><b>design.md</b><span>정리해 개발팀 전달</span></p>
-          </div>
+        <h2 class="sr-only" id="d11-s11-t">Output — 3단계 구조의 변경</h2>
+        <picture><source srcset="./assets/img/case/sec/dt-11.webp?v=80" type="image/webp"><img
+          class="case-shot" src="./assets/img/case/sec/dt-11.png?v=80"
+          alt="Output — 3단계 구조의 변경" loading="lazy" width="1920" height="948"></picture>
       </div>
     </section>
 
-    <section class="case-section case-section--metrics" aria-labelledby="d11-s12-t">
+    <section class="case-section case-section--shot" aria-labelledby="d11-s12-t" style="--sec-bg:#191F28">
       <div class="case-section__inner">
-          <div class="case-head case-head--start">
-            <p class="case-head__eyebrow">Approach</p>
-            <h2 class="case-head__title" id="d11-s12-t">제품이 늘어도 기준은 하나 문서는 자동으로 처리</h2>
-          </div>
-          <ul class="metrics">
-            <li>
-              <p class="metrics__ttl">월 핸드오프 수치 재확인 요청</p>
-              <p class="metrics__row">
-                <span class="metrics__from">20회</span>
-                <svg class="metrics__arrow" width="22" height="20" viewBox="0 0 22 20" fill="none" aria-hidden="true">
-                  <path d="M1 10h19m0 0-6-6m6 6-6 6" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-                <span class="metrics__to">1~2회</span>
-              </p>
-              <p class="metrics__note">월 평균 요청 건수 · Variables Token 구조화 이후</p>
-            </li>
-            <li>
-              <p class="metrics__ttl">PD·FE 작업 효율</p>
-              <p class="metrics__row"><span class="metrics__to">40% 상승</span></p>
-              <p class="metrics__note">DS 사용 실무자 설문·디자인 QA 건수 합산 측정</p>
-            </li>
-          </ul>
+        <h2 class="sr-only" id="d11-s12-t">Approach — 제품이 늘어도 기준은 하나 문서는 자동으로 처리</h2>
+        <picture><source srcset="./assets/img/case/sec/dt-12.webp?v=80" type="image/webp"><img
+          class="case-shot" src="./assets/img/case/sec/dt-12.png?v=80"
+          alt="Approach — 제품이 늘어도 기준은 하나 문서는 자동으로 처리" loading="lazy" width="1920" height="948"></picture>
       </div>
     </section>
 
@@ -562,7 +264,7 @@
     </div>
   </footer>
 
-  <script src="./assets/js/main.js?v=79"></script>
+  <script src="./assets/js/main.js?v=80"></script>
 </body>
 
 </html>
