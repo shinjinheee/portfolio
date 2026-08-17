@@ -94,10 +94,36 @@
 
 /* 히어로 우측 스크린샷 — 시안 좌표를 1920×939 기준 % 로 환산.
    라운드·그림자는 CSS 가 그리고 이미지는 안에서 잘린다. */
+/* 시각물 무대 — 시안 히어로(1920×939) 비율을 그대로 유지한 상자.
+   히어로 높이는 화면에 따라 달라지지만 이 안의 시각물은 가로 기준으로만
+   커지고 작아져 비율이 찌그러지지 않는다. 남거나 모자라는 만큼은
+   히어로의 overflow:hidden 이 위아래로 고르게 잘라낸다. */
+.case-hero__stage {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  aspect-ratio: 1920 / 939;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
 .case-hero__shot {
   position: absolute;
   overflow: hidden;
   box-shadow: 8.5px 8.5px 17px rgb(0 0 0 / 10%);
+}
+/* 백오피스 — 흰 프레임과 그림자가 그림에 이미 들어 있다.
+   시안 894,203.5 / 1026×734 이 오른쪽 끝(1920)에 딱 맞게 잘린다. */
+.case-hero__panel {
+  position: absolute;
+  /* 시안 894 자리. 다만 글자는 시안 픽셀 그대로라 화면이 좁아지면
+     제목이 먼저 오지 않는다 — 제목 상자(535) 오른쪽으로 40 을 띄운
+     자리보다 왼쪽으로는 오지 않게 막는다. 1920 에서는 시안값 그대로다. */
+  left: max(46.5625%, calc(var(--case-pad, 160px) + 575px));
+  top: 12.0873%;                /*  113.5 / 939 */
+  width: 53.4375%;              /* 1026 / 1920 */
+  height: auto;
+  max-width: none;
 }
 .case-hero__shot img {
   position: absolute;
@@ -252,7 +278,8 @@
   .case-hero__title { font-size: 34px; line-height: 48px; }
   .case-hero__meta { gap: 36px; }
   /* 좁은 화면에서는 배경 비주얼을 숨긴다 — 텍스트를 가린다 */
-  .case-hero__shot { display: none; }
+  .case-hero__shot,
+  .case-hero__stage { display: none; }
   .case-tabs { top: 90px; }
   .case-nav { min-height: 220px; }
 }
