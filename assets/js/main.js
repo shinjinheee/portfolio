@@ -135,7 +135,8 @@
    * 헤더(90)와 탭(80)이 위를 덮으므로 그만큼 뺀 영역을 기준으로 잡는다.
    */
   function initCaseFit() {
-    var inners = document.querySelectorAll('.case-section__inner');
+    // 히어로도 100vh 안에 담기므로 같은 규칙으로 줄인다
+    var inners = document.querySelectorAll('.case-section__inner, .case-hero__inner');
     if (!inners.length) return;
 
     function fit() {
@@ -160,6 +161,85 @@
     window.addEventListener('resize', fit);
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
     window.addEventListener('load', fit);             // 이미지 로드 후 높이가 바뀐다
+  }
+
+  /**
+   * 케이스 섹션 탭 — 스크롤 위치에 따라 현재 섹션의 탭에 포커스를 옮긴다.
+   *
+   * 탭은 id 가 있는 섹션만 가리키고, id 없는 섹션은 바로 앞 탭에 속한다.
+   * (예: Process 탭 하나에 Process 섹션 3개)
+   */
+  function initCaseTabs() {
+    var nav = document.querySelector('[data-case-tabs]');
+    if (!nav) return;
+    var tabs = [].slice.call(nav.querySelectorAll('a'));
+    var sections = [].slice.call(document.querySelectorAll('.case-section'));
+    if (!tabs.length || !sections.length) return;
+
+    // 섹션 → 담당 탭 (id 가 없으면 직전 탭을 이어받는다)
+    var owner = [], cur = tabs[0];
+    for (var i = 0; i < sections.length; i++) {
+      var id = sections[i].id;
+      if (id) {
+        for (var j = 0; j < tabs.length; j++) {
+          if (tabs[j].getAttribute('href') === '#' + id) { cur = tabs[j]; break; }
+        }
+      }
+      owner.push(cur);
+    }
+
+    var active = null;
+    function mark(found) {
+      if (!found || found === active) return;
+      active = found;
+      for (var k = 0; k < tabs.length; k++) {
+        if (tabs[k] === found) tabs[k].setAttribute('aria-current', 'true');
+        else tabs[k].removeAttribute('aria-current');
+      }
+    }
+
+    // 화면을 가장 많이 차지한 섹션이 이긴다.
+    // 섹션이 100vh 라 스냅이 끝나면 승자가 하나로 확정된다.
+    if ('IntersectionObserver' in window) {
+      var ratio = [];
+      for (var n = 0; n < sections.length; n++) ratio.push(0);
+
+      var io = new IntersectionObserver(function (entries) {
+        for (var e = 0; e < entries.length; e++) {
+          var idx = sections.indexOf(entries[e].target);
+          if (idx > -1) ratio[idx] = entries[e].intersectionRatio;
+        }
+        var best = -1, bestAt = 0;
+        for (var m = 0; m < ratio.length; m++) {
+          if (ratio[m] > best) { best = ratio[m]; bestAt = m; }
+        }
+        // 히어로처럼 어떤 섹션도 화면에 없으면 첫 탭을 유지한다
+        mark(best > 0.1 ? owner[bestAt] : owner[0]);
+      }, { threshold: [0, 0.25, 0.5, 0.75, 1] });
+
+      for (var o = 0; o < sections.length; o++) io.observe(sections[o]);
+      return;
+    }
+
+    // IntersectionObserver 가 없으면 스크롤 위치로 대신한다
+    function sync() {
+      var line = 200;                      // 헤더 90 + 탭 80 바로 아래
+      var found = owner[0];
+      for (var i = 0; i < sections.length; i++) {
+        if (sections[i].getBoundingClientRect().top <= line) found = owner[i];
+      }
+      if (sections[0].getBoundingClientRect().top > line) found = owner[0];
+      mark(found);
+    }
+
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () { sync(); ticking = false; });
+    }, { passive: true });
+    window.addEventListener('resize', sync);
+    sync();
   }
 
   function initYearTabs() {
@@ -348,6 +428,7 @@
     initMarquee();
     initPixelSnap();
     initCaseFit();
+    initCaseTabs();
     initYearTabs();
     initModal();
     initToTop();
