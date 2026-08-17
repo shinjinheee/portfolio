@@ -1000,3 +1000,82 @@
   .layers__col--2, .layers__col--3 { padding-top: 0; }
   .layers__chips { flex-wrap: wrap; }
 }
+
+/* ===========================================================
+   .process — 좌: 3단계 스텝 / 우: 산출물 카드 (디자인 토큰 5~7번)
+   시안: 좌 (160,100) 758×400 (헤더 102 + 30 + 스텝 268)
+         우 (918,100) 842×748 · 카드 #282A2F
+   =========================================================== */
+.case-section--process { --sec-bg: #191f28; }
+.process {
+  display: grid;
+  grid-template-columns: 758px 1fr;
+  gap: 0;
+  align-items: start;
+}
+.process__left { display: flex; flex-direction: column; }
+.process__steps { display: flex; flex-direction: column; align-items: flex-start; gap: 26px; margin-top: 30px; }
+.process__step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: #27292e;
+}
+.process__step[aria-current] { background: #1e242d; border-color: #85bcf6; }
+.process__no {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px; height: 32px;
+  border-radius: 999px;
+  background: #191f28;
+  font-weight: 700;
+  font-size: 16.5px;
+  color: #898a8d;
+}
+.process__step[aria-current] .process__no { background: #85bcf6; color: #15171c; }
+.process__label {
+  font-weight: 600;
+  font-size: 21px;
+  line-height: 28px;
+  letter-spacing: -0.01em;
+  color: var(--ink-tab);
+  opacity: 0.9;
+}
+.process__step[aria-current] .process__label { color: var(--white); }
+
+/* 우측 산출물 카드 — 배경·라운드는 CSS, 이미지는 스크린샷만 */
+.process__card {
+  position: relative;
+  justify-self: end;
+  width: 842px;
+  aspect-ratio: 842 / 748;
+  border-radius: 16px;
+  background: #282a2f;
+  overflow: hidden;
+}
+.process__card img {
+  position: absolute;
+  left: var(--x, 0); top: var(--y, 0);
+  width: var(--w, 100%); height: var(--h, 100%);
+  max-width: none;
+}
+.process__cap {
+  position: absolute;
+  left: 0; right: 0;
+  bottom: 32px;
+  padding-inline: 40px;
+  font-size: 16px;
+  line-height: 26px;
+  text-align: center;
+  color: var(--ink-tab);
+}
+
+@media (max-width: 1439px) {
+  .process { grid-template-columns: 1fr; gap: 48px; }
+  .process__card { width: 100%; justify-self: stretch; }
+}
