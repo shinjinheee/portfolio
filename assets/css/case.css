@@ -751,3 +751,39 @@
   .dag__panel { padding: 40px var(--pad-x); }
   .dag__steps { flex-direction: column; gap: 40px; }
 }
+
+/* ===========================================================
+   .pillars — 3열 요약 카드 (디자인 토큰 1번)
+   시안: 카드 1600×242 · bg #222429 · radius 16 · 패딩 60·50 · 열 간격 75
+   =========================================================== */
+.pillars {
+  display: flex;
+  align-items: center;
+  gap: 75px;
+  padding: 60px 50px;
+  border-radius: 16px;
+  background: #222429;
+  text-align: center;
+}
+.pillars > li {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.pillars b {
+  font-weight: 700;
+  font-size: 21px;
+  line-height: 28px;
+  color: var(--white);
+}
+.pillars p {
+  font-size: 16px;
+  line-height: 26px;
+  color: var(--ink-tab);
+}
+
+@media (max-width: 1023px) {
+  .pillars { flex-direction: column; gap: 40px; padding: 40px 24px; }
+}
