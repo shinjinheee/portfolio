@@ -1212,3 +1212,60 @@
   .output__row b, .output__row span { font-size: 17px; line-height: 26px; }
   .output__row b { padding: 8px 12px; border-radius: 12px; }
 }
+
+/* ===========================================================
+   .metrics — 지표 2열 카드 (디자인 토큰 12번)
+   시안: 카드 1600×266 (#222429) · 패딩 60·50 · 열 간격 75
+         값 50px · 개선 후는 하늘색 그라디언트 텍스트
+   =========================================================== */
+.case-section--metrics { --sec-bg: #191f28; }
+.metrics {
+  display: flex;
+  align-items: center;
+  gap: 75px;
+  padding: 60px 50px;
+  border-radius: 16px;
+  background: #222429;
+}
+.metrics > li {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+}
+.metrics__ttl {
+  font-weight: 700;
+  font-size: 21px;
+  line-height: 28px;
+  color: var(--white);
+}
+.metrics__row { display: flex; align-items: center; justify-content: center; gap: 30px; }
+.metrics__from {
+  font-weight: 600;
+  font-size: 50px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: #666;
+}
+.metrics__to {
+  font-weight: 700;
+  font-size: 50px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  opacity: 0.9;
+  background: linear-gradient(180deg, #65acf8, #88d3f5);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.metrics__note { font-size: 16px; line-height: 26px; color: #666; }
+.metrics__arrow { flex: 0 0 auto; color: #666; }
+
+@media (max-width: 1023px) {
+  .metrics { flex-direction: column; gap: 40px; padding: 40px 24px; }
+  .metrics__from, .metrics__to { font-size: 34px; }
+  .metrics__row { gap: 16px; }
+}

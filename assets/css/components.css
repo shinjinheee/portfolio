@@ -810,3 +810,7 @@ body.is-modal-open { overflow: hidden; }
   .count-badge { font-size: 28px; padding: 8px calc(20px + 0.02em); }
   .work-item__tags { gap: 8px; }
 }
+
+/* 상세 페이지가 있는 항목만 제목이 링크가 된다 */
+.work-item__title a { border-bottom: 1px solid transparent; transition: border-color var(--dur-fast) var(--ease); }
+.work-item:hover .work-item__title a { border-bottom-color: currentColor; }
