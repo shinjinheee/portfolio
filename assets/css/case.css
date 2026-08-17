@@ -181,7 +181,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 4.26%;                    /* 40 / 939 */
+  height: 3.834%;                   /* 36 / 939 — 시안 실측 */
   padding-inline: 1.042vw;          /* 20 / 1920 */
   border-radius: 999px;
   background: var(--badge);
@@ -195,9 +195,9 @@
   position: absolute;
   right: 100%;
   bottom: 100%;
-  width: 1.25vw;                    /* 24 / 1920 */
+  width: 1.354vw;                   /* 26 / 1920 */
   height: 1.563vw;                  /* 30 / 1920 */
-  margin: 0 -0.31vw -0.31vw 0;      /* 알약 모서리에 살짝 겹친다 */
+  margin: 0 -0.42vw -0.52vw 0;      /* 시안대로 알약 왼쪽 위에 걸친다 */
   color: var(--badge);
 }
 
@@ -258,10 +258,16 @@
 }
 .case-tabs__list {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   gap: 16px;
+  /* 접히면 탭 바가 80 을 넘어 섹션의 상단 여유(170)와 어긋난다.
+     탭이 많은 페이지(AI 6개)에서는 접는 대신 가로로 밀어 본다. */
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
 }
+.case-tabs__list::-webkit-scrollbar { display: none; }
+.case-tabs a { flex: 0 0 auto; }
 .case-tabs a {
   position: relative;
   display: inline-flex;
