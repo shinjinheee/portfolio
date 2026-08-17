@@ -188,8 +188,11 @@
 
         if (narrow) { sec.removeAttribute('data-band'); continue; }
 
-        var src = img.currentSrc || img.src;
-        if (!src) continue;                        // 아직 고르지 않았다
+        // currentSrc 가 빌 때 src 로 물러서면 안 된다 — src 는 PNG 대체본이라
+        // WebP 를 쓰는 브라우저에서 같은 그림을 두 벌 받게 된다.
+        // 아직 고르지 않았다면 load 때 다시 들어온다.
+        var src = img.currentSrc;
+        if (!src) continue;
         sec.style.setProperty('--shot', 'url("' + src + '")');
 
         // 지연 로딩된 이미지는 아직 크기가 0이므로 비율은 속성에서 얻는다
