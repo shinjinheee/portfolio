@@ -1079,3 +1079,84 @@
   .process { grid-template-columns: 1fr; gap: 48px; }
   .process__card { width: 100%; justify-self: stretch; }
 }
+
+/* ===========================================================
+   .improve — As-is / To-be 개선 비교 (디자인 토큰 8~10번)
+   시안: 카드 1600×533 (#282A2F) · 반쪽 800 · 가운데 화살표 48
+         라벨 51 / 칩 +27 · 비주얼은 반쪽 안에서 % 배치
+   =========================================================== */
+.case-section--improve { --sec-bg: #191f28; }
+.improve {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  aspect-ratio: 1600 / 533;
+  border-radius: 16px;
+  background: #282a2f;
+  overflow: hidden;
+}
+.improve__half { position: relative; }
+.improve__top {
+  position: absolute;
+  left: 0; right: 0;
+  top: 9.568%;                    /* 51 / 533 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 27px;
+}
+.improve__label {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 30.6px;
+  color: #a1a2a4;
+}
+.improve__half--to .improve__label { color: #65acf8; }
+.improve__pill {
+  padding: 9px 11px;
+  border-radius: 10.8px;
+  background: #372c31;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 18.9px;
+  letter-spacing: -0.01em;
+  color: #eb767e;
+  white-space: nowrap;
+}
+.improve__half--to .improve__pill { background: #2f3238; color: #cfd3d8; }
+.improve__shot {
+  position: absolute;
+  left: var(--x, 0); top: var(--y, 0);
+  width: var(--w, auto); height: var(--h, auto);
+  border-radius: 8px;
+  box-shadow: 6.9px 6.9px 13.7px rgb(0 0 0 / 10%);
+}
+.improve__shot--zoom { border: 2px solid #5b93ec; border-radius: 8px; box-shadow: 5.5px 5.5px 5.5px rgb(0 0 0 / 8%); }
+/* 라벨 → 비주얼 점선 */
+.improve__dash {
+  position: absolute;
+  left: 50%;
+  top: 27.4%;                     /* 146 / 533 */
+  width: 0;
+  height: 15.85%;                 /* 84.5 / 533 */
+  border-left: 2px dashed #4a4d53;
+}
+.improve__arrow {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px; height: 48px;
+  border-radius: 999px;
+  background: #3a3d43;
+  color: var(--white);
+}
+
+@media (max-width: 1279px) {
+  .improve { grid-template-columns: 1fr; aspect-ratio: auto; gap: 32px; padding: 32px 0; }
+  .improve__half { position: static; min-height: 420px; }
+  .improve__top { position: static; margin-bottom: 24px; }
+  .improve__arrow { display: none; }
+}
