@@ -179,6 +179,8 @@
 .ai-badge {
   position: absolute;
   height: auto;
+  /* 시안 그림자는 흰 바탕에 눌려 나오므로 걷어내고 코드로 다시 준다 */
+  filter: drop-shadow(0 3px 8px rgb(20 30 50 / 20%));
 }
 
 /* AI 에이전트 — 백오피스와 같은 반투명 흰 테두리.
