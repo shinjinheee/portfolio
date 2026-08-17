@@ -301,6 +301,18 @@
       owner.push(cur);
     }
 
+    // 섹션을 다 지나면 탭 바를 감춘다 — 더 가리킬 곳이 없는데
+    // main 안에 있어서 Prev/Next 위까지 따라붙는다.
+    // 화면 아래 절반을 잘라 관찰하면 Prev/Next 가 위쪽 절반에
+    // 들어설 때 켜지고, 다 지나가면 top 이 음수라 그대로 유지된다.
+    var tail = document.querySelector('.case-nav');
+    if (tail && 'IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) {
+        var e = es[es.length - 1];
+        nav.classList.toggle('is-past', e.isIntersecting || e.boundingClientRect.top < 0);
+      }, { rootMargin: '0px 0px -50% 0px' }).observe(tail);
+    }
+
     var active = null;
     function mark(found) {
       if (!found || found === active) return;

@@ -206,6 +206,18 @@
 }
 .case-tabs a[aria-current]::after { background: var(--ink-900); }
 
+/* 섹션을 다 지나면 탭 바는 가리킬 곳이 없다 — initCaseTabs 가 켠다 */
+.case-tabs {
+  transition: opacity .2s ease, visibility .2s;
+}
+.case-tabs.is-past {
+  visibility: hidden;
+  opacity: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .case-tabs { transition: none; }
+}
+
 /* ===========================================================
    본문 섹션 — 시안 1920×1028, 코멘트 지시로 100vh 고정
    탭 바(80)가 헤더(90) 아래 붙으므로 앵커 여유는 170
