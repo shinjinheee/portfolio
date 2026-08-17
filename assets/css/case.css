@@ -1162,3 +1162,53 @@
 }
 /* 10번 섹션은 라벨 블록이 36 에서 시작한다 (8·9번은 51) */
 .improve__top--tight { top: 6.754%; }
+
+/* ===========================================================
+   .output — 키워드 칩 + 연결 텍스트 4행 (디자인 토큰 11번)
+   시안: 행 76h · 행 간격 22 (138/236/334/432) · 가운데 정렬
+         칩 #25272C · 1px #3A3B3E · radius 16 · 패딩 12·16
+   =========================================================== */
+.case-section--output { --sec-bg: #191f28; }
+.output {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  margin-top: 100px;               /* 헤더 끝 202 → 첫 행 340 */
+}
+.output__row { display: flex; align-items: flex-start; gap: 20px; }
+.output__row b,
+.output__row span {
+  font-weight: 700;
+  font-size: 38px;
+  line-height: 52px;
+  letter-spacing: -0.01em;
+  opacity: 0.9;
+}
+.output__row b {
+  padding: 12px 16px;
+  border-radius: 16px;
+  background: #25272c;
+  /* 피그마 스트로크는 INSIDE — border 를 쓰면 행이 76 → 78 이 된다 */
+  box-shadow: inset 0 0 0 1px #3a3b3e, 10px 10px 20px rgb(0 0 0 / 10%);
+  color: var(--white);
+  white-space: nowrap;
+}
+.output__row span {
+  display: flex;
+  align-items: center;
+  height: 76px;
+  color: #aaa;
+  white-space: nowrap;
+}
+
+@media (max-width: 1279px) {
+  .output { margin-top: 56px; gap: 14px; }
+  .output__row { flex-wrap: wrap; justify-content: center; gap: 12px; }
+  .output__row b, .output__row span { font-size: 24px; line-height: 34px; }
+  .output__row span { height: auto; }
+}
+@media (max-width: 767px) {
+  .output__row b, .output__row span { font-size: 17px; line-height: 26px; }
+  .output__row b { padding: 8px 12px; border-radius: 12px; }
+}
