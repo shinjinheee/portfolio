@@ -164,6 +164,59 @@
   }
 
   /**
+   * 통 이미지 섹션의 여백 띠를 준비한다.
+   *
+   * 이미지는 contain 으로 들어가므로 화면 비율에 따라 좌우 또는 위아래 중
+   * 한쪽에만 여백이 생긴다. 어느 쪽인지 실측해 data-band 로 알려주면
+   * CSS 가 그 방향의 가장자리 픽셀을 늘려 채운다.
+   *
+   * 띠에 쓸 그림은 img.currentSrc — 브라우저가 실제로 고른 절대 URL이다.
+   * 커스텀 속성에 상대 경로를 적으면 어느 파일을 기준으로 풀지가
+   * 엔진마다 달라 경로가 깨진다.
+   */
+  function initShotBands() {
+    var secs = [].slice.call(document.querySelectorAll('.case-section--shot'));
+    if (!secs.length) return;
+
+    function place() {
+      var narrow = window.matchMedia('(max-width: 1023px)').matches;
+      for (var i = 0; i < secs.length; i++) {
+        var sec = secs[i];
+        var img = sec.querySelector('.case-shot');
+        var box = sec.querySelector('.case-section__inner');
+        if (!img || !box) continue;
+
+        if (narrow) { sec.removeAttribute('data-band'); continue; }
+
+        var src = img.currentSrc || img.src;
+        if (!src) continue;                        // 아직 고르지 않았다
+        sec.style.setProperty('--shot', 'url("' + src + '")');
+
+        // 지연 로딩된 이미지는 아직 크기가 0이므로 비율은 속성에서 얻는다
+        var iw = img.naturalWidth || parseFloat(img.getAttribute('width'));
+        var ih = img.naturalHeight || parseFloat(img.getAttribute('height'));
+        var b = box.getBoundingClientRect();
+        if (!iw || !ih || !b.height) continue;
+
+        var d = b.width / b.height - iw / ih;
+        if (Math.abs(d) < 0.002) sec.removeAttribute('data-band');
+        else sec.setAttribute('data-band', d > 0 ? 'x' : 'y');
+      }
+    }
+
+    // 지연 로딩된 그림은 화면에 들어올 때 도착하므로 그때 다시 잡는다
+    for (var i = 0; i < secs.length; i++) {
+      var img = secs[i].querySelector('.case-shot');
+      if (img && !img.complete) img.addEventListener('load', place);
+    }
+
+    place();
+    window.addEventListener('resize', place);
+    window.addEventListener('load', place);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(place);
+  }
+
+  /**
    * 케이스 섹션 탭 — 스크롤 위치에 따라 현재 섹션의 탭에 포커스를 옮긴다.
    *
    * 탭은 id 가 있는 섹션만 가리키고, id 없는 섹션은 바로 앞 탭에 속한다.
@@ -428,6 +481,7 @@
     initMarquee();
     initPixelSnap();
     initCaseFit();
+    initShotBands();
     initCaseTabs();
     initYearTabs();
     initModal();

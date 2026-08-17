@@ -273,10 +273,14 @@
 /* ===========================================================
    .case-section--shot — 섹션 본문을 시안 통 이미지로
    시안 본문 1920×948 을 헤더(90)+탭(80) 아래 영역에 통째로 맞춘다.
-   좌우에 남는 자리는 이미지 가장자리 색을 섹션 배경으로 깔아 가린다.
+
+   화면 비율이 이미지 비율(2.025)과 달라 남는 자리(레터박스)는
+   이미지 가장자리 픽셀을 그대로 늘려 채운다. 색을 추정해 칠하면
+   내용이 프레임 끝에 닿은 섹션(bo-2·3·5)에서 이음매가 드러난다.
    =========================================================== */
 .case-section--shot { padding: 170px 0 0; }
 .case-section--shot .case-section__inner {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -284,6 +288,8 @@
   transform: none !important;      /* 이미지는 자체적으로 맞춰지므로 축소 불필요 */
 }
 .case-shot {
+  position: relative;
+  z-index: 1;
   display: block;
   width: auto;
   height: auto;
@@ -292,10 +298,49 @@
   object-fit: contain;
 }
 
+/* 여백 띠 — 배경을 1000배로 늘려 이미지의 끝 한 줄만 보이게 한다.
+   띠가 닿는 면이 곧 이미지의 그 끝 줄이므로 이음매가 생기지 않는다.
+   방향(x=좌우 / y=위아래)은 initShotBands 가 실측해 정한다. */
+.case-section--shot .case-section__inner::before,
+.case-section--shot .case-section__inner::after {
+  display: none;                   /* 방향이 정해지기 전에는 그리지 않는다 */
+  position: absolute;
+  z-index: 0;
+  background-image: var(--shot);
+  background-repeat: no-repeat;
+  content: "";
+}
+.case-section--shot[data-band] .case-section__inner::before,
+.case-section--shot[data-band] .case-section__inner::after { display: block; }
+
+[data-band="x"] .case-section__inner::before {
+  inset: 0 50% 0 0;
+  background-position: left center;
+  background-size: 100000% 100%;
+}
+[data-band="x"] .case-section__inner::after {
+  inset: 0 0 0 50%;
+  background-position: right center;
+  background-size: 100000% 100%;
+}
+[data-band="y"] .case-section__inner::before {
+  inset: 0 0 50% 0;
+  background-position: center top;
+  background-size: 100% 100000%;
+}
+[data-band="y"] .case-section__inner::after {
+  inset: 50% 0 0 0;
+  background-position: center bottom;
+  background-size: 100% 100000%;
+}
+
 @media (max-width: 1023px) {
+  /* 좁은 화면에선 이미지가 폭을 꽉 채워 여백 자체가 없다 */
   .case-section--shot { padding: 120px 0 96px; }
   .case-section--shot .case-section__inner { height: auto; }
   .case-shot { width: 100%; max-height: none; }
+  .case-section--shot .case-section__inner::before,
+  .case-section--shot .case-section__inner::after { display: none !important; }
 }
 
 /* ===========================================================
@@ -318,15 +363,20 @@
   /* 히어로도 한 화면에 담는다.
      헤더(90)는 sticky 로 늘 떠 있으므로 그만큼을 뺀 높이가 실제 첫 화면이고,
      scroll-margin 으로 스냅 지점을 문서 맨 위(0)로 되돌려 로드 직후 튀지 않게 한다.
-     여백은 시안 939 기준 비율(202/120)을 뷰포트 높이로 옮긴 값이다. */
+     내용은 그 영역의 세로 한가운데 놓는다. */
   .case-hero {
+    display: flex;
+    align-items: center;
     height: calc(100vh - 90px);
     min-height: 0;
-    padding-top: 21.5vh;
-    padding-bottom: 12.8vh;
+    padding-top: 40px;
+    padding-bottom: 40px;
     scroll-margin-top: 90px;
   }
-  .case-hero__inner { transform-origin: left top; }
+  .case-hero__inner {
+    width: 100%;
+    transform-origin: left center;   /* 줄여도 세로 가운데를 유지한다 */
+  }
 
   /* 푸터로 이어지는 꼬리 구간은 멈춤을 강제하지 않는다 */
   .case-nav,
