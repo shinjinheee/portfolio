@@ -390,6 +390,7 @@
      지점이 없는 구간은 도달할 수 없고, 뷰포트보다 큰 구간은 아랫부분이 잘린다. */
   .case-hero,
   .case-section,
+  .case-nav,
   .site-footer {
     scroll-snap-align: start;
     scroll-snap-stop: always;
@@ -413,36 +414,14 @@
     transform-origin: left center;   /* 줄여도 세로 가운데를 유지한다 */
   }
 
-  /* 푸터는 마지막 정지 지점이라 멈춤을 강제하지 않는다.
-     Prev/Next 는 마지막 섹션과 한 화면을 쓰므로 따로 세우지 않는다 —
-     마지막 섹션 다음 지점이 곧 푸터라 사이에 빈 구간도 없다. */
+  /* 꼬리 구간은 멈춤을 강제하지 않는다 */
+  .case-nav,
   .site-footer { scroll-snap-stop: normal; }
 
   /* 헤더(90)+탭(80)이 위에 떠 있으므로 그만큼 내려서 멈춘다.
      앵커 이동과 Tab 포커스도 같은 자리를 쓰므로 라벨이 가리지 않는다. */
   .case-nav { scroll-margin-top: 170px; }
 
-  /* 마지막 섹션은 100vh 를 풀고 Prev/Next 와 한 화면을 나눠 쓴다.
-     — 케이스를 다 본 시점에 다음 글로 넘어갈 길이 같이 보여야 한다.
-     그림 높이는 헤더+탭(170)과 Prev/Next(--nav-h)를 뺀 만큼으로 묶는다.
-     Prev/Next 가 차지하는 만큼 그림이 작아지므로, 링크 두 줄(84)에
-     숨 쉴 자리만 남기고 시안 361 → 130 으로 줄인다. 이 자리에서만이다. */
-  :root { --nav-h: 130px; }        /* 두 규칙이 같은 값을 보게 최상위에 둔다 */
-  .case-nav { min-height: var(--nav-h); }
-  .case-section--last {
-    height: auto;
-    padding-bottom: 0;
-  }
-  .case-section--last .case-section__inner { height: auto; }
-  .case-section--last .case-shot {
-    /* 높이를 먼저 정하고 폭을 비율로 얻는다 — 그림이 늦게 와도
-       자리가 미리 잡혀 있어야 아래 Prev/Next 가 밀리지 않는다 */
-    width: auto;
-    height: calc(100vh - 170px - var(--nav-h, 361px));
-    max-width: 100%;
-    max-height: none;
-    aspect-ratio: 1920 / 948;
-  }
 
   /* 푸터가 화면보다 짧으면 마지막 정지 위치에서 탭 바 밑단만
      헤더 아래에 조각으로 남는다 — 한 화면을 채워 아예 밀어낸다. */
