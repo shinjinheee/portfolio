@@ -195,6 +195,30 @@
   }
 
   /**
+   * 마지막 섹션을 지나면 한 화면씩 넘기는 스냅을 푼다.
+   *
+   * Prev/Next 와 푸터는 시안에서도 이어지는 구간이라 한 화면 단위로
+   * 끊어 보여줄 이유가 없다. Prev/Next 가 화면에 들어오는 순간부터
+   * 그냥 스크롤로 흐르게 두고, 다시 벗어나면 스냅을 건다.
+   */
+  function initSnapRelease() {
+    var root = document.documentElement;
+    var tail = document.querySelector('.case-nav');
+    if (!tail || !('IntersectionObserver' in window)) return;
+
+    var io = new IntersectionObserver(function (entries) {
+      var free = entries[entries.length - 1].isIntersecting
+        && !window.matchMedia('(max-width: 1023px)').matches;
+      root.style.scrollSnapType = free ? 'none' : '';
+    });
+    io.observe(tail);
+
+    window.addEventListener('resize', function () {
+      if (window.matchMedia('(max-width: 1023px)').matches) root.style.scrollSnapType = '';
+    });
+  }
+
+  /**
    * 통 이미지 섹션의 여백 띠를 준비한다.
    *
    * 이미지는 contain 으로 들어가므로 화면 비율에 따라 좌우 또는 위아래 중
@@ -516,6 +540,7 @@
     initPixelSnap();
     initCaseFit();
     initShotBands();
+    initSnapRelease();
     initCaseTabs();
     initYearTabs();
     initModal();
