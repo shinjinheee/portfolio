@@ -1,0 +1,20 @@
+<!doctype html><html><head><meta charset="utf-8"><title>band test</title>
+<style>
+  body{margin:0;background:#ff00ff}
+  .row{height:200px;display:flex}
+  .cell{flex:1;background-image:url(../assets/img/case/sec/dt-1.webp?v=85);background-repeat:no-repeat}
+  .s1  {background-size:100% 100%;      background-position:center top}
+  .s10 {background-size:100% 1000%;     background-position:center top}
+  .s100{background-size:100% 10000%;    background-position:center top}
+  .s1k {background-size:100% 100000%;   background-position:center top}
+  .s10k{background-size:100% 1000000%;  background-position:center top}
+  .x1k {background-size:100000% 100%;   background-position:left center}
+  h3{margin:4px;font:12px monospace;color:#fff;background:#000;display:inline-block}
+</style></head><body>
+<h3 id="l1">100% 100%</h3><div class="row"><div class="cell s1"></div></div>
+<h3>100% 1000%</h3><div class="row"><div class="cell s10"></div></div>
+<h3>100% 10000%</h3><div class="row"><div class="cell s100"></div></div>
+<h3>100% 100000% (실제 사용값)</h3><div class="row"><div class="cell s1k"></div></div>
+<h3>100% 1000000%</h3><div class="row"><div class="cell s10k"></div></div>
+<h3>100000% 100% (실제 사용값 x)</h3><div class="row"><div class="cell x1k"></div></div>
+</body></html>

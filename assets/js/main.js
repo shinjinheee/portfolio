@@ -139,7 +139,38 @@
     var inners = document.querySelectorAll('.case-section__inner, .case-hero__inner');
     if (!inners.length) return;
 
+    /*
+     * 히어로 내용을 눈에 보이는 대로 가운데 놓는다.
+     *
+     * 상자를 가운데 두면 제목 첫 줄의 리딩(줄높이 여유 + 어센트와 글자 윗선의
+     * 차이)만큼 위쪽 여백이 더 커 보인다. 아래는 칩의 배경 상자가 곧 끝이라
+     * 여유가 없다. 그 차이의 절반만큼 끌어올린다.
+     * align-items:center 는 마진 상자를 가운데 두므로 -리딩 이 절반 이동이 된다.
+     */
+    function trimLead() {
+      var inner = document.querySelector('.case-hero__inner');
+      var title = inner && inner.querySelector('.case-hero__title');
+      if (!title) return;
+
+      inner.style.marginTop = '';
+      if (window.matchMedia('(max-width: 1023px)').matches) return;
+
+      var cs = getComputedStyle(title);
+      var ctx = trimLead.ctx || (trimLead.ctx =
+        document.createElement('canvas').getContext('2d'));
+      ctx.font = cs.fontWeight + ' ' + cs.fontSize + ' ' + cs.fontFamily;
+
+      var m = ctx.measureText(title.textContent.trim());
+      if (!m.fontBoundingBoxAscent) return;          // 지원하지 않으면 그대로 둔다
+
+      var lh = parseFloat(cs.lineHeight);
+      var halfLead = (lh - (m.fontBoundingBoxAscent + m.fontBoundingBoxDescent)) / 2;
+      var lead = halfLead + (m.fontBoundingBoxAscent - m.actualBoundingBoxAscent);
+      if (lead > 0) inner.style.marginTop = (-lead).toFixed(1) + 'px';
+    }
+
     function fit() {
+      trimLead();
       // 모바일에서는 축소하지 않고 자연스럽게 흐르게 둔다
       if (window.matchMedia('(max-width: 1023px)').matches) {
         for (var j = 0; j < inners.length; j++) inners[j].style.transform = '';
