@@ -1278,3 +1278,31 @@
   .metrics__from, .metrics__to { font-size: 34px; }
   .metrics__row { gap: 16px; }
 }
+
+/* ===========================================================
+   .case-section--shot — 섹션 본문을 시안 통 이미지로
+   시안 본문 1920×948 을 헤더(90)+탭(80) 아래 영역에 통째로 맞춘다.
+   좌우에 남는 자리는 이미지 가장자리 색을 섹션 배경으로 깔아 가린다.
+   =========================================================== */
+.case-section--shot { padding: 170px 0 0; }
+.case-section--shot .case-section__inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  transform: none !important;      /* 이미지는 자체적으로 맞춰지므로 축소 불필요 */
+}
+.case-shot {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+@media (max-width: 1023px) {
+  .case-section--shot { padding: 120px 0 96px; }
+  .case-section--shot .case-section__inner { height: auto; }
+  .case-shot { width: 100%; max-height: none; }
+}
