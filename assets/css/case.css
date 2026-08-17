@@ -787,3 +787,82 @@
 @media (max-width: 1023px) {
   .pillars { flex-direction: column; gap: 40px; padding: 40px 24px; }
 }
+
+/* ===========================================================
+   .quotes — 팀 피드백 말풍선 + 배경 지표 (디자인 토큰 2번)
+   시안: 섹션 배경이 히어로와 같은 하늘색 그라디언트
+         말풍선 4개 가운데 정렬 · 72h · 간격 24 · 폭은 글자에 맞춘다
+         배경 지표 356.71px 그라디언트 텍스트, 하단에 깔린다
+   =========================================================== */
+.case-section--quotes {
+  --sec-bg: linear-gradient(180deg, #69b0f7 0%, #87d2f5 100%);
+  position: relative;
+  overflow: hidden;
+}
+/* 배경 지표 — 시안 y=663 에서 시작해 아래로 흐른다 */
+.quotes__bg {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 663px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 356.71px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  opacity: 0.9;
+  pointer-events: none;
+}
+.quotes__bg span {
+  background: linear-gradient(180deg, rgb(101 172 248 / 70%), rgb(136 211 245 / 70%));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.quotes {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  margin-top: 140px;              /* 헤더 끝 → 말풍선 시작 (시안 384) */
+}
+.quotes li {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+  border-radius: 16px;
+  background: #222429;
+  font-weight: 500;
+  font-size: 21px;
+  /* 말풍선 높이 72 = 패딩 40 + 배지 32. 글자 줄높이가 32 를 넘으면 커진다 */
+  line-height: 30px;
+  color: var(--white);
+}
+.quotes__who {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 16px;
+  border-radius: 1000px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+  color: #0f0f0f;
+}
+.quotes__who--pd { background: #4894f2; }
+.quotes__who--fe { background: #63b558; }
+
+@media (max-width: 1279px) {
+  .quotes__bg { font-size: 160px; top: auto; bottom: 0; }
+}
+@media (max-width: 767px) {
+  .quotes li { font-size: 16px; padding: 14px 16px; }
+  .quotes__bg { font-size: 90px; }
+}
