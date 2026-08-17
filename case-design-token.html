@@ -14,11 +14,11 @@
   <meta property="og:image" content="">
   <meta name="theme-color" content="#ffffff">
 
-  <link rel="stylesheet" href="./assets/css/reset.css?v=60">
-  <link rel="stylesheet" href="./assets/css/tokens.css?v=60">
-  <link rel="stylesheet" href="./assets/css/layout.css?v=60">
-  <link rel="stylesheet" href="./assets/css/components.css?v=60">
-  <link rel="stylesheet" href="./assets/css/case.css?v=60">
+  <link rel="stylesheet" href="./assets/css/reset.css?v=63">
+  <link rel="stylesheet" href="./assets/css/tokens.css?v=63">
+  <link rel="stylesheet" href="./assets/css/layout.css?v=63">
+  <link rel="stylesheet" href="./assets/css/components.css?v=63">
+  <link rel="stylesheet" href="./assets/css/case.css?v=63">
 </head>
 
 <body>
@@ -84,13 +84,13 @@
       </div>
 
       <div class="case-hero__shot case-hero__shot--a" aria-hidden="true">
-        <picture><source srcset="./assets/img/case/dt-hero-a.webp?v=60" type="image/webp"><img
-          src="./assets/img/case/dt-hero-a.png?v=60" alt="" loading="lazy"
+        <picture><source srcset="./assets/img/case/dt-hero-a.webp?v=63" type="image/webp"><img
+          src="./assets/img/case/dt-hero-a.png?v=63" alt="" loading="lazy"
           style="--ix:-1.71%;--iy:0.16%;--iw:155.69%;--ih:137.74%"></picture>
       </div>
       <div class="case-hero__shot case-hero__shot--b" aria-hidden="true">
-        <picture><source srcset="./assets/img/case/dt-hero-b.webp?v=60" type="image/webp"><img
-          src="./assets/img/case/dt-hero-b.png?v=60" alt="" loading="lazy"
+        <picture><source srcset="./assets/img/case/dt-hero-b.webp?v=63" type="image/webp"><img
+          src="./assets/img/case/dt-hero-b.png?v=63" alt="" loading="lazy"
           style="--ix:0;--iy:0;--iw:100.6%;--ih:133.3%"></picture>
       </div>
     </section>
@@ -167,8 +167,8 @@
                 <p class="split__desc">단순한 UI 상태값도 FE와의 합의 부재로 매번 전달해야 했고,<br>그 과정에서 발생하는 비용이 소모적이라고 느꼈어요.</p>
               </div>
               <div class="split__card">
-                <picture><source srcset="./assets/img/case/dt-slack.webp?v=60" type="image/webp"><img
-                  src="./assets/img/case/dt-slack.png?v=60" alt="스타일 값을 매번 되묻는 팀 대화" loading="lazy"
+                <picture><source srcset="./assets/img/case/dt-slack.webp?v=63" type="image/webp"><img
+                  src="./assets/img/case/dt-slack.png?v=63" alt="스타일 값을 매번 되묻는 팀 대화" loading="lazy"
                   width="562" height="322" style="--x:9.97%;--y:15.15%;--w:80.06%;--h:69.7%"></picture>
               </div>
             </div>
@@ -182,8 +182,8 @@
                 <p class="split__desc">반복되는 수치 재확인은 소통 문제가 아니었어요.<br>공유 가능한 기준 자체가 없었고, 토큰 구조로 기준을 만들면 이 반복을 없앨 수 있다고 판단했어요.</p>
               </div>
               <div class="split__card">
-                <picture><source srcset="./assets/img/case/dt-lib.webp?v=60" type="image/webp"><img
-                  src="./assets/img/case/dt-lib.png?v=60" alt="네이밍 규칙이 없는 컬러 라이브러리" loading="lazy"
+                <picture><source srcset="./assets/img/case/dt-lib.webp?v=63" type="image/webp"><img
+                  src="./assets/img/case/dt-lib.png?v=63" alt="네이밍 규칙이 없는 컬러 라이브러리" loading="lazy"
                   width="250" height="348" style="--x:32.09%;--y:12.34%;--w:35.82%;--h:75.32%"></picture>
                 <p class="split__tip">네이밍 규칙 없음 · 용도 불명확</p>
               </div>
@@ -192,13 +192,60 @@
       </div>
     </section>
 
-    <section class="case-section" id="approach" aria-labelledby="d11-s4-t">
+    <section class="case-section case-section--layers" id="approach" aria-labelledby="d11-s4-t">
       <div class="case-section__inner">
           <div class="case-head">
             <p class="case-head__eyebrow">Approach</p>
             <h2 class="case-head__title" id="d11-s4-t">공유 가능한 기준이 없던 세 레이어의 구조화</h2>
           </div>
-          <!-- TODO 본문 다이어그램 -->
+          <div class="layers">
+            <div class="layers__col layers__col--1">
+              <div class="layers__block">
+                <div class="layers__head">
+                  <span class="layers__no">1</span>
+                  <span class="layers__ttl">스타일 값 기준 부재</span>
+                  <span class="layers__sub">Figma Variables 관리</span>
+                </div>
+                <div class="layers__chips">
+                  <span>Grid</span>
+                  <span>Spacing</span>
+                  <span>Font</span>
+                  <span>Effect</span>
+                  <span>Border Radius</span>
+                </div>
+              </div>
+            </div>
+            <div class="layers__rule" aria-hidden="true"></div>
+            <div class="layers__col layers__col--2">
+              <div class="layers__block">
+                <div class="layers__head">
+                  <span class="layers__no">2</span>
+                  <span class="layers__ttl">Color Token</span>
+                  <span class="layers__sub">Semantic Token 즉시 참조</span>
+                </div>
+                <div class="layers__chips">
+                  <span>Base Color</span>
+                  <span>Semantic Color</span>
+                  <span>Variables 구축</span>
+                </div>
+              </div>
+            </div>
+            <div class="layers__rule" aria-hidden="true"></div>
+            <div class="layers__col layers__col--3">
+              <div class="layers__block">
+                <div class="layers__head">
+                  <span class="layers__no">3</span>
+                  <span class="layers__ttl">문서화</span>
+                  <span class="layers__sub">공유 가능한 명세로 산출</span>
+                </div>
+                <div class="layers__chips">
+                  <span>Component 명세</span>
+                  <span>토큰 명세 전달</span>
+                  <span>Design.md 출력</span>
+                </div>
+              </div>
+            </div>
+          </div>
       </div>
     </section>
 
@@ -331,7 +378,7 @@
     </div>
   </footer>
 
-  <script src="./assets/js/main.js?v=60"></script>
+  <script src="./assets/js/main.js?v=63"></script>
 </body>
 
 </html>
