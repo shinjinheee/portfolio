@@ -866,3 +866,61 @@
   .quotes li { font-size: 16px; padding: 14px 16px; }
   .quotes__bg { font-size: 90px; }
 }
+
+/* ===========================================================
+   .split — Painpoint / Opportunity 2단 (디자인 토큰 3번)
+   시안: 좌 (160,100) 702×748 · 구분선 963 · 우 (1062,100) 698×748
+         헤더 197 + 89 + 카드 462
+   =========================================================== */
+.case-section--split { --sec-bg: #191f28; }
+.split {
+  display: grid;
+  grid-template-columns: 702px 1fr 698px;
+  align-items: start;
+}
+.split__rule { justify-self: center; width: 2px; height: 748px; background: #22272f; }
+.split__head { display: flex; flex-direction: column; gap: 18px; }
+.split__eyebrow { font-weight: 500; font-size: 21px; }
+.split__eyebrow--pain { color: #f54656; }
+.split__eyebrow--opp  { color: #65acf8; }
+.split__title {
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 42px;
+  color: var(--white);
+}
+.split__desc { font-size: 16px; line-height: 26px; color: var(--ink-tab); }
+/* 카드 배경·라운드는 CSS, 이미지는 목업만 */
+.split__card {
+  position: relative;
+  margin-top: 89px;                /* 헤더 197 → 카드 286 */
+  aspect-ratio: 702 / 462;
+  border-radius: 16px;
+  background: #282a2f;
+  overflow: hidden;
+}
+.split__card img {
+  position: absolute;
+  left: var(--x, 0); top: var(--y, 0);
+  width: var(--w, 100%); height: var(--h, 100%);
+}
+.split__tip {
+  position: absolute;
+  left: 63.47%;                    /* 443 / 698 */
+  top: 45.67%;                     /* 211 / 462 */
+  padding: 8px 14px;
+  border-radius: 1000px;
+  background: #5b93ec;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 26px;
+  color: var(--white);
+  white-space: nowrap;
+}
+
+@media (max-width: 1279px) {
+  .split { grid-template-columns: 1fr; gap: 56px; }
+  .split__rule { display: none; }
+  .split__card { margin-top: 32px; }
+  .split__tip { position: static; display: inline-block; margin-top: 12px; }
+}

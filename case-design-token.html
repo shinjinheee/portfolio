@@ -14,11 +14,11 @@
   <meta property="og:image" content="">
   <meta name="theme-color" content="#ffffff">
 
-  <link rel="stylesheet" href="./assets/css/reset.css?v=59">
-  <link rel="stylesheet" href="./assets/css/tokens.css?v=59">
-  <link rel="stylesheet" href="./assets/css/layout.css?v=59">
-  <link rel="stylesheet" href="./assets/css/components.css?v=59">
-  <link rel="stylesheet" href="./assets/css/case.css?v=59">
+  <link rel="stylesheet" href="./assets/css/reset.css?v=60">
+  <link rel="stylesheet" href="./assets/css/tokens.css?v=60">
+  <link rel="stylesheet" href="./assets/css/layout.css?v=60">
+  <link rel="stylesheet" href="./assets/css/components.css?v=60">
+  <link rel="stylesheet" href="./assets/css/case.css?v=60">
 </head>
 
 <body>
@@ -84,13 +84,13 @@
       </div>
 
       <div class="case-hero__shot case-hero__shot--a" aria-hidden="true">
-        <picture><source srcset="./assets/img/case/dt-hero-a.webp?v=59" type="image/webp"><img
-          src="./assets/img/case/dt-hero-a.png?v=59" alt="" loading="lazy"
+        <picture><source srcset="./assets/img/case/dt-hero-a.webp?v=60" type="image/webp"><img
+          src="./assets/img/case/dt-hero-a.png?v=60" alt="" loading="lazy"
           style="--ix:-1.71%;--iy:0.16%;--iw:155.69%;--ih:137.74%"></picture>
       </div>
       <div class="case-hero__shot case-hero__shot--b" aria-hidden="true">
-        <picture><source srcset="./assets/img/case/dt-hero-b.webp?v=59" type="image/webp"><img
-          src="./assets/img/case/dt-hero-b.png?v=59" alt="" loading="lazy"
+        <picture><source srcset="./assets/img/case/dt-hero-b.webp?v=60" type="image/webp"><img
+          src="./assets/img/case/dt-hero-b.png?v=60" alt="" loading="lazy"
           style="--ix:0;--iy:0;--iw:100.6%;--ih:133.3%"></picture>
       </div>
     </section>
@@ -157,9 +157,38 @@
       </div>
     </section>
 
-    <section class="case-section" aria-label="팀 피드백 목업">
+    <section class="case-section case-section--split" aria-label="Painpoint / Opportunity">
       <div class="case-section__inner">
-          <!-- TODO 목업 전용 섹션 -->
+          <div class="split">
+            <div>
+              <div class="split__head">
+                <p class="split__eyebrow split__eyebrow--pain">Painpoint</p>
+                <h3 class="split__title">단순한 UI 작업에도<br>소모되는 디자이너 리소스</h3>
+                <p class="split__desc">단순한 UI 상태값도 FE와의 합의 부재로 매번 전달해야 했고,<br>그 과정에서 발생하는 비용이 소모적이라고 느꼈어요.</p>
+              </div>
+              <div class="split__card">
+                <picture><source srcset="./assets/img/case/dt-slack.webp?v=60" type="image/webp"><img
+                  src="./assets/img/case/dt-slack.png?v=60" alt="스타일 값을 매번 되묻는 팀 대화" loading="lazy"
+                  width="562" height="322" style="--x:9.97%;--y:15.15%;--w:80.06%;--h:69.7%"></picture>
+              </div>
+            </div>
+
+            <div class="split__rule" aria-hidden="true"></div>
+
+            <div>
+              <div class="split__head">
+                <p class="split__eyebrow split__eyebrow--opp">Opportunity</p>
+                <h3 class="split__title">전달 방식이 아니라,<br>전달하지 않아도 되는 구조의 부재</h3>
+                <p class="split__desc">반복되는 수치 재확인은 소통 문제가 아니었어요.<br>공유 가능한 기준 자체가 없었고, 토큰 구조로 기준을 만들면 이 반복을 없앨 수 있다고 판단했어요.</p>
+              </div>
+              <div class="split__card">
+                <picture><source srcset="./assets/img/case/dt-lib.webp?v=60" type="image/webp"><img
+                  src="./assets/img/case/dt-lib.png?v=60" alt="네이밍 규칙이 없는 컬러 라이브러리" loading="lazy"
+                  width="250" height="348" style="--x:32.09%;--y:12.34%;--w:35.82%;--h:75.32%"></picture>
+                <p class="split__tip">네이밍 규칙 없음 · 용도 불명확</p>
+              </div>
+            </div>
+          </div>
       </div>
     </section>
 
@@ -302,7 +331,7 @@
     </div>
   </footer>
 
-  <script src="./assets/js/main.js?v=59"></script>
+  <script src="./assets/js/main.js?v=60"></script>
 </body>
 
 </html>
