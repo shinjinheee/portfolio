@@ -173,43 +173,12 @@
   background: radial-gradient(closest-side, #d2e6ef, rgb(210 230 239 / 0%));
 }
 
-/* AI 에이전트 히어로 — 협업 커서 모양 배지.
-   시안 알약 40 높이 / 글자 20 / 커서 24×30. 무대(1920 기준) 안에 놓이므로
-   가로는 vw, 세로는 %로 두면 화면이 커져도 비율이 유지된다. */
+/* AI 에이전트 히어로 — 협업 커서 배지.
+   커서 실루엣을 코드로 흉내내면 시안과 어긋나서 시안 이미지를 그대로 얹는다.
+   그림에는 그림자가 포함돼 있어 노드 좌표에서 9 씩 당겨 놓는다. */
 .ai-badge {
   position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 3.834%;                   /* 36 / 939 — 시안 실측 */
-  padding-inline: 1.042vw;          /* 20 / 1920 */
-  border-radius: 999px;
-  background: var(--badge);
-  font-weight: 700;
-  font-size: 0.729vw;               /* 14 / 1920 — 시안 알약 폭에서 역산 */
-  line-height: 1;
-  color: var(--white);
-  white-space: nowrap;
-}
-.ai-badge__cursor {
-  position: absolute;
-  right: 100%;
-  bottom: 100%;
-  width: 1.354vw;                   /* 26 / 1920 */
-  height: 1.563vw;                  /* 30 / 1920 */
-  margin: 0 -0.42vw -0.52vw 0;      /* 시안대로 알약 왼쪽 위에 걸친다 */
-  color: var(--badge);
-}
-
-/* 골프 — 시안 966,0 / 834×939 를 그대로 얹는다.
-   배경(#F7FAF8)이 그림에 들어 있어 테두리를 따로 그리지 않는다. */
-.case-hero__panel--golf {
-  left: 50.3125%;               /*  966 / 1920 */
-  top: 0;
-  width: 43.4375%;              /*  834 / 1920 */
-  padding: 0;
-  border-radius: 0;
-  background: none;
+  height: auto;
 }
 
 /* AI 에이전트 — 백오피스와 같은 반투명 흰 테두리.
