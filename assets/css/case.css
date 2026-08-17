@@ -33,6 +33,15 @@
   --hero-chip-bg: #ebf1f1;
   --hero-chip-fg: #485660;
 }
+/* 골프 그룹 라운드 — 아주 옅은 초록빛 배경 */
+.case-hero--golf {
+  background: #f7faf8;
+  --hero-title: rgb(31 39 44 / 90%);
+  --hero-label: #2c373e;
+  --hero-text:  #485660;
+  --hero-chip-bg: var(--white);
+  --hero-chip-fg: #485660;
+}
 /* 백오피스 — 어두운 그라디언트 */
 .case-hero--bo {
   background: linear-gradient(180deg, #101b21 0%, #2c2d49 100%);
@@ -190,6 +199,17 @@
   height: 1.563vw;                  /* 30 / 1920 */
   margin: 0 -0.31vw -0.31vw 0;      /* 알약 모서리에 살짝 겹친다 */
   color: var(--badge);
+}
+
+/* 골프 — 시안 966,0 / 834×939 를 그대로 얹는다.
+   배경(#F7FAF8)이 그림에 들어 있어 테두리를 따로 그리지 않는다. */
+.case-hero__panel--golf {
+  left: 50.3125%;               /*  966 / 1920 */
+  top: 0;
+  width: 43.4375%;              /*  834 / 1920 */
+  padding: 0;
+  border-radius: 0;
+  background: none;
 }
 
 /* AI 에이전트 — 백오피스와 같은 반투명 흰 테두리.

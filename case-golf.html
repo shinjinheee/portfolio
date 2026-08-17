@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>골프 그룹 라운드 | 신진희 포트폴리오</title>
+  <meta name="description" content="골프장 탐색부터 정산까지 하나의 흐름으로 잇고, 모든 선택을 1인당 총액이라는 한 축으로 환산한 그룹 예약 경험 설계.">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="골프 그룹 라운드 · 신진희 UI/UX 디자이너">
+  <meta property="og:description" content="골프장 탐색부터 정산까지 하나의 흐름으로 잇고, 모든 선택을 1인당 총액이라는 한 축으로 환산한 그룹 예약 경험 설계.">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+  <meta name="theme-color" content="#ffffff">
+
+  <link rel="stylesheet" href="./assets/css/reset.css?v=108">
+  <link rel="stylesheet" href="./assets/css/tokens.css?v=108">
+  <link rel="stylesheet" href="./assets/css/layout.css?v=108">
+  <link rel="stylesheet" href="./assets/css/components.css?v=108">
+  <link rel="stylesheet" href="./assets/css/case.css?v=108">
+</head>
+
+<body>
+  <a href="#main" class="sr-only">본문 바로가기</a>
+
+  <header class="site-header" data-header>
+    <div class="container site-header__inner">
+      <a href="./index.html" class="site-header__logo" aria-label="SHINJINHEE 홈">
+        <img src="./assets/img/logo.svg?v=4" alt="SHINJINHEE" width="193" height="24">
+      </a>
+
+      <nav class="gnb" aria-label="주요 메뉴">
+        <a href="./work.html" aria-current="page">Work</a>
+        <a href="./archive.html">Archive</a>
+        <a href="./about.html">About</a>
+        <a href="mailto:jinhee950617@gmail.com">Contact</a>
+      </nav>
+
+      <a href="./docs/portfolio.pdf" class="btn btn--dark btn--w173" download>
+        포트폴리오 다운로드
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <g stroke="currentColor" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 11.3333V2" />
+            <path d="M4 7.33333L8 11.3333L12 7.33333" />
+            <path d="M12.6667 14H3.33333" />
+          </g>
+        </svg>
+      </a>
+
+      <button type="button" class="nav-toggle" data-nav-toggle aria-expanded="false" aria-label="메뉴 열기">
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main" style="--sec-accent:#2f9e5e">
+    <!-- ===================== 히어로 ===================== -->
+    <section class="case-hero case-hero--golf" aria-labelledby="case-title">
+      <div class="case-hero__inner">
+        <h1 class="case-hero__title" id="case-title">골프 그룹 라운드<br>탐색·예약 경험 설계</h1>
+        <div class="case-hero__meta">
+          <div class="case-hero__block">
+            <p class="case-hero__label">목표</p>
+            <p class="case-hero__value">골프장 탐색부터 정산까지 하나의 흐름으로 이어지는 예약 경험 설계</p>
+          </div>
+          <div class="case-hero__block">
+            <p class="case-hero__label">결과</p>
+            <ul class="case-hero__list">
+              <li>탐색 → 예약 → 정산 전 구간 9개 화면 설계</li>
+              <li>‘1인당 총액’ 단일 가격 기준으로 전 화면 연결</li>
+              <li>동반자 초대·분할 결제·정산 현황 보드 설계</li>
+              <li>총무 1인의 부담을 그룹 각자의 셀프 확인으로 분산</li>
+            </ul>
+          </div>
+          <div class="case-hero__block">
+            <p class="case-hero__label">키워드</p>
+            <div class="case-hero__tags">
+              <span class="case-chip">개인 스터디</span>
+              <span class="case-chip">그룹 예약</span>
+              <span class="case-chip">1/N 정산</span>
+              <span class="case-chip">1인당 총액</span>
+              <span class="case-chip">LLM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-hero__stage" aria-hidden="true">
+        <div class="case-hero__panel case-hero__panel--golf">
+          <picture><source srcset="./assets/img/case/golf-hero.webp?v=108" type="image/webp"><img
+            src="./assets/img/case/golf-hero.png?v=108" alt="" loading="eager" fetchpriority="high"
+            width="834" height="939"></picture>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 섹션 탭 ===================== -->
+    <nav class="case-tabs" aria-label="섹션 바로가기" data-case-tabs>
+      <div class="container">
+        <div class="case-tabs__list">
+          <a href="#background" aria-current="true">배경</a>
+          <a href="#problem">문제 정의</a>
+          <a href="#hypothesis">가설</a>
+          <a href="#solution">문제 해결</a>
+          <a href="#result">결과</a>
+          <a href="#retro">회고</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ===================== 본문 섹션 ===================== -->
+    <section class="case-section case-section--shot" id="background" aria-labelledby="d13-s1-t" style="--sec-bg:#FFFFFF">
+      <div class="case-section__inner">
+        <h2 class="sr-only" id="d13-s1-t">배경 — 골프는 같이 치는데, 예약은 혼자 하고 있었어요.</h2>
+        <picture><source srcset="./assets/img/case/sec/golf-1.webp?v=108" type="image/webp"><img
+          class="case-shot" src="./assets/img/case/sec/golf-1.png?v=108"
+          alt="배경 — 골프는 같이 치는데, 예약은 혼자 하고 있었어요." loading="lazy" width="1920" height="948"></picture>
+      </div>
+    </section>
+
+    <section class="case-section case-section--shot" id="problem" aria-labelledby="d13-s2-t" style="--sec-bg:#FFFFFF">
+      <div class="case-section__inner">
+        <h2 class="sr-only" id="d13-s2-t">문제 정의 — 문제는 예약이 아니라, 함께하는 사람들의 과정이 연결되지 않는다는 것</h2>
+        <picture><source srcset="./assets/img/case/sec/golf-2.webp?v=108" type="image/webp"><img
+          class="case-shot" src="./assets/img/case/sec/golf-2.png?v=108"
+          alt="문제 정의 — 문제는 예약이 아니라, 함께하는 사람들의 과정이 연결되지 않는다는 것" loading="lazy" width="1920" height="948"></picture>
+      </div>
+    </section>
+
+    <section class="case-section case-section--shot" id="hypothesis" aria-labelledby="d13-s3-t" style="--sec-bg:#FFFFFF">
+      <div class="case-section__inner">
+        <h2 class="sr-only" id="d13-s3-t">가설 — 그룹 예약을 바꾸기 위한 세 가지 가설</h2>
+        <picture><source srcset="./assets/img/case/sec/golf-3.webp?v=108" type="image/webp"><img
+          class="case-shot" src="./assets/img/case/sec/golf-3.png?v=108"
+          alt="가설 — 그룹 예약을 바꾸기 위한 세 가지 가설" loading="lazy" width="1920" height="948"></picture>
+      </div>
+    </section>
+
+    <section class="case-section case-section--shot" id="solution" aria-labelledby="d13-s4-t" style="--sec-bg:#FFFFFF">
+      <div class="case-section__inner">
+        <h2 class="sr-only" id="d13-s4-t">문제 해결 — 세 가지 문제를 하나의 예약 경험으로 풀었습니다</h2>
+        <picture><source srcset="./assets/img/case/sec/golf-4.webp?v=108" type="image/webp"><img
+          class="case-shot" src="./assets/img/case/sec/golf-4.png?v=108"
+          alt="문제 해결 — 세 가지 문제를 하나의 예약 경험으로 풀었습니다" loading="lazy" width="1920" height="948"></picture>
+      </div>
+    </section>
+
+    <section class="case-section case-section--shot" aria-labelledby="d13-s5-t" style="--sec-bg:#FFFFFF">
+      <div class="case-section__inner">
+        <h2 class="sr-only" id="d13-s5-t">문제 해결 — 선택한 조건이 결과까지 이어지도록 했어요</h2>
+        <picture><source srcset="./assets/img/case/sec/golf-5.webp?v=108" type="image/webp"><img
+          class="case-shot" src="./assets/img/case/sec/golf-5.png?v=108"
+          alt="문제 해결 — 선택한 조건이 결과까지 이어지도록 했어요" loading="lazy" width="1920" height="948"></picture>
+      </div>
+    </section>
+
+    <section class="case-section case-section--shot" aria-labelledby="d13-s6-t" style="--sec-bg:#FFFFFF">
+      <div class="case-section__inner">
+        <h2 class="sr-only" id="d13-s6-t">문제 해결 — 어디서 봐도 내가 낼 금액은 같아요</h2>
+        <picture><source srcset="./assets/img/case/sec/golf-6.webp?v=108" type="image/webp"><img
+          class="case-shot" src="./assets/img/case/sec/golf-6.png?v=108"
+          alt="문제 해결 — 어디서 봐도 내가 낼 금액은 같아요" loading="lazy" width="1920" height="948"></picture>
+      </div>
+    </section>
+
+    <section class="case-section case-section--shot" aria-labelledby="d13-s7-t" style="--sec-bg:#FFFFFF">
+      <div class="case-section__inner">
+        <h2 class="sr-only" id="d13-s7-t">문제 해결 — 고를 때마다 1인당 가격을 다시 계산해요</h2>
+        <picture><source srcset="./assets/img/case/sec/golf-7.webp?v=108" type="image/webp"><img
+          class="case-shot" src="./assets/img/case/sec/golf-7.png?v=108"
+          alt="문제 해결 — 고를 때마다 1인당 가격을 다시 계산해요" loading="lazy" width="1920" height="948"></picture>
+      </div>
+    </section>
+
+    <section class="case-section case-section--shot" aria-labelledby="d13-s8-t" style="--sec-bg:#FFFFFF">
+      <div class="case-section__inner">
+        <h2 class="sr-only" id="d13-s8-t">문제 해결 — 예약이 끝나면 정산도 바로 이어져요</h2>
+        <picture><source srcset="./assets/img/case/sec/golf-8.webp?v=108" type="image/webp"><img
+          class="case-shot" src="./assets/img/case/sec/golf-8.png?v=108"
+          alt="문제 해결 — 예약이 끝나면 정산도 바로 이어져요" loading="lazy" width="1920" height="948"></picture>
+      </div>
+    </section>
+
+    <section class="case-section case-section--shot" aria-labelledby="d13-s9-t" style="--sec-bg:#FFFFFF">
+      <div class="case-section__inner">
+        <h2 class="sr-only" id="d13-s9-t">문제 해결 — 예약 전부터 우리 그룹에 맞는 선택을 지원했어요</h2>
+        <picture><source srcset="./assets/img/case/sec/golf-9.webp?v=108" type="image/webp"><img
+          class="case-shot" src="./assets/img/case/sec/golf-9.png?v=108"
+          alt="문제 해결 — 예약 전부터 우리 그룹에 맞는 선택을 지원했어요" loading="lazy" width="1920" height="948"></picture>
+      </div>
+    </section>
+
+    <section class="case-section case-section--shot" id="result" aria-labelledby="d13-s10-t" style="--sec-bg:#FFFFFF">
+      <div class="case-section__inner">
+        <h2 class="sr-only" id="d13-s10-t">결과 — 설계한 경험이 실제 행동으로 이어지는지 확인했어요</h2>
+        <picture><source srcset="./assets/img/case/sec/golf-10.webp?v=108" type="image/webp"><img
+          class="case-shot" src="./assets/img/case/sec/golf-10.png?v=108"
+          alt="결과 — 설계한 경험이 실제 행동으로 이어지는지 확인했어요" loading="lazy" width="1920" height="948"></picture>
+      </div>
+    </section>
+
+    <section class="case-section case-section--shot" id="retro" aria-labelledby="d13-s11-t" style="--sec-bg:#121C24">
+      <div class="case-section__inner">
+        <h2 class="sr-only" id="d13-s11-t">회고 — 이 프로젝트가 남긴 세 가지 기준</h2>
+        <picture><source srcset="./assets/img/case/sec/golf-11.webp?v=108" type="image/webp"><img
+          class="case-shot" src="./assets/img/case/sec/golf-11.png?v=108"
+          alt="회고 — 이 프로젝트가 남긴 세 가지 기준" loading="lazy" width="1920" height="948"></picture>
+      </div>
+    </section>
+
+    <!-- ===================== 이전 / 다음 ===================== -->
+    <nav class="case-nav container" aria-label="다른 작업">
+      <a class="case-nav__item" href="./case-ai-agent.html">
+        <span class="case-nav__dir">Prev</span>
+        <span class="case-nav__title">AI 에이전트 단절된 작업 흐름 하나의 경험으로 재설계</span>
+      </a>
+      <a class="case-nav__item case-nav__item--next" href="./case-backoffice.html">
+        <span class="case-nav__dir">Next</span>
+        <span class="case-nav__title">엔터프라이즈 백오피스 환경 단순 반복 작업의 자율성 개선</span>
+      </a>
+    </nav>
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <div class="container">
+      <div class="site-footer__box">
+        <a href="#main" class="to-top" data-to-top>
+          <svg class="to-top__shape" viewBox="0 0 364 57" fill="none" aria-hidden="true" preserveAspectRatio="none">
+            <path
+              d="M364 57V36.85C364 16.5 353.25 0 339.99 0H47.34C40.52 0 34.02 4.45 29.46 12.25L14.78 37.38C10.91 43.99 5.65999 48.18 -0.0100098 49.31H349.32C354.85 49.31 359.94 52.18 363.99 57H364Z"
+              fill="currentColor" />
+          </svg>
+          <span class="to-top__label">
+            Back to the Top
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M7 11V3m0 0L3.5 6.5M7 3l3.5 3.5" stroke="currentColor" stroke-width="1.4"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
+        </a>
+
+        <h2 class="site-footer__title">
+          <a href="mailto:jinhee950617@gmail.com" class="link-display link-display--invert">Work with me</a>
+        </h2>
+
+        <div class="site-footer__bottom">
+          <p class="site-footer__links">
+            <a href="./docs/resume.pdf" download>경력기술서 다운로드</a>
+            <a href="./docs/portfolio.pdf" download>포트폴리오 다운로드</a>
+          </p>
+          <p><small>SHINJINHEE &copy; 2026</small></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./assets/js/main.js?v=108"></script>
+</body>
+
+</html>
