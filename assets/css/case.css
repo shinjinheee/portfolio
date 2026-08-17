@@ -1160,3 +1160,5 @@
   .improve__top { position: static; margin-bottom: 24px; }
   .improve__arrow { display: none; }
 }
+/* 10번 섹션은 라벨 블록이 36 에서 시작한다 (8·9번은 51) */
+.improve__top--tight { top: 6.754%; }
