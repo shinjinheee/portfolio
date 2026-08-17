@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>키오스크 음성 주문 | 신진희 포트폴리오</title>
+  <meta name="description" content="고령자·외국인이 화면을 읽지 않고 말로 주문·결제하도록 음성 프로세스를 설계하고, 리빙랩 사용성 테스트로 검증한 키오스크 개선 사례.">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="키오스크 음성 주문 · 신진희 UI/UX 디자이너">
+  <meta property="og:description" content="고령자·외국인이 화면을 읽지 않고 말로 주문·결제하도록 음성 프로세스를 설계하고, 리빙랩 사용성 테스트로 검증한 키오스크 개선 사례.">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+  <meta name="theme-color" content="#ffffff">
+
+  <link rel="stylesheet" href="./assets/css/reset.css?v=120">
+  <link rel="stylesheet" href="./assets/css/tokens.css?v=120">
+  <link rel="stylesheet" href="./assets/css/layout.css?v=120">
+  <link rel="stylesheet" href="./assets/css/components.css?v=120">
+  <link rel="stylesheet" href="./assets/css/case.css?v=120">
+</head>
+
+<body>
+  <a href="#main" class="sr-only">본문 바로가기</a>
+
+  <header class="site-header" data-header>
+    <div class="container site-header__inner">
+      <a href="./index.html" class="site-header__logo" aria-label="SHINJINHEE 홈">
+        <img src="./assets/img/logo.svg?v=4" alt="SHINJINHEE" width="193" height="24">
+      </a>
+
+      <nav class="gnb" aria-label="주요 메뉴">
+        <a href="./work.html" aria-current="page">Work</a>
+        <a href="./archive.html">Archive</a>
+        <a href="./about.html">About</a>
+        <a href="mailto:jinhee950617@gmail.com">Contact</a>
+      </nav>
+
+      <a href="./docs/portfolio.pdf" class="btn btn--dark btn--w173" download>
+        포트폴리오 다운로드
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <g stroke="currentColor" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 11.3333V2" />
+            <path d="M4 7.33333L8 11.3333L12 7.33333" />
+            <path d="M12.6667 14H3.33333" />
+          </g>
+        </svg>
+      </a>
+
+      <button type="button" class="nav-toggle" data-nav-toggle aria-expanded="false" aria-label="메뉴 열기">
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main" style="--sec-accent:#fe6705">
+    <!-- ===================== 히어로 ===================== -->
+    <section class="case-hero case-hero--kiosk" aria-labelledby="case-title">
+      <div class="case-hero__inner">
+        <h1 class="case-hero__title" id="case-title">키오스크의 터치 프로세스<br>사용성 개선</h1>
+        <div class="case-hero__meta">
+          <div class="case-hero__block">
+            <p class="case-hero__label">목표</p>
+            <p class="case-hero__value">STT-TTS-LLM을 통한 고령자와 외국인 사용성 개선</p>
+          </div>
+          <div class="case-hero__block">
+            <p class="case-hero__label">결과</p>
+            <ul class="case-hero__list">
+              <li>음성인식 오류율 CER 3.8% 이하</li>
+              <li>6B 경량화 sLLM 온디바이스</li>
+              <li>베트남 기업 MOU 5건</li>
+              <li>FIX 2024 바이어 상담 20건</li>
+            </ul>
+          </div>
+          <div class="case-hero__block">
+            <p class="case-hero__label">키워드</p>
+            <div class="case-hero__tags">
+              <span class="case-chip">STT</span>
+              <span class="case-chip">TTS</span>
+              <span class="case-chip">LLM</span>
+              <span class="case-chip">키오스크</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-hero__stage" aria-hidden="true">
+        <div class="case-hero__shot case-hero__shot--kiosk">
+          <picture><source srcset="./assets/img/case/kiosk-hero.webp?v=120" type="image/webp"><img
+            src="./assets/img/case/kiosk-hero.png?v=120" alt="" loading="eager" fetchpriority="high"
+            style="--ix:0;--iy:0;--iw:100%;--ih:100%"></picture>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 섹션 탭 ===================== -->
+    <nav class="case-tabs" aria-label="섹션 바로가기" data-case-tabs>
+      <div class="container">
+        <div class="case-tabs__list">
+          <a href="#background" aria-current="true">배경</a>
+          <a href="#problem">문제 정의</a>
+          <a href="#hypothesis">가설</a>
+          <a href="#solution">문제 해결</a>
+          <a href="#flow">플로우 설계</a>
+          <a href="#result">결과</a>
+          <a href="#retro">회고</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ===================== 본문 섹션 ===================== -->
+    <section class="case-section case-section--shot" id="background" aria-labelledby="d14-s1-t" style="--sec-bg:#FFFFFF">
+      <div class="case-section__inner">
+        <h2 class="sr-only" id="d14-s1-t">배경 — 화면을 고쳐도 남는 문제, “단계가 너무 많다”</h2>
+        <picture><source srcset="./assets/img/case/sec/kiosk-1.webp?v=120" type="image/webp"><img
+          class="case-shot" src="./assets/img/case/sec/kiosk-1.png?v=120"
+          alt="배경 — 화면을 고쳐도 남는 문제, “단계가 너무 많다”" loading="lazy" width="1920" height="948"></picture>
+      </div>
+    </section>
+
+    <section class="case-section case-section--shot" aria-labelledby="d14-s2-t" style="--sec-bg:#FFFFFF">
+      <div class="case-section__inner">
+        <h2 class="sr-only" id="d14-s2-t">UT 검증 — 사용자를 직접 만나 검증하다</h2>
+        <picture><source srcset="./assets/img/case/sec/kiosk-2.webp?v=120" type="image/webp"><img
+          class="case-shot" src="./assets/img/case/sec/kiosk-2.png?v=120"
+          alt="UT 검증 — 사용자를 직접 만나 검증하다" loading="lazy" width="1920" height="948"></picture>
+      </div>
+    </section>
+
+    <section class="case-section case-section--shot" id="problem" aria-labelledby="d14-s3-t" style="--sec-bg:#FFFFFF">
+      <div class="case-section__inner">
+        <h2 class="sr-only" id="d14-s3-t">문제 정의 — 기존 설계와 사용자 특성 간 구조적 불일치</h2>
+        <picture><source srcset="./assets/img/case/sec/kiosk-3.webp?v=120" type="image/webp"><img
+          class="case-shot" src="./assets/img/case/sec/kiosk-3.png?v=120"
+          alt="문제 정의 — 기존 설계와 사용자 특성 간 구조적 불일치" loading="lazy" width="1920" height="948"></picture>
+      </div>
+    </section>
+
+    <section class="case-section case-section--shot" id="hypothesis" aria-labelledby="d14-s4-t" style="--sec-bg:#FFFFFF">
+      <div class="case-section__inner">
+        <h2 class="sr-only" id="d14-s4-t">가설 — ‘빨리’가 아니라 ‘끝까지’</h2>
+        <picture><source srcset="./assets/img/case/sec/kiosk-4.webp?v=120" type="image/webp"><img
+          class="case-shot" src="./assets/img/case/sec/kiosk-4.png?v=120"
+          alt="가설 — ‘빨리’가 아니라 ‘끝까지’" loading="lazy" width="1920" height="948"></picture>
+      </div>
+    </section>
+
+    <section class="case-section case-section--shot" id="solution" aria-labelledby="d14-s5-t" style="--sec-bg:#FFFFFF">
+      <div class="case-section__inner">
+        <h2 class="sr-only" id="d14-s5-t">문제 해결 — 말 한 문장이 탐색을 대체하고, 화면은 검증을 담당한다</h2>
+        <picture><source srcset="./assets/img/case/sec/kiosk-5.webp?v=120" type="image/webp"><img
+          class="case-shot" src="./assets/img/case/sec/kiosk-5.png?v=120"
+          alt="문제 해결 — 말 한 문장이 탐색을 대체하고, 화면은 검증을 담당한다" loading="lazy" width="1920" height="948"></picture>
+      </div>
+    </section>
+
+    <section class="case-section case-section--shot" id="flow" aria-labelledby="d14-s6-t" style="--sec-bg:#FFFFFF">
+      <div class="case-section__inner">
+        <h2 class="sr-only" id="d14-s6-t">플로우 설계 — 발화 → 확인 → 확정, 그리고 언제든 되돌아오는 길</h2>
+        <picture><source srcset="./assets/img/case/sec/kiosk-6.webp?v=120" type="image/webp"><img
+          class="case-shot" src="./assets/img/case/sec/kiosk-6.png?v=120"
+          alt="플로우 설계 — 발화 → 확인 → 확정, 그리고 언제든 되돌아오는 길" loading="lazy" width="1920" height="948"></picture>
+      </div>
+    </section>
+
+    <section class="case-section case-section--shot" id="result" aria-labelledby="d14-s7-t" style="--sec-bg:#FFFFFF">
+      <div class="case-section__inner">
+        <h2 class="sr-only" id="d14-s7-t">결과 — 설계를 넘어, 실제 시장에서 검증하다</h2>
+        <picture><source srcset="./assets/img/case/sec/kiosk-7.webp?v=120" type="image/webp"><img
+          class="case-shot" src="./assets/img/case/sec/kiosk-7.png?v=120"
+          alt="결과 — 설계를 넘어, 실제 시장에서 검증하다" loading="lazy" width="1920" height="948"></picture>
+      </div>
+    </section>
+
+    <section class="case-section case-section--shot" id="retro" aria-labelledby="d14-s8-t" style="--sec-bg:#FFFFFF">
+      <div class="case-section__inner">
+        <h2 class="sr-only" id="d14-s8-t">회고 — 이 프로젝트가 남긴 세 가지 기준</h2>
+        <picture><source srcset="./assets/img/case/sec/kiosk-8.webp?v=120" type="image/webp"><img
+          class="case-shot" src="./assets/img/case/sec/kiosk-8.png?v=120"
+          alt="회고 — 이 프로젝트가 남긴 세 가지 기준" loading="lazy" width="1920" height="948"></picture>
+      </div>
+    </section>
+
+    <!-- ===================== 이전 / 다음 ===================== -->
+    <nav class="case-nav container" aria-label="다른 작업">
+      <a class="case-nav__item" href="./case-ai-agent.html">
+        <span class="case-nav__dir">Prev</span>
+        <span class="case-nav__title">AI 에이전트 단절된 작업 흐름 하나의 경험으로 재설계</span>
+      </a>
+      <a class="case-nav__item case-nav__item--next" href="./case-golf.html">
+        <span class="case-nav__dir">Next</span>
+        <span class="case-nav__title">골프장 탐색·예약 경험 재설계</span>
+      </a>
+    </nav>
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <div class="container">
+      <div class="site-footer__box">
+        <a href="#main" class="to-top" data-to-top>
+          <svg class="to-top__shape" viewBox="0 0 364 57" fill="none" aria-hidden="true" preserveAspectRatio="none">
+            <path
+              d="M364 57V36.85C364 16.5 353.25 0 339.99 0H47.34C40.52 0 34.02 4.45 29.46 12.25L14.78 37.38C10.91 43.99 5.65999 48.18 -0.0100098 49.31H349.32C354.85 49.31 359.94 52.18 363.99 57H364Z"
+              fill="currentColor" />
+          </svg>
+          <span class="to-top__label">
+            Back to the Top
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M7 11V3m0 0L3.5 6.5M7 3l3.5 3.5" stroke="currentColor" stroke-width="1.4"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
+        </a>
+
+        <h2 class="site-footer__title">
+          <a href="mailto:jinhee950617@gmail.com" class="link-display link-display--invert">Work with me</a>
+        </h2>
+
+        <div class="site-footer__bottom">
+          <p class="site-footer__links">
+            <a href="./docs/resume.pdf" download>경력기술서 다운로드</a>
+            <a href="./docs/portfolio.pdf" download>포트폴리오 다운로드</a>
+          </p>
+          <p><small>SHINJINHEE &copy; 2026</small></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./assets/js/main.js?v=120"></script>
+</body>
+
+</html>

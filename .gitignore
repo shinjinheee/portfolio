@@ -18,3 +18,7 @@
 # 설계 문서 — 로컬 전용. GitHub Pages 로 공개되면 안 된다.
 # (docs/ 폴더 자체는 유지 — 제출용 PDF 가 들어간다)
 docs/*.md
+
+
+# sips 로 만든 임시 TIFF (수십 MB)
+*.png.tif

@@ -51,6 +51,15 @@
   --hero-chip-bg: #343255;
   --hero-chip-fg: #ebeaee;
 }
+/* 키오스크 — 흰빛 회색 배경. 글자색이 다른 페이지와 달라 따로 잡는다 */
+.case-hero--kiosk {
+  background: #fafafa;
+  --hero-title: #212121;
+  --hero-label: #5c5d61;
+  --hero-text:  #6e767e;
+  --hero-chip-bg: var(--white);
+  --hero-chip-fg: #6e767e;
+}
 .case-hero__inner {
   position: relative;
   z-index: 1;
@@ -207,6 +216,25 @@
   width: 30.186%;               /* 579.577 / 1920 */
   height: 56.919%;              /* 534.470 /  939 */
   border-bottom-left-radius: 10.2px;
+}
+/* 키오스크 — 목업 두 개가 겹친 채 히어로 아래로 잘린다. 배경이 단색(#FAFAFA)이라
+   그림자까지 통째로 잘라 오면 이음매가 생기지 않는다. 그래서 테도 그림자도 없다 */
+/* 골프 — 목업 두 개가 히어로 위·아래로 잘린 채 놓인다. 배경이 단색(#F7FAF8)이라
+   그림자까지 통째로 잘라 왔다. 백오피스의 반투명 흰 테(.case-hero__panel)는
+   이 페이지에 없는 장식이라 shot 으로 놓는다 */
+.case-hero__shot--golf {
+  left: 50.3125%;               /*  966 / 1920 */
+  top: 0;
+  width: 43.4375%;              /*  834 / 1920 */
+  height: 100%;
+  box-shadow: none;
+}
+.case-hero__shot--kiosk {
+  left: 47.7083%;               /*  916 / 1920 */
+  top: 11.0756%;                /*  104 /  939 */
+  width: 45.1042%;              /*  866 / 1920 */
+  height: 88.9244%;             /*  835 /  939 */
+  box-shadow: none;
 }
 .case-hero__shot--b {
   left: 53.125%;                /* 1020 / 1920 */
