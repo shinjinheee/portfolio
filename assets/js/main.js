@@ -195,15 +195,17 @@
   }
 
   /**
-   * 마지막 섹션을 지나면 한 화면씩 넘기는 스냅을 푼다.
+   * 꼬리 구간에서는 한 화면씩 넘기는 스냅을 푼다.
    *
-   * Prev/Next 와 푸터는 시안에서도 이어지는 구간이라 한 화면 단위로
-   * 끊어 보여줄 이유가 없다. Prev/Next 가 화면에 들어오는 순간부터
-   * 그냥 스크롤로 흐르게 두고, 다시 벗어나면 스냅을 건다.
+   * 푸터는 시안에서도 이어지는 구간이라 한 화면 단위로 끊어 보여줄
+   * 이유가 없다. 푸터가 화면에 들어오는 순간부터 그냥 스크롤로
+   * 흐르게 두고, 다시 벗어나면 스냅을 건다.
    */
   function initSnapRelease() {
     var root = document.documentElement;
-    var tail = document.querySelector('.case-nav');
+    // Prev/Next 는 이제 마지막 섹션과 한 화면을 쓰므로, 그 아래
+    // 푸터가 들어오는 시점을 자유 스크롤의 시작으로 삼는다
+    var tail = document.querySelector('.site-footer');
     if (!tail || !('IntersectionObserver' in window)) return;
 
     var io = new IntersectionObserver(function (entries) {
