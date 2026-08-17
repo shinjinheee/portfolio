@@ -24,6 +24,15 @@
   --hero-chip-bg: #8bd4ff;
   --hero-chip-fg: #485660;
 }
+/* AI 에이전트 — 흰 배경에 옅은 블롭 두 개 */
+.case-hero--ai {
+  background: var(--white);
+  --hero-title: rgb(31 39 44 / 90%);
+  --hero-label: #2c373e;
+  --hero-text:  #485660;
+  --hero-chip-bg: #ebf1f1;
+  --hero-chip-fg: #485660;
+}
 /* 백오피스 — 어두운 그라디언트 */
 .case-hero--bo {
   background: linear-gradient(180deg, #101b21 0%, #2c2d49 100%);
@@ -134,6 +143,64 @@
   height: auto;
   border-radius: 10px 0 0 10px;
 }
+/* AI 에이전트 히어로 — 배경 블롭 두 개.
+   시안 좌표(1920×939) 그대로 무대 안에 놓아 비율이 유지된다. */
+.case-hero__blob {
+  position: absolute;
+  border-radius: 50%;
+}
+.case-hero__blob--a {                     /* 시안 819,-307 1303×782 */
+  left: 42.656%;
+  top: -32.694%;
+  width: 67.865%;
+  height: 83.28%;
+  background: radial-gradient(closest-side, #e5f6fb, rgb(229 246 251 / 0%));
+}
+.case-hero__blob--b {                     /* 시안 260,665 1256×662 */
+  left: 13.542%;
+  top: 70.82%;
+  width: 65.417%;
+  height: 70.5%;
+  background: radial-gradient(closest-side, #d2e6ef, rgb(210 230 239 / 0%));
+}
+
+/* AI 에이전트 히어로 — 협업 커서 모양 배지.
+   시안 알약 40 높이 / 글자 20 / 커서 24×30. 무대(1920 기준) 안에 놓이므로
+   가로는 vw, 세로는 %로 두면 화면이 커져도 비율이 유지된다. */
+.ai-badge {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 4.26%;                    /* 40 / 939 */
+  padding-inline: 1.042vw;          /* 20 / 1920 */
+  border-radius: 999px;
+  background: var(--badge);
+  font-weight: 700;
+  font-size: 1.042vw;               /* 20 / 1920 */
+  line-height: 1;
+  color: var(--white);
+  white-space: nowrap;
+}
+.ai-badge__cursor {
+  position: absolute;
+  right: 100%;
+  bottom: 100%;
+  width: 1.25vw;                    /* 24 / 1920 */
+  height: 1.563vw;                  /* 30 / 1920 */
+  margin: 0 -0.31vw -0.31vw 0;      /* 알약 모서리에 살짝 겹친다 */
+  color: var(--badge);
+}
+
+/* AI 에이전트 — 백오피스와 같은 반투명 흰 테두리.
+   시안 960,122 / 1280×694 가 오른쪽 끝(1920)에서 잘린다. */
+.case-hero__panel--ai {
+  left: 50%;                    /*  960 / 1920 */
+  top: 3.4079%;                 /*   32 /  939 */
+  width: 50%;                   /*  960 / 1920 — 화면 오른쪽 끝까지 */
+  box-shadow: 0 8px 28px rgb(20 40 60 / 8%);
+}
+
 .case-hero__shot img {
   position: absolute;
   left: var(--ix, 0);
