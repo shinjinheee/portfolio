@@ -417,4 +417,12 @@
   /* 푸터로 이어지는 꼬리 구간은 멈춤을 강제하지 않는다 */
   .case-nav,
   .site-footer { scroll-snap-stop: normal; }
+
+  /* 헤더(90)+탭(80)이 위에 떠 있으므로 그만큼 내려서 멈춘다.
+     앵커 이동과 Tab 포커스도 같은 자리를 쓰므로 라벨이 가리지 않는다. */
+  .case-nav { scroll-margin-top: 170px; }
+
+  /* 푸터가 화면보다 짧으면 마지막 정지 위치에서 탭 바 밑단만
+     헤더 아래에 조각으로 남는다 — 한 화면을 채워 아예 밀어낸다. */
+  .site-footer { min-height: calc(100vh - 90px); }
 }

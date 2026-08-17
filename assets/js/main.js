@@ -324,8 +324,11 @@
         for (var m = 0; m < ratio.length; m++) {
           if (ratio[m] > best) { best = ratio[m]; bestAt = m; }
         }
-        // 히어로처럼 어떤 섹션도 화면에 없으면 첫 탭을 유지한다
-        mark(best > 0.1 ? owner[bestAt] : owner[0]);
+        if (best > 0.1) { mark(owner[bestAt]); return; }
+        // 섹션이 하나도 안 보일 때 — 위쪽(히어로)이면 첫 탭,
+        // 아래쪽(Prev/Next·푸터)이면 마지막 섹션의 탭을 그대로 둔다
+        mark(sections[0].getBoundingClientRect().top > 0
+          ? owner[0] : owner[owner.length - 1]);
       }, { threshold: [0, 0.25, 0.5, 0.75, 1] });
 
       for (var o = 0; o < sections.length; o++) io.observe(sections[o]);
