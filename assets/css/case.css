@@ -260,6 +260,51 @@
 }
 
 /* ===========================================================
+   히어로를 통 이미지로 — 넓은 화면에서만
+   본문 섹션이 통 이미지라 글자가 화면에 맞춰 줄어드는데, 히어로만 코드로
+   그리면 글자가 고정 px 이라 혼자 커 보인다. 1512x892 에서 50% 차이가 난다.
+   그래서 1024 이상에서는 시안 히어로(1920x939)를 통째로 깔고 글자 블록은
+   화면에서만 숨긴다 — 읽어 주는 기계에는 그대로 남는다.
+   좁은 화면에서는 통 이미지가 읽히지 않으므로 종전의 코드 히어로를 쓴다.
+   =========================================================== */
+.case-hero__whole { display: none; }
+
+@media (min-width: 1024px) {
+  .case-hero.case-hero--shot { justify-content: center; padding: 0; }
+  .case-hero--shot .case-hero__inner {
+    position: absolute;
+    width: 1px; height: 1px;
+    margin: -1px; padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .case-hero--shot .case-hero__stage { display: none; }
+  .case-hero--shot .case-section__inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+  .case-hero__whole {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+    /* 섹션과 똑같은 배율로 그린다 — 글자 크기가 어긋나면 안 된다.
+       섹션 배율 = min(100vw/1920, (100vh-170)/948)  ← 헤더 90 + 탭 80 을 뺀 자리
+       히어로는 탭 바가 없어 100vh-90 을 다 쓰므로 그냥 두면 혼자 커진다.
+       높이 한계를 (100vh-170) x 939/948 로 낮추면 두 배율이 정확히 같아진다. */
+    max-height: min(100%, calc((100vh - 170px) * 939 / 948));
+  }
+}
+
+/* ===========================================================
    섹션 탭 — 헤더(90) 아래에 붙는다. 연도 탭과 같은 규칙
    시안: 높이 80 / 하단선 #E9EAEA / 탭 간격 16 / 패딩 22·12
    =========================================================== */
@@ -457,7 +502,9 @@
    띠가 닿는 면이 곧 이미지의 그 끝 줄이므로 이음매가 생기지 않는다.
    방향(x=좌우 / y=위아래)은 initShotBands 가 실측해 정한다. */
 .case-section--shot .case-section__inner::before,
-.case-section--shot .case-section__inner::after {
+.case-section--shot .case-section__inner::after,
+.case-hero--shot .case-section__inner::before,
+.case-hero--shot .case-section__inner::after {
   display: none;                   /* 방향이 정해지기 전에는 그리지 않는다 */
   position: absolute;
   z-index: 0;
@@ -466,7 +513,9 @@
   content: "";
 }
 .case-section--shot[data-band] .case-section__inner::before,
-.case-section--shot[data-band] .case-section__inner::after { display: block; }
+.case-section--shot[data-band] .case-section__inner::after,
+.case-hero--shot[data-band] .case-section__inner::before,
+.case-hero--shot[data-band] .case-section__inner::after { display: block; }
 
 [data-band="x"] .case-section__inner::before {
   inset: 0 50% 0 0;

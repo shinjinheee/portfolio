@@ -232,14 +232,15 @@
    * 엔진마다 달라 경로가 깨진다.
    */
   function initShotBands() {
-    var secs = [].slice.call(document.querySelectorAll('.case-section--shot'));
+    // 히어로도 통 이미지라 같은 규칙을 쓴다 (넓은 화면에서만 그림이 보인다)
+    var secs = [].slice.call(document.querySelectorAll('.case-section--shot, .case-hero--shot'));
     if (!secs.length) return;
 
     function place() {
       var narrow = window.matchMedia('(max-width: 1023px)').matches;
       for (var i = 0; i < secs.length; i++) {
         var sec = secs[i];
-        var img = sec.querySelector('.case-shot');
+        var img = sec.querySelector('.case-shot, .case-hero__whole');
         var box = sec.querySelector('.case-section__inner');
         if (!img || !box) continue;
 
