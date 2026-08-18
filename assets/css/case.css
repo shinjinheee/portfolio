@@ -288,6 +288,26 @@
     width: 100%;
     height: 100%;
   }
+  /* 그림 크기에 딱 맞는 상자. 좌우로 남는 자리는 이 상자를 기준으로 늘린다 —
+     화면 높이가 아니라 그림 높이에 맞아야 그라디언트가 이어진다 */
+  .case-hero--shot .case-hero__frame {
+    position: relative;
+    display: flex;
+  }
+  .case-hero--shot .case-hero__frame::before,
+  .case-hero--shot .case-hero__frame::after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50vw;
+    background-image: var(--hero-shot);
+    background-repeat: no-repeat;
+    background-size: 100000% 100%;   /* 가장자리 한 열만 가로로 늘린다 */
+    content: "";
+  }
+  .case-hero--shot .case-hero__frame::before { right: 100%; background-position: left center; }
+  .case-hero--shot .case-hero__frame::after  { left: 100%;  background-position: right center; }
+
   .case-hero__whole {
     position: relative;
     z-index: 1;
@@ -296,11 +316,18 @@
     height: auto;
     max-width: 100%;
     object-fit: contain;
-    /* 섹션과 똑같은 배율로 그린다 — 글자 크기가 어긋나면 안 된다.
+    /* 남는 자리는 히어로 자기 배경(단색 또는 세로 그라디언트)이 채운다.
+       섹션처럼 가장자리 픽셀을 늘리면 잘린 목업이 줄무늬로 번져서 못 쓴다.
+       레터박스가 위아래 44px 남짓이라 그라디언트 배경도 이음매 차이가 3/255 안이다.
+
+       섹션과 똑같은 배율로 그린다 — 글자 크기가 어긋나면 안 된다.
        섹션 배율 = min(100vw/1920, (100vh-170)/948)  ← 헤더 90 + 탭 80 을 뺀 자리
        히어로는 탭 바가 없어 100vh-90 을 다 쓰므로 그냥 두면 혼자 커진다.
        높이 한계를 (100vh-170) x 939/948 로 낮추면 두 배율이 정확히 같아진다. */
-    max-height: min(100%, calc((100vh - 170px) * 939 / 948));
+    /* 100% 는 쓸 수 없다 — 감싼 상자가 그림 크기를 따라가는 auto 높이라
+       백분율 기준이 없어 제약 자체가 무시된다. 화면 단위로 못 박는다.
+       (이 값은 언제나 히어로 높이 100vh-90 보다 작아 따로 막을 필요가 없다) */
+    max-height: calc((100vh - 170px) * 939 / 948);
   }
 }
 
@@ -502,9 +529,7 @@
    띠가 닿는 면이 곧 이미지의 그 끝 줄이므로 이음매가 생기지 않는다.
    방향(x=좌우 / y=위아래)은 initShotBands 가 실측해 정한다. */
 .case-section--shot .case-section__inner::before,
-.case-section--shot .case-section__inner::after,
-.case-hero--shot .case-section__inner::before,
-.case-hero--shot .case-section__inner::after {
+.case-section--shot .case-section__inner::after {
   display: none;                   /* 방향이 정해지기 전에는 그리지 않는다 */
   position: absolute;
   z-index: 0;
@@ -513,9 +538,7 @@
   content: "";
 }
 .case-section--shot[data-band] .case-section__inner::before,
-.case-section--shot[data-band] .case-section__inner::after,
-.case-hero--shot[data-band] .case-section__inner::before,
-.case-hero--shot[data-band] .case-section__inner::after { display: block; }
+.case-section--shot[data-band] .case-section__inner::after { display: block; }
 
 [data-band="x"] .case-section__inner::before {
   inset: 0 50% 0 0;

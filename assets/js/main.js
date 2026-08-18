@@ -231,16 +231,33 @@
    * 커스텀 속성에 상대 경로를 적으면 어느 파일을 기준으로 풀지가
    * 엔진마다 달라 경로가 깨진다.
    */
+  // 히어로 통 이미지 — 좌우로 남는 자리를 그림 가장자리 열로 채운다.
+  // 위아래는 히어로 자기 배경이 맡는다 (잘린 목업을 세로로 늘리면 줄무늬가 된다).
+  function initHeroBand() {
+    var frames = [].slice.call(document.querySelectorAll('.case-hero--shot .case-hero__frame'));
+    for (var i = 0; i < frames.length; i++) {
+      var img = frames[i].querySelector('.case-hero__whole');
+      if (!img) continue;
+      (function (frame, im) {
+        function set() {
+          var src = im.currentSrc;
+          if (src) frame.style.setProperty('--hero-shot', 'url("' + src + '")');
+        }
+        set();
+        if (!im.complete) im.addEventListener('load', set);
+      })(frames[i], img);
+    }
+  }
+
   function initShotBands() {
-    // 히어로도 통 이미지라 같은 규칙을 쓴다 (넓은 화면에서만 그림이 보인다)
-    var secs = [].slice.call(document.querySelectorAll('.case-section--shot, .case-hero--shot'));
+    var secs = [].slice.call(document.querySelectorAll('.case-section--shot'));
     if (!secs.length) return;
 
     function place() {
       var narrow = window.matchMedia('(max-width: 1023px)').matches;
       for (var i = 0; i < secs.length; i++) {
         var sec = secs[i];
-        var img = sec.querySelector('.case-shot, .case-hero__whole');
+        var img = sec.querySelector('.case-shot');
         var box = sec.querySelector('.case-section__inner');
         if (!img || !box) continue;
 
@@ -557,6 +574,7 @@
     initMarquee();
     initPixelSnap();
     initCaseFit();
+    initHeroBand();
     initShotBands();
     initSnapRelease();
     initCaseTabs();
