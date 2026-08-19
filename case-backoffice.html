@@ -14,11 +14,11 @@
   <meta property="og:image" content="">
   <meta name="theme-color" content="#ffffff">
 
-  <link rel="stylesheet" href="./assets/css/reset.css?v=137">
-  <link rel="stylesheet" href="./assets/css/tokens.css?v=137">
-  <link rel="stylesheet" href="./assets/css/layout.css?v=137">
-  <link rel="stylesheet" href="./assets/css/components.css?v=137">
-  <link rel="stylesheet" href="./assets/css/case.css?v=137">
+  <link rel="stylesheet" href="./assets/css/reset.css?v=139">
+  <link rel="stylesheet" href="./assets/css/tokens.css?v=139">
+  <link rel="stylesheet" href="./assets/css/layout.css?v=139">
+  <link rel="stylesheet" href="./assets/css/components.css?v=139">
+  <link rel="stylesheet" href="./assets/css/case.css?v=139">
 </head>
 
 <body>
@@ -56,54 +56,33 @@
 
   <main id="main" style="--sec-accent:#8b7cf6">
     <!-- ===================== 히어로 ===================== -->
-    <section class="case-hero case-hero--bo case-hero--shot" aria-labelledby="case-title">
+    <section class="case-hero case-hero--bo case-hero--stage is-middle" aria-labelledby="case-title">
       <div class="case-hero__inner">
-        <h1 class="case-hero__title" id="case-title">엔터프라이즈 환경<br>단순 반복 작업의 자율성 개선</h1>
-        <div class="case-hero__meta">
-          <div class="case-hero__block">
-            <p class="case-hero__label">목표</p>
-            <p class="case-hero__value">설정 변경마다 개발팀에 의존하던 운영 구조를 셀프서비스 관리 구조로 전환</p>
-          </div>
-          <div class="case-hero__block">
-            <p class="case-hero__label">결과</p>
-            <ul class="case-hero__list">
-              <li>개발팀 반복 요청 감소</li>
-              <li>데이터 갱신 대기/요청 처리 16시간 → 0</li>
-            </ul>
-          </div>
-          <div class="case-hero__block">
-            <p class="case-hero__label">키워드</p>
-            <div class="case-hero__tags">
-              <span class="case-chip">백오피스</span>
-              <span class="case-chip">어드민</span>
-              <span class="case-chip">Enterprise</span>
-              <span class="case-chip">B2G</span>
-            </div>
+        <h1 class="case-hero__title" id="case-title" style="--ty:202;--tw:535">엔터프라이즈 환경<br>단순 반복 작업의 자율성 개선</h1>
+        <div class="case-hero__block" style="--by:375;--lw:600">
+          <p class="case-hero__label">목표</p>
+          <p class="case-hero__value">설정 변경마다 개발팀에 의존하던 운영 구조를 셀프서비스 관리 구조로 전환</p>
+        </div>
+        <div class="case-hero__block" style="--by:492;--lw:600">
+          <p class="case-hero__label">결과</p>
+          <ul class="case-hero__list">
+          <li>개발팀 반복 요청 감소</li>
+          <li>데이터 갱신 대기/요청 처리 16시간 → 0</li>
+          </ul>
+        </div>
+        <div class="case-hero__block" style="--by:643;--lw:700">
+          <p class="case-hero__label">키워드</p>
+          <div class="case-hero__tags">
+          <span class="case-chip">백오피스</span>
+          <span class="case-chip">어드민</span>
+          <span class="case-chip">Enterprise</span>
+          <span class="case-chip">B2G</span>
           </div>
         </div>
-      </div>
 
-      <div class="case-hero__stage" aria-hidden="true">
-        <div class="case-hero__panel">
-          <picture><source srcset="./assets/img/case/bo-hero.webp?v=137" type="image/webp"><img
-            src="./assets/img/case/bo-hero.png?v=137" alt="" loading="lazy"
-            width="997" height="652"></picture>
-        </div>
-      </div>
-
-      <div class="case-section__inner">
-        <!-- 넓은 화면은 시안 히어로 통째로, 좁은 화면은 stage 가 쓰는 그림.
-             media 로 갈라 놓아야 쓰지 않는 쪽을 받지 않는다 -->
-        <div class="case-hero__frame">
-          <picture>
-            <source media="(min-width: 1024px)" srcset="./assets/img/case/bo-hero-full.webp?v=137" type="image/webp">
-            <source media="(min-width: 1024px)" srcset="./assets/img/case/bo-hero-full.png?v=137">
-            <!-- 좁은 화면에서는 이 그림을 쓰지 않는다 — 글자 히어로가 나온다.
-                 1x1 투명 픽셀을 대체본으로 두어 아무것도 받지 않게 한다 -->
-            <img class="case-hero__whole" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt=""
-              loading="eager" fetchpriority="high" width="1920" height="939">
-          </picture>
-        </div>
+        <!-- 오른쪽 그림 — 좌표·크기 전부 시안 값 그대로 -->
+        <div class="case-hero__panel"></div>
+        <div class="case-hero__art" style="--ax:923;--ay:142;--aw:997;--ah:652;border-radius:calc(12*var(--u)) 0 0 calc(12*var(--u))"><picture><source srcset="./assets/img/case/bo-hero.webp?v=139" type="image/webp"><img src="./assets/img/case/bo-hero.png?v=139" alt="" loading="eager" fetchpriority="high"></picture></div>
       </div>
     </section>
 
@@ -124,8 +103,8 @@
     <section class="case-section case-section--shot" id="problem" aria-labelledby="d12-s1-t" style="--sec-bg:#121C24">
       <div class="case-section__inner">
         <h2 class="sr-only" id="d12-s1-t">문제 정의 — 운영자가 시스템을 직접 제어할 수 없는 구조가 문제</h2>
-        <picture><source srcset="./assets/img/case/sec/bo-1.webp?v=137" type="image/webp"><img
-          class="case-shot" src="./assets/img/case/sec/bo-1.png?v=137"
+        <picture><source srcset="./assets/img/case/sec/bo-1.webp?v=139" type="image/webp"><img
+          class="case-shot" src="./assets/img/case/sec/bo-1.png?v=139"
           alt="문제 정의 — 운영자가 시스템을 직접 제어할 수 없는 구조가 문제" loading="lazy" width="1920" height="948"></picture>
       </div>
     </section>
@@ -133,8 +112,8 @@
     <section class="case-section case-section--shot" id="hypothesis" aria-labelledby="d12-s2-t" style="--sec-bg:#111B22">
       <div class="case-section__inner">
         <h2 class="sr-only" id="d12-s2-t">가설 — 운영 도구로 확장하면, 운영자는 개발팀 없이 데이터를 직접 통제</h2>
-        <picture><source srcset="./assets/img/case/sec/bo-2.webp?v=137" type="image/webp"><img
-          class="case-shot" src="./assets/img/case/sec/bo-2.png?v=137"
+        <picture><source srcset="./assets/img/case/sec/bo-2.webp?v=139" type="image/webp"><img
+          class="case-shot" src="./assets/img/case/sec/bo-2.png?v=139"
           alt="가설 — 운영 도구로 확장하면, 운영자는 개발팀 없이 데이터를 직접 통제" loading="lazy" width="1920" height="948"></picture>
       </div>
     </section>
@@ -142,8 +121,8 @@
     <section class="case-section case-section--shot" id="problem2" aria-labelledby="d12-s3-t" style="--sec-bg:linear-gradient(90deg,#191D29 0 30.86%,#0B151C 30.86%)">
       <div class="case-section__inner">
         <h2 class="sr-only" id="d12-s3-t">문제 정의 — Airflow DAG를 몰라도 크롤링 대상을 직접 등록</h2>
-        <picture><source srcset="./assets/img/case/sec/bo-3.webp?v=137" type="image/webp"><img
-          class="case-shot" src="./assets/img/case/sec/bo-3.png?v=137"
+        <picture><source srcset="./assets/img/case/sec/bo-3.webp?v=139" type="image/webp"><img
+          class="case-shot" src="./assets/img/case/sec/bo-3.png?v=139"
           alt="문제 정의 — Airflow DAG를 몰라도 크롤링 대상을 직접 등록" loading="lazy" width="1920" height="948"></picture>
       </div>
     </section>
@@ -151,8 +130,8 @@
     <section class="case-section case-section--shot" id="solution" aria-labelledby="d12-s5-t" style="--sec-bg:#0B151C">
       <div class="case-section__inner">
         <h2 class="sr-only" id="d12-s5-t">문제 해결 — 운영 도구로 확장하면, 운영자는 개발팀 없이 데이터를 직접 통제</h2>
-        <picture><source srcset="./assets/img/case/sec/bo-4.webp?v=137" type="image/webp"><img
-          class="case-shot" src="./assets/img/case/sec/bo-4.png?v=137"
+        <picture><source srcset="./assets/img/case/sec/bo-4.webp?v=139" type="image/webp"><img
+          class="case-shot" src="./assets/img/case/sec/bo-4.png?v=139"
           alt="문제 해결 — 운영 도구로 확장하면, 운영자는 개발팀 없이 데이터를 직접 통제" loading="lazy" width="1920" height="948"></picture>
       </div>
     </section>
@@ -160,8 +139,8 @@
     <section class="case-section case-section--shot" aria-labelledby="d12-s6-t" style="--sec-bg:#0B151C">
       <div class="case-section__inner">
         <h2 class="sr-only" id="d12-s6-t">문제 해결 — 운영자가 크롤링 상태를 실시간으로 직접 확인</h2>
-        <picture><source srcset="./assets/img/case/sec/bo-5.webp?v=137" type="image/webp"><img
-          class="case-shot" src="./assets/img/case/sec/bo-5.png?v=137"
+        <picture><source srcset="./assets/img/case/sec/bo-5.webp?v=139" type="image/webp"><img
+          class="case-shot" src="./assets/img/case/sec/bo-5.png?v=139"
           alt="문제 해결 — 운영자가 크롤링 상태를 실시간으로 직접 확인" loading="lazy" width="1920" height="948"></picture>
       </div>
     </section>
@@ -169,8 +148,8 @@
     <section class="case-section case-section--shot" id="result" aria-labelledby="d12-s7-t" style="--sec-bg:#170E2F">
       <div class="case-section__inner">
         <h2 class="sr-only" id="d12-s7-t">결과 — 월 반복 개발 리소스 16시간 → 0 크롤링 건당 처리 시간 2시간 → 10분</h2>
-        <picture><source srcset="./assets/img/case/sec/bo-6.webp?v=137" type="image/webp"><img
-          class="case-shot" src="./assets/img/case/sec/bo-6.png?v=137"
+        <picture><source srcset="./assets/img/case/sec/bo-6.webp?v=139" type="image/webp"><img
+          class="case-shot" src="./assets/img/case/sec/bo-6.png?v=139"
           alt="결과 — 월 반복 개발 리소스 16시간 → 0 크롤링 건당 처리 시간 2시간 → 10분" loading="lazy" width="1920" height="948"></picture>
       </div>
     </section>
@@ -221,7 +200,7 @@
     </div>
   </footer>
 
-  <script src="./assets/js/main.js?v=137"></script>
+  <script src="./assets/js/main.js?v=139"></script>
 </body>
 
 </html>

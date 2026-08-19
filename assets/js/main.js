@@ -135,8 +135,13 @@
    * 헤더(90)와 탭(80)이 위를 덮으므로 그만큼 뺀 영역을 기준으로 잡는다.
    */
   function initCaseFit() {
-    // 히어로도 100vh 안에 담기므로 같은 규칙으로 줄인다
-    var inners = document.querySelectorAll('.case-section__inner, .case-hero__inner');
+    // 히어로도 100vh 안에 담기므로 같은 규칙으로 줄인다.
+    // 다만 시안 좌표계를 쓰는 히어로(.case-hero--stage)는 제외한다 —
+    // 거기서는 CSS 의 --u 가 이미 배율을 잡고 있어서, 여기서 transform 을
+    // 덮어쓰면 판이 통째로 어긋난다.
+    var inners = [].slice.call(
+      document.querySelectorAll('.case-section__inner, .case-hero__inner')
+    ).filter(function (el) { return !el.closest('.case-hero--stage'); });
     if (!inners.length) return;
 
     /*
@@ -151,6 +156,8 @@
       var inner = document.querySelector('.case-hero__inner');
       var title = inner && inner.querySelector('.case-hero__title');
       if (!title) return;
+      // 좌표계 히어로는 제목 자리가 시안 값으로 못 박혀 있다 — 손대면 안 된다
+      if (inner.closest('.case-hero--stage')) { inner.style.marginTop = ''; return; }
 
       inner.style.marginTop = '';
       if (window.matchMedia('(max-width: 1023px)').matches) return;
@@ -231,24 +238,6 @@
    * 커스텀 속성에 상대 경로를 적으면 어느 파일을 기준으로 풀지가
    * 엔진마다 달라 경로가 깨진다.
    */
-  // 히어로 통 이미지 — 좌우로 남는 자리를 그림 가장자리 열로 채운다.
-  // 위아래는 히어로 자기 배경이 맡는다 (잘린 목업을 세로로 늘리면 줄무늬가 된다).
-  function initHeroBand() {
-    var frames = [].slice.call(document.querySelectorAll('.case-hero--shot .case-hero__frame'));
-    for (var i = 0; i < frames.length; i++) {
-      var img = frames[i].querySelector('.case-hero__whole');
-      if (!img) continue;
-      (function (frame, im) {
-        function set() {
-          var src = im.currentSrc;
-          if (src) frame.style.setProperty('--hero-shot', 'url("' + src + '")');
-        }
-        set();
-        if (!im.complete) im.addEventListener('load', set);
-      })(frames[i], img);
-    }
-  }
-
   function initShotBands() {
     var secs = [].slice.call(document.querySelectorAll('.case-section--shot'));
     if (!secs.length) return;
@@ -574,7 +563,6 @@
     initMarquee();
     initPixelSnap();
     initCaseFit();
-    initHeroBand();
     initShotBands();
     initSnapRelease();
     initCaseTabs();

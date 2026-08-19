@@ -23,24 +23,27 @@
   --hero-text:  #485660;
   --hero-chip-bg: #8bd4ff;
   --hero-chip-fg: #485660;
+  --hero-tag-fg: #485660;
 }
 /* AI 에이전트 — 흰 배경에 옅은 블롭 두 개 */
 .case-hero--ai {
   background: var(--white);
-  --hero-title: rgb(31 39 44 / 90%);
-  --hero-label: #2c373e;
-  --hero-text:  #485660;
+  --hero-title: rgb(36 42 48 / 90%);
+  --hero-label: #373e44;
+  --hero-text:  #666666;
   --hero-chip-bg: #ebf1f1;
-  --hero-chip-fg: #485660;
+  --hero-chip-fg: #6e767e;
+  --hero-tag-fg: #6e767e;
 }
 /* 골프 그룹 라운드 — 아주 옅은 초록빛 배경 */
 .case-hero--golf {
   background: #f7faf8;
-  --hero-title: rgb(31 39 44 / 90%);
-  --hero-label: #2c373e;
-  --hero-text:  #485660;
+  --hero-title: #383f43;          /* 시안 #242A30 을 90% 로 배경 위에 합성한 색 */
+  --hero-label: #242a30;
+  --hero-text:  #666666;
   --hero-chip-bg: var(--white);
-  --hero-chip-fg: #485660;
+  --hero-chip-fg: #6e767e;
+  --hero-tag-fg: #6e767e;
 }
 /* 백오피스 — 어두운 그라디언트 */
 .case-hero--bo {
@@ -50,6 +53,7 @@
   --hero-text:  #d2d3d6;
   --hero-chip-bg: #343255;
   --hero-chip-fg: #ebeaee;
+  --hero-tag-fg: #ebeaee;
 }
 /* 키오스크 — 흰빛 회색 배경. 글자색이 다른 페이지와 달라 따로 잡는다 */
 .case-hero--kiosk {
@@ -59,15 +63,18 @@
   --hero-text:  #6e767e;
   --hero-chip-bg: var(--white);
   --hero-chip-fg: #6e767e;
+  --hero-tag-fg: #6e767e;
 }
 .case-hero__inner {
   position: relative;
   z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: 37px;
+  gap: 37px;                       /* 제목 → 첫 블록 */
   align-items: flex-start;
 }
+/* 블록끼리는 50 — 37 에 13 을 더한다 */
+.case-hero__block + .case-hero__block { margin-top: 13px; }
 .case-hero__title {
   font-weight: 700;
   font-size: 48px;
@@ -88,8 +95,9 @@
   align-items: flex-start;
 }
 .case-hero__label {
-  font-weight: 600;
+  font-weight: var(--lw, 600);
   font-size: 18px;
+  line-height: 21px;
   color: var(--hero-label);
 }
 .case-hero__value,
@@ -118,6 +126,7 @@
   line-height: 24px;
   color: var(--hero-chip-fg);
 }
+/* 목록 안의 하이픈은 본문색, 칩 글자만 따로 */
 
 /* 히어로 우측 스크린샷 — 시안 좌표를 1920×939 기준 % 로 환산.
    라운드·그림자는 CSS 가 그리고 이미지는 안에서 잘린다. */
@@ -260,81 +269,118 @@
 }
 
 /* ===========================================================
-   히어로를 통 이미지로 — 넓은 화면에서만
-   본문 섹션이 통 이미지라 글자가 화면에 맞춰 줄어드는데, 히어로만 코드로
-   그리면 글자가 고정 px 이라 혼자 커 보인다. 1512x892 에서 50% 차이가 난다.
-   그래서 1024 이상에서는 시안 히어로(1920x939)를 통째로 깔고 글자 블록은
-   화면에서만 숨긴다 — 읽어 주는 기계에는 그대로 남는다.
-   좁은 화면에서는 통 이미지가 읽히지 않으므로 종전의 코드 히어로를 쓴다.
+   히어로를 시안 좌표계로 — 배경은 CSS, 글자는 진짜 글자, 그림만 따로
+   시안 히어로는 1920×939 다. 1 시안 px 에 해당하는 길이를 --u 로 잡고
+   모든 값을 calc(N * var(--u)) 로 쓰면 좌표가 시안 그대로가 되고,
+   글자도 본문 섹션 통 이미지와 같은 배율로 줄어든다.
+   (그래서 --u 의 식은 섹션 이미지가 화면에 맞는 식과 같다)
+
+   좁은 화면에서는 이 좌표계를 쓰지 않는다 — 시안 폭을 그대로 줄이면
+   글자가 읽히지 않으므로 종전의 흐름 배치를 그대로 쓴다.
    =========================================================== */
-.case-hero__whole { display: none; }
+.case-hero__art { display: none; }
 
 @media (min-width: 1024px) {
-  .case-hero.case-hero--shot {
-    justify-content: center;
-    padding: 0;
-    /* 탭 바는 첫 화면 아래에 두므로 히어로가 화면을 다 쓴다 */
+  .case-hero--stage {
+    --u: min(calc(100vw / 1920), calc((100vh - 170px) / 948));
+    display: block;
     height: calc(100vh - 90px);
+    padding: 0;
   }
-  .case-hero--shot .case-hero__inner {
+  /* 시안 히어로 한 판. 가로는 화면 가운데, 세로는 페이지마다 다르다 —
+     그림이 어느 모서리에서 잘려 나가느냐에 따라 그 변에 붙인다. */
+  .case-hero--stage .case-hero__inner {
     position: absolute;
-    width: 1px; height: 1px;
-    margin: -1px; padding: 0;
-    overflow: hidden;
-    clip-path: inset(50%);
-    white-space: nowrap;
+    left: 50%;
+    display: block;
+    width: calc(1920 * var(--u));
+    height: calc(939 * var(--u));
+    margin: 0;
+    transform: translateX(-50%);
   }
-  .case-hero--shot .case-hero__stage { display: none; }
-  .case-hero--shot .case-section__inner {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .case-hero--stage.is-top    .case-hero__inner { top: 0; }
+  .case-hero--stage.is-bottom .case-hero__inner { bottom: 0; }
+  .case-hero--stage.is-middle .case-hero__inner { top: 50%; transform: translate(-50%, -50%); }
+
+  .case-hero--stage .case-hero__inner > * {
+    position: absolute;
+    margin: 0;
+    left: calc(160 * var(--u));
+  }
+  .case-hero--stage .case-hero__title {
+    top: calc(var(--ty) * var(--u));
+    width: calc(var(--tw) * var(--u));
+    font-size: calc(48 * var(--u));
+    line-height: calc(68 * var(--u));
+    letter-spacing: calc(-0.48 * var(--u));
+  }
+  .case-hero--stage .case-hero__block {
+    top: calc(var(--by) * var(--u));
+    display: block;
+  }
+  .case-hero--stage .case-hero__label {
+    font-size: calc(18 * var(--u));
+    line-height: calc(21 * var(--u));
+  }
+  /* 라벨 밑변에서 본문까지 18 (시안 라벨 y+39, 라벨 높이 21) */
+  .case-hero--stage .case-hero__value,
+  .case-hero--stage .case-hero__list,
+  .case-hero--stage .case-hero__tags {
+    margin-top: calc(18 * var(--u));
+    font-size: calc(18 * var(--u));
+    line-height: calc(28 * var(--u));
+  }
+  .case-hero--stage .case-hero__list { gap: calc(6 * var(--u)); }
+  .case-hero--stage .case-hero__list li { gap: calc(8 * var(--u)); }
+  .case-hero--stage .case-hero__tags { gap: calc(12 * var(--u)); }
+  .case-hero--stage .case-chip {
+    height: calc(52 * var(--u));
+    padding: 0 calc(20 * var(--u));
+    border-radius: calc(12 * var(--u));
+    font-size: calc(18 * var(--u));
+    line-height: calc(24 * var(--u));
+    color: var(--hero-tag-fg, var(--hero-chip-fg));
+  }
+
+  /* 오른쪽 그림 조각 — 좌표·크기 전부 시안 값 그대로 */
+  .case-hero--stage .case-hero__art {
+    left: calc(var(--ax) * var(--u));
+    top: calc(var(--ay) * var(--u));
+    display: block;
+    width: calc(var(--aw) * var(--u));
+    height: calc(var(--ah) * var(--u));
+  }
+  .case-hero--stage .case-hero__art > picture,
+  .case-hero--stage .case-hero__art img {
+    display: block;
     width: 100%;
     height: 100%;
   }
-  /* 그림 크기에 딱 맞는 상자. 좌우로 남는 자리는 이 상자를 기준으로 늘린다 —
-     화면 높이가 아니라 그림 높이에 맞아야 그라디언트가 이어진다 */
-  .case-hero--shot .case-hero__frame {
-    position: relative;
-    display: flex;
-  }
-  .case-hero--shot .case-hero__frame::before,
-  .case-hero--shot .case-hero__frame::after {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 50vw;
-    background-image: var(--hero-shot);
-    background-repeat: no-repeat;
-    background-size: 100000% 100%;   /* 가장자리 한 열만 가로로 늘린다 */
-    content: "";
-  }
-  .case-hero--shot .case-hero__frame::before { right: 100%; background-position: left center; }
-  .case-hero--shot .case-hero__frame::after  { left: 100%;  background-position: right center; }
+  /* 모서리와 그림자는 페이지가 인라인으로 정한다.
+     배경이 그라디언트인 페이지는 그림에 배경을 물릴 수 없어 코드로 그린다. */
+  .case-hero--stage .case-hero__art img { border-radius: inherit; }
 
-  .case-hero__whole {
-    position: relative;
-    z-index: 1;
+  /* AI — 흰 배경 위 옅은 타원 두 개. 그림 뒤에 깔린다 */
+  .case-hero--stage .case-hero__blob {
+    left: calc(var(--ax) * var(--u));
+    top: calc(var(--ay) * var(--u));
     display: block;
-    /* 시안에서 목업이 위아래 모서리에 잘려 나가므로 띠를 남기면 안 된다.
-       그래서 히어로 높이를 채우는 너비 (100vh-90) x 1920/939 로 키운다.
-       넘치는 좌우는 히어로가 잘라 준다(overflow:hidden).
+    width: calc(var(--aw) * var(--u));
+    height: calc(var(--ah) * var(--u));
+    border-radius: 50%;
+    background: radial-gradient(closest-side, var(--blob), rgb(255 255 255 / 0%));
+  }
 
-       다만 무한정 잘리게 두면 안 된다. 화면이 세로로 길수록 더 키워야 높이가
-       차는데, 잘리는 만큼 시안 좌우 여백 160 을 파먹어 제목이 가장자리에 붙는다.
-       그래서 "제목 왼쪽 여백 40px 이 남을 때까지"를 한계로 삼는다.
-       여백 = 160 x (w/1920) - (w - 화면폭)/2 이므로 w <= 1.2 x 화면폭 - 96.
-       한쪽 64px 로 못 박았더니 넓은 화면에서 오히려 일찍 걸려 위아래에 띠가
-       남았다 — 한계가 화면 폭을 따라 늘어나야 한다.
-
-       백분율이 아니라 화면 단위를 쓴다. 감싼 상자가 그림 크기를 따라가는
-       auto 크기라 백분율 기준이 없다. 100vw 는 스크롤바를 포함하므로 24 를
-       더 뺀다. 높이는 지정하지 않는다 — 너비만 주면 비율이 유지되고,
-       높이를 같이 주면 늘어난다. */
-    width: min(calc((100vh - 90px) * 1920 / 939), calc(120vw - 120px));
-    height: auto;
-    max-width: none;
+  /* 백오피스 — 목업을 감싼 반투명 흰 테. 그림으로 뽑으면 불투명해진다 */
+  .case-hero--stage .case-hero__panel {
+    left: calc(902 * var(--u));
+    top: calc(121 * var(--u));
+    display: block;
+    width: calc(1018 * var(--u));           /* 1280 이 화면 끝에서 잘린 폭 */
+    height: calc(694 * var(--u));
+    padding: calc(21 * var(--u)) 0 calc(21 * var(--u)) calc(21 * var(--u));
+    border-radius: calc(20 * var(--u)) 0 0 calc(20 * var(--u));
+    background: rgb(255 255 255 / 50%);
   }
 }
 
