@@ -457,6 +457,7 @@
 .case-section {
   /* 한 섹션이 정확히 한 화면. 내용이 세로로 넘치면 잘리므로
      헤더(90)+탭(80) 을 뺀 영역 안에서 initCaseFit 이 축소한다. */
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -576,6 +577,22 @@
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
+}
+
+/* 섹션 위쪽 여백(170) — 평소에는 헤더+탭이 정확히 덮지만, 스크롤이 스냅 사이에
+   있을 때 탭 바 아래로 이 자리가 드러난다. 여기에 --sec-bg 가 그대로 비치면
+   좌우 두 톤인 섹션(bo-3)에서 경계가 이미지와 어긋나 배경이 튀어나와 보인다.
+   이미지의 맨 윗줄을 세로로 늘려 채운다 — 가로 크기·위치를 이미지와 똑같이
+   맞추므로(--shot-w 는 initShotBands 가 실측해 넣는다) 이음매가 없다. */
+.case-section--shot::before {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 170px;
+  background-image: var(--shot);
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: var(--shot-w, 100%) 100000%;
+  content: "";
 }
 
 /* 여백 띠 — 배경을 1000배로 늘려 이미지의 끝 한 줄만 보이게 한다.

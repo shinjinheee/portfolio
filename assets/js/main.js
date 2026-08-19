@@ -258,6 +258,9 @@
         var src = img.currentSrc;
         if (!src) continue;
         sec.style.setProperty('--shot', 'url("' + src + '")');
+        // 위쪽 여백을 채우는 띠가 이미지와 가로로 정확히 겹치게 폭을 넘겨준다
+        var iw0 = img.getBoundingClientRect().width;
+        if (iw0) sec.style.setProperty('--shot-w', iw0.toFixed(2) + 'px');
 
         // 지연 로딩된 이미지는 아직 크기가 0이므로 비율은 속성에서 얻는다
         var iw = img.naturalWidth || parseFloat(img.getAttribute('width'));
