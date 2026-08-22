@@ -29,6 +29,8 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: inherit;
 }
 
+/* 1920 고정 폭. 창이 더 좁으면 가로로 스크롤한다 — 반응형을 쓰지 않는다 */
+html, body { min-width: 1920px; }
 body { min-height: 100vh; }
 
 img, picture, video, canvas, svg {

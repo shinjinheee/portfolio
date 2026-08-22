@@ -668,19 +668,6 @@ picture { display: contents; }
 
 body.is-modal-open { overflow: hidden; }
 
-@media (max-width: 1023px) {
-  .modal__dialog {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr;
-    width: min(641px, 100%);
-  }
-  .modal__visual { aspect-ratio: 641 / 580; }
-}
-@media (max-width: 767px) {
-  .modal { padding: var(--space-2); }
-  .modal__panel { padding: var(--space-3); }
-  .modal__close { top: 14px; right: 14px; }
-}
 
 /* ===========================================================
    케이스 페이지용 — 설계서 §4-2 / §4-4 / §4-5
@@ -744,72 +731,7 @@ body.is-modal-open { overflow: hidden; }
 /* ===========================================================
    반응형
    =========================================================== */
-@media (max-width: 1439px) {
-  .work-item { grid-template-columns: 40% 1fr; }
-  .statement { gap: 64px; }
-  .marquee__card { width: 520px; height: 296px; }
-}
 
-@media (max-width: 1279px) {
-  .about-grid { gap: var(--space-5); }
-  .card-grid { grid-template-columns: repeat(3, 1fr); gap: var(--space-4); }
-}
-
-@media (max-width: 1023px) {
-  .work-item {
-    grid-template-columns: 1fr;
-    gap: var(--space-3);
-    /* 썸네일이 테두리 있는 카드라 화면 끝에 붙으면 어색하다 —
-       구분선은 컨테이너 밖(.work-list)이 그리므로 좌우 여백은 유지한다 */
-  }
-  .work-item__body { padding-block: 0; gap: var(--space-4); }
-  .count-badge { font-size: 40px; padding: 12px calc(32px + 0.02em); }
-  .statement { max-width: none; gap: var(--space-5); }
-  .marquee__card { width: 420px; height: 239px; }
-  .metabar { grid-template-columns: repeat(2, 1fr); }
-  .compare { grid-template-columns: 1fr; }
-
-  /* 좌우 2단 → 1단, sticky 해제 */
-  .about-grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-5);
-    padding-bottom: var(--space-5);
-  }
-  .profile {
-    position: static;
-    padding-block: var(--space-5) 0;
-    max-width: 366px;
-  }
-  .info-list { padding-top: 0; gap: var(--space-5); }
-
-  /* 표는 가로 스크롤로 흘린다 */
-  .record-scroll { overflow-x: auto; }
-  .record-table { min-width: 720px; }
-
-  .card-grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-4); }
-}
-
-@media (max-width: 767px) {
-  .link-display { border-bottom-width: 3px; }
-  .work-item__title { font-size: 20px; }
-  .marquee__card { width: 280px; height: 160px; }
-  .metabar { grid-template-columns: 1fr; }
-  .metric__value { font-size: 44px; }
-
-  .year-tabs { top: 64px; }
-  .year-group { scroll-margin-top: 144px; }   /* 헤더 64 + 탭 81 − 1 (겹침) */
-  .card-grid { grid-template-columns: 1fr; gap: var(--space-5); }
-  .year-group__label { margin-bottom: var(--space-4); }
-
-  .about-grid { padding-inline: var(--pad-x); }
-  .def-row { flex-direction: column; gap: 2px; }
-  .def-row__term { width: auto; }
-  .chip { font-size: 16px; padding: 8px 16px; }
-  .chip--tag { height: 40px; }
-  /* 배지가 48px 제목 옆에서 138×111 이면 좁은 화면을 넘친다 */
-  .count-badge { font-size: 28px; padding: 8px calc(20px + 0.02em); }
-  .work-item__tags { gap: 8px; }
-}
 
 /* 상세 페이지가 있는 항목만 제목이 링크가 된다 */
 .work-item__title a { border-bottom: 1px solid transparent; transition: border-color var(--dur-fast) var(--ease); }
