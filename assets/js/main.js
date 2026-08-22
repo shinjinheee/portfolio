@@ -160,6 +160,7 @@
       if (inner.closest('.case-hero--stage')) { inner.style.marginTop = ''; return; }
 
       inner.style.marginTop = '';
+      if (window.matchMedia('(max-width: 1023px)').matches) return;
 
       var cs = getComputedStyle(title);
       var ctx = trimLead.ctx || (trimLead.ctx =
@@ -177,6 +178,11 @@
 
     function fit() {
       trimLead();
+      // 모바일에서는 축소하지 않고 자연스럽게 흐르게 둔다
+      if (window.matchMedia('(max-width: 1023px)').matches) {
+        for (var j = 0; j < inners.length; j++) inners[j].style.transform = '';
+        return;
+      }
       for (var i = 0; i < inners.length; i++) {
         var el = inners[i];
         el.style.transform = '';                       // 먼저 원래 크기로
@@ -210,10 +216,15 @@
     if (!tail || !('IntersectionObserver' in window)) return;
 
     var io = new IntersectionObserver(function (entries) {
-      var free = entries[entries.length - 1].isIntersecting;
+      var free = entries[entries.length - 1].isIntersecting
+        && !window.matchMedia('(max-width: 1023px)').matches;
       root.style.scrollSnapType = free ? 'none' : '';
     });
     io.observe(tail);
+
+    window.addEventListener('resize', function () {
+      if (window.matchMedia('(max-width: 1023px)').matches) root.style.scrollSnapType = '';
+    });
   }
 
   /**
@@ -232,11 +243,14 @@
     if (!secs.length) return;
 
     function place() {
+      var narrow = window.matchMedia('(max-width: 1023px)').matches;
       for (var i = 0; i < secs.length; i++) {
         var sec = secs[i];
         var img = sec.querySelector('.case-shot');
         var box = sec.querySelector('.case-section__inner');
         if (!img || !box) continue;
+
+        if (narrow) { sec.removeAttribute('data-band'); continue; }
 
         // currentSrc 가 빌 때 src 로 물러서면 안 된다 — src 는 PNG 대체본이라
         // WebP 를 쓰는 브라우저에서 같은 그림을 두 벌 받게 된다.

@@ -80,13 +80,13 @@
   --font-kr: "Pretendard", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-en: "Space Grotesk", var(--font-kr);
 
-  /* ---------- 타이포 스케일 — 1920 고정 폭에서 계산한 값 ----------
+  /* ---------- 타이포 스케일 ----------
      1920px 기준 실측값 → 하한은 1024px 기준 축소값 */
-  --fs-display: 99.84px;  /* Selected Work / Archive / Work with me */
-  --fs-h1:      48px;   /* Detail 등 중형 영문 헤딩 */
-  --fs-h2:      40px;
-  --fs-h3:      30px;   /* 프로젝트 제목 */
-  --fs-lead:    24px;
+  --fs-display: clamp(48px, 5.2vw, 100px);  /* Selected Work / Archive / Work with me */
+  --fs-h1:      clamp(32px, 2.5vw, 48px);   /* Detail 등 중형 영문 헤딩 */
+  --fs-h2:      clamp(24px, 2.1vw, 40px);
+  --fs-h3:      clamp(22px, 1.6vw, 30px);   /* 프로젝트 제목 */
+  --fs-lead:    clamp(18px, 1.25vw, 24px);
   --fs-body:    18px;
   --fs-meta:    16px;                        /* 회사명 · 연도 */
   --fs-caption: 15px;
@@ -130,4 +130,29 @@
   --dur-base:  220ms;
 }
 
-
+@media (max-width: 1439px) {
+  :root {
+    --pad-x: 40px;
+    --space-section: 140px;
+    --space-first: 180px;
+    --space-6: 100px;
+  }
+}
+@media (max-width: 1023px) {
+  :root {
+    --space-section: 100px;
+    --space-first: 120px;
+    --space-6: 72px;
+    --space-5: 40px;
+  }
+}
+@media (max-width: 767px) {
+  :root {
+    --pad-x: 20px;
+    --space-section: 72px;
+    --space-first: 88px;
+    --space-6: 48px;
+    --space-5: 24px;
+    --fs-body: 16px;
+  }
+}
